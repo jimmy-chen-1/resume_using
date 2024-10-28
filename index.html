@@ -169,40 +169,6 @@
             color: #47f9ffbf;
         }
          
-        /* Modal Styling */
-         .modal {
-            display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.6);
-            justify-content: center;
-            align-items: center;
-            z-index: 2000;
-        }
-        .modal-content {
-            background: white;
-            padding: 20px;
-            border-radius: 8px;
-            width: 300px;
-            text-align: center;
-        }
-        .close-modal {
-            background: #6066bfa0;
-            color: #fff;
-            padding: 5px 10px;
-            border-radius: 50%;
-            font-size: 18px;
-            position: absolute;
-            top: 10px;
-            right: 10px;
-            cursor: pointer;
-        }
-        .close-modal:hover {
-            background: #47f9ffbf;
-        }
     </style>
 </head>
 <body>
@@ -215,7 +181,7 @@
         <a href="#skills">Skills</a>
         <a href="#projects">Projects</a>
         <a href="#contact">Contact Information</a>
-        <button class="donate-button" onclick="openModal()">Donate</button>
+        <button href="#donate">Donate</button>
     </div>
     </div>
 
@@ -284,29 +250,12 @@
             <p><strong>Email:</strong> <a href="mailto:sc171@illinois.edu"><i class="fas fa-envelope"></i> sc171@illinois.edu</a></p>
             <p><strong>Phone:</strong> <i class="fas fa-phone"></i> +1 347-245-0259</p>
             <p><strong>LinkedIn:</strong> <a href="https://www.linkedin.com/in/chen-shengjie" target="_blank"><i class="fab fa-linkedin"></i> Shengjie (Jimmy) Chen</a></p>
+            <a href="https://drive.google.com/file/d/1MKOIASite2S-IaO7aEtNn5h43pl6RuZ0/view?usp=sharing" target="_blank">
+                <button class="donate-button">Donate</button>
         </div>
         
-        <!-- Donate Section -->
-        <div id="donationModal" class="modal">
-            <div class="modal-content">
-                <span class="close-modal" onclick="closeModal()">&times;</span>
-                <h2>Support My Work</h2>
-                <p>Your support helps me continue building meaningful projects. Click below to donate.</p>
-                <a href="https://drive.google.com/file/d/1MKOIASite2S-IaO7aEtNn5h43pl6RuZ0/view?usp=sharing" target="_blank">
-                    <button class="donate-button">Donate</button>
-                </a>
-            </div>
-        </div>
     
         <footer>
             <p>&copy; 2024 Shengjie (Jimmy) Chen | Built with HTML & CSS</p>
         </footer>
     
-        <!-- JavaScript for Modal -->
-        <script>
-            function openModal() {
-                document.getElementById('donationModal').style.display = 'flex';
-            }
-            function closeModal() {
-                document.get
-            }

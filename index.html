@@ -6,7 +6,7 @@
      
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Shengjie (Jimmy) Chen's Portfolio</title>
+    <title>Jimmy Chen</title>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <style>
@@ -71,6 +71,20 @@
             transform: translateY(-5px);
         }
 
+        .navbar .logo h2 {
+        font-size: 2rem !important;  /* 调整这个数值改变大小 */
+        font-weight: 700;
+        letter-spacing: 1.5px;
+        text-transform: uppercase;
+        margin-right: 2rem;
+        transition: all 0.3s ease;
+        }
+
+        .navbar .logo h2:hover {
+        color: var(--accent-color);
+        transform: scale(1.05);
+        }
+
         /* 时间轴样式 */
         .timeline-item {
             position: relative;
@@ -110,6 +124,7 @@
         .project-card:hover {
             box-shadow: 0 8px 25px rgba(0,0,0,0.15);
         }
+
     </style>
 </head>
 <body>
@@ -118,7 +133,7 @@
     <nav class="navbar">
         <div class="nav-container">
             <div class="logo">
-                <h2 style="color: white;">J.CHEN</h2>
+                <h2 style="color: white;">Shengjie (Jimmy) CHEN</h2>
             </div>
             <div class="nav-links">
                 <!-- 导航链接保持不变... -->
@@ -179,9 +194,14 @@
             <div class="education-list">
                 <div class="education-item">
                     <h3>University of Illinois Urbana-Champaign</h3>
-                    <p>Master of Science in Business Analytics (Expected 06/2025)</p>
-                    <h3>Curtin University (Australia)</h3>
-                    <p>Bachelor of Commerce (Finance) with Distinction (Graduation: 11/2023)</p>
+                    <p>Master of Science in Business Analytics</p>
+                    <p>Graduation: Expected 06/2025</p>
+                    <p>GPA: 3.93</p>
+                    
+                    <h3>Curtin University (Perth,Australia)</h3>
+                    <p>Bachelor of Commerce (Finance) with Distinction</p>
+                    <p>Graduation: 11/2023</p>
+                    <p>GPA: 3.83 (Verified by WES)</p>
                 </div>
                 <!-- 其他教育经历 -->
             </div>
@@ -189,6 +209,24 @@
 
         <!-- Skills Section -->
         <section class="section-card" id="skills">
+            <h2 class="section-title">Methodologies</h2>
+            <div class="skill-chart">
+                <div class="skill-category">
+                    <h4>Data Analysis</h4>
+                    <div class="skill-items">
+                        <span class="skill-tag">Data Analysis</span>
+                        <span class="skill-tag">Data Visualization</span>
+                        <span class="skill-tag">Financial Analysis</span>
+                        <span class="skill-tag">Local AI Establish</span>
+                        <span class="skill-tag">Supervised Machine Learning</span>
+                        <span class="skill-tag">Unsupervised Machine Learning</span>
+                        <span class="skill-tag">Semi-Supervised Machine Learning</span>
+                        <span class="skill-tag">Reinforcement Machine Learning</span>
+                        
+                        <!-- 其他技能标签 -->
+                    </div>
+                </div>
+            </div>
             <h2 class="section-title">Technical Expertise</h2>
             <div class="skill-chart">
                 <div class="skill-category">
@@ -237,7 +275,7 @@
                             <i class="fas fa-external-link-alt"></i> View Analysis
                         </a>
                     </div>
-                    <p>The main theme is the empirical testing of the EKC hypothesis. This involves collecting data on variables like CO2 emissions and GDP per capita from the World Bank, then using statistical methods like linear regression to analyze the relationship between these variables. The project aims to determine if the data supports the EKC hypothesis, which predicts that environmental degradation initially increases with income but eventually decreases as income rises to a certain level.</p>
+                    <p>The project empirically tests the EKC hypothesis by analyzing World Bank data on CO2 emissions and GDP per capita using linear regression to determine if environmental degradation follows the predicted income-based trend.</p>
                 </div>
 
                 <div class="project-card">

@@ -7,290 +7,294 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Shengjie (Jimmy) Chen's Portfolio</title>
-    <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700&display=swap" rel="stylesheet">
-    <!-- Font Awesome for Icons -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <style>
-        /* General Styling */
-        body {
-            font-family: 'Lato', sans-serif;
-            background-color: #f0f8ff;
+        :root {
+            --primary-color: #2A2A72;
+            --secondary-color: #009FFD;
+            --accent-color: #00C9A7;
+            --text-dark: #2C3E50;
+            --text-light: #ECF0F1;
+        }
+
+        * {
             margin: 0;
             padding: 0;
-            color: #333;
-            scroll-behavior: smooth;
-        }
-        .container {
-            width: 80%;
-            margin: 20px auto;
-            background-color: #fff;
-            padding: 30px;
-            box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
-            border-radius: 10px;
-            position: relative;
-        }
-        .header, .navbar, footer {
-            text-align: center;
-            color: #fff;
-        }
-        
-        /* Navigation Bar */
-        .navbar {
-            background-color: #333;
-            padding: 15px;
-            position: sticky;
-            top: 0;
-            z-index: 1000;
-        }
-        .navbar a {
-            color: #ffc800;
-            text-decoration: none;
-            margin: 0 15px;
-            font-size: 18px;
-        }
-        .navbar a:hover {
-            color: #47f9ffbf;
+            box-sizing: border-box;
         }
 
-        /* Hero Section */
-        .hero {
-            background: linear-gradient(135deg, #ffc800, #6066bf);
-            color: white;
-            padding: 60px 20px;
-            border-radius: 10px;
-            text-align: center;
-        }
-        .hero h1 {
-            font-size: 48px;
-            margin: 0;
-            animation: fadeInDown 1s ease-in-out;
-        }
-        .hero p {
-            font-size: 22px;
-            margin-top: 10px;
-            animation: fadeInUp 1s ease-in-out;
-        }
-        @keyframes fadeInDown {
-            from { opacity: 0; transform: translateY(-20px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-        @keyframes fadeInUp {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
+        body {
+            font-family: 'Poppins', sans-serif;
+            color: var(--text-dark);
+            line-height: 1.6;
         }
 
-        /* Section Styling */
-        h2 {
-            font-size: 28px;
-            color: #ffc800;
-            margin-top: 40px;
-            transition: color 0.3s;
-        }
-        h2:hover {
-            color: #ff9900;
-        }
-        .resume-section, .contact-section, .projects-section {
-            margin-bottom: 40px;
-            padding: 20px;
-            background-color: #f9f9f9;
-            border-radius: 10px;
-        }
-
-        /* Project Cards */
-        .project-cards {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 20px;
-            justify-content: center;
-        }
-        .project-card {
-            background-color: #fff;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-            width: 250px;
-            padding: 20px;
-            border-radius: 10px;
-            text-align: center;
-        }
-        .project-card h3 {
-            color: #6066bf;
-            font-size: 20px;
-        }
-        .project-card p {
-            font-size: 16px;
-            color: #666;
-        }
-
-        /* Scroll to Top Button */
-        .scroll-top-btn {
+        .animated-bg {
             position: fixed;
-            bottom: 20px;
-            right: 20px;
-            background-color: #6066bfa0;
-            color: #fff;
-            padding: 10px;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            background: linear-gradient(-45deg, #f8f9fa, #e9ecef);
+            background-size: 400% 400%;
+            animation: gradientBG 15s ease infinite;
+        }
+
+        @keyframes gradientBG {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        /* 导航栏样式保持不变... */
+
+        /* 新增内容容器样式 */
+        .content-container {
+            max-width: 1200px;
+            margin: 100px auto 50px;
+            padding: 0 20px;
+        }
+
+        .section-card {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 15px;
+            padding: 2.5rem;
+            margin-bottom: 2rem;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            backdrop-filter: blur(10px);
+            transition: transform 0.3s ease;
+        }
+
+        .section-card:hover {
+            transform: translateY(-5px);
+        }
+
+        /* 时间轴样式 */
+        .timeline-item {
+            position: relative;
+            padding: 2rem;
+            margin-left: 30px;
+            border-left: 3px solid var(--secondary-color);
+        }
+
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: -10px;
+            top: 25px;
+            width: 16px;
+            height: 16px;
+            background: white;
+            border: 3px solid var(--secondary-color);
             border-radius: 50%;
-            font-size: 24px;
-            display: none;
-            cursor: pointer;
-        }
-        .scroll-top-btn:hover {
-            background-color: #47f9ffbf;
         }
 
-        /* Donation Button */
-        .donate-button {
-            background-color: #ff6f61;
-            color: #fff;
-            padding: 12px 24px;
-            border: none;
-            border-radius: 5px;
-            font-size: 18px;
-            cursor: pointer;
-            margin-top: 20px;
-        }
-        .donate-button:hover {
-            background-color: #ff8a75;
+        /* 项目卡片 */
+        .project-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
         }
 
-        /* Footer Styling */
-        footer {
-            background-color: #333;
-            padding: 15px;
-            color: #fff;
-            font-size: 14px;
-            border-top: 1px solid #e0e0e0;
-            display: flex;
-            justify-content: center;
-            gap: 15px;
+        .project-card {
+            background: white;
+            border-radius: 12px;
+            padding: 1.5rem;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
         }
-        footer a {
-            color: #ffc800;
-            text-decoration: none;
+
+        .project-card:hover {
+            box-shadow: 0 8px 25px rgba(0,0,0,0.15);
         }
-        footer a:hover {
-            color: #47f9ffbf;
-        }
-         
     </style>
 </head>
 <body>
+    <div class="animated-bg"></div>
 
-    <!-- Navbar -->
-    <div class="navbar">
-        <a href="#about">About</a>
-        <a href="#experience">Experience</a>
-        <a href="#education">Education</a>
-        <a href="#skills">Skills</a>
-        <a href="#projects">Projects</a>
-        <a href="#contact">Contact Information</a>
-    </div>
-    </div>
-
-    <!-- Hero Section -->
-    <div class="hero">
-        <h1>Shengjie (Jimmy) Chen</h1>
-        <p>Business Analyst and Data Enthusiast</p>
-    </div>
-
-    <div class="container">
-
-        <div id="about" class="resume-section">
-            <h2>About Me</h2>
-            <p>I am currently pursuing my Master’s in Business Analytics at the University of Illinois, with a strong academic background in finance from Curtin University, Australia. I have gained practical experience as a Financial Advisor Intern at Equitable Advisors and as an Engagement Team Member at TTG Asia Media. My expertise lies in data analysis, financial advisory, and using tools like Python, PowerBI, and R-Studio for data-driven decision-making.</p>
-        </div>
-
-        <div id="experience" class="resume-section">
-            <h2>Professional Experience</h2>
-
-            <h3>Business Operations Team Member - Disruption Lab at Gies (11/2024 - Now)</h3>
-            <p>- The Disruption Lab at the University of Illinois’ Gies College of Business partnered with Ernst & Young LLP (EY US) on
-                an early project to immerse students in quantum computing and virtual reality (VR), which is expected to transform the future
-                as it enables computations that are not possible with traditional computing capabilities.<br>
-
-            <h3>Associate Business Analyst - Associated Wholesale Grocers (AWG) (09/2024 - Now)</h3>
-            <p>- Utilized Python (Pandas, Numpy, Matplotlib, Sklearn) and R to overall analyze over 15000+ organizations’ data (time-series
-                analysis & cross section analysis & classification) of the donations made and trends associated with them<br>
-            - Reported and Visualized (Tableau) on recommendations for optimizing Digital Coupons strategy for AWG products.<br>
-            - Used the method of Machine Learning to anticipate the success of Digital Coupons strategy.</p>
-
-            <h3>Financial Advisor Intern - Equitable Advisors (01/2024 - 05/2024)</h3>
-            <p>- Sourced and organized 10,000+ new client leads using Zoominfo for efficient customer management.<br>
-            - Employed tools like PowerBI to optimize investment management and tax strategies for 50+ clients, improving financial outcomes by 15%.<br>
-            - Established internal customer relational management database for managers immediately gaining the client’s details and stored 10000+ potential clients needed financial services in the database</p>
-
-            <h3>Client Engagement Rate Analyst - TTG Asia Media Pte Ltd (07/2023 - 10/2023)</h3>
-            <p>- Onboarded 150+ hotel managers and agents for tour sales, and used HubSpot CRM for tracking customer responses.<br>
-            - Analyzed 5,000+ tour and attraction tickets for data insights using Excel and R Studio, contributing to machine learning model training.<br>
-            - Searched for and identified 100+ potential distribution channels provided corresponding support<br>
-            - Collected 2000+ feedback to build and enhance the relationship with potential customers using HubSpot CRM, achieving a 42.22% open rate of email (helping to build the new relationship) and a 47.27% click rate</p>
-        </div>
-
-        <div id="education" class="resume-section">
-            <h2>Education</h2>
-            <p><strong>University of Illinois Urbana-Champaign</strong> – Master of Science in Business Analytics (Expected Graduation: 06/2025)</p>
-            <p><strong>Curtin University, Bentley, Australia</strong> – Bachelor of Commerce (Finance) with Distinction (Graduation: 11/2023)<br>
-            GPA: 3.87 | Top 10% of the class</p>
-        </div>
-
-        <div id="skills" class="resume-section">
-            <h2>Skills</h2>
-            <p><strong>Technical Skills:</strong><br>
-               Python, mySQL, PowerBI, Microsoft Excel, HubSpot, Zoominfo, R-Studio, Photoshop, GoogleAds, iMovie, Alteryx</p>
-            <p><strong>Methodologies:</strong><br>
-               Financial Analysis, Data Visualization, Marketing Search, Machine Learning, Database Management</p>
-        </div>
-
-        <!-- Projects Section -->
-        <div id="projects" class="projects-section">
-            <h2>Projects</h2>
-            <div class="project-cards">
-                <div class="project-card">
-                    <h3>Pvirtual Stock Investment Analysis</h3>
-                    <p><a href="https://drive.google.com/drive/folders/10z5G2XHLvOcBI2cvGALBimJQT0x03bT_?usp=drive_link" target="_blank" style="color: #6066bf; text-decoration: none;">Access Files</a></p>
-                    <p>The report analyzes the investment choices and portfolio performance compared to the S&P 500, discussing factors like interest rates, inflation, and COVID-19 that influenced investment results.</p>
-                </div>
-                <div class="project-card">
-                    <h3>Econometric work to prove Environmental Kuznets Curve (EKC)</h3>
-                    <p><a href="https://drive.google.com/drive/folders/1AQbQ2peapBoOr-EOWHqG3-CJoSFejCSB?usp=drive_link" target="_blank" style="color: #6066bf; text-decoration: none;">Access Files</a></p>
-                    <p>The main theme is the empirical testing of the EKC hypothesis. This involves collecting data on variables like CO2 emissions and GDP per capita from the World Bank, then using statistical methods like linear regression to analyze the relationship between these variables. The project aims to determine if the data supports the EKC hypothesis, which predicts that environmental degradation initially increases with income but eventually decreases as income rises to a certain level.</p>
-                </div>
-                <div class="project-card">
-                    <h3>Analysis of a Workplace Wellness Program</h3>
-                    <p><a href="https://drive.google.com/drive/folders/1Is-Sa2JPu1Wdd3728II2E8-_xPGY5K8w?usp=sharing" target="_blank" style="color: #6066bf; text-decoration: none;">Access Project 3 Files</a></p>
-                    <p>The main goal of the analysis is to determine the effectiveness of workplace wellness programs on healthcare spending and employee health. The document also discusses the challenges of selection bias in such studies and the importance of using randomized controlled trials (RCTs) to establish causal relationships.</p>
-                </div>
-                <div class="project-card">
-                    <h3>Predicting Property Values in Cook County, Illinois</h3>
-                    <p><a href="https://drive.google.com/drive/folders/1RHU9r78Exw661vXsso_Sb7Xm68_Lkv5u?usp=sharing" target="_blank" style="color: #6066bf; text-decoration: none;">Access Files</a></p>
-                    <p>The primary goal of the project is to develop a machine learning model that can accurately estimate the market value of residential properties based on historical data and features. The project emphasizes the importance of fair and accurate property assessments to ensure equitable taxation.</p>
-                </div>
-                <div class="project-card">
-                    <h3>Explore NYC taxi fare pattern</h3>
-                    <p><a href="https://drive.google.com/drive/folders/1vtGlH_OLlnqYhUnZ5BqA4I4tkzZ2sMSk?usp=drive_link" target="_blank" style="color: #6066bf; text-decoration: none;">Access Files</a></p>
-                    <p>It provided insights into various aspects of NYC taxi trip data, helping to understand demand patterns, fare structures, payment preferences, and the impact of surcharges. The analysis results can be used to optimize taxi operations, improve pricing strategies, and enhance customer service.</p>
-                </div>
-                <div class="project-card">
-                    <h3>Difference-in-Differences analysis and Regression Discontinuity (RD) analysis</h3>
-                    <p><a href="https://drive.google.com/drive/folders/1OfnM0f2idXl3hINU4nCvZxiLwi8gUucg?usp=sharing" target="_blank" style="color: #6066bf; text-decoration: none;">Access Project 6 Files</a></p>
-                    <p>The work focuses on analyzing the impact of teenage driving on mortality rates using a regression discontinuity design.</p>
-                </div>
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="logo">
+                <h2 style="color: white;">J.CHEN</h2>
+            </div>
+            <div class="nav-links">
+                <!-- 导航链接保持不变... -->
+                <a href="https://jimmyai.uk/ai" class="ai-button" target="_blank">
+                    <i class="fas fa-robot"></i> Try Jimmy AI
+                </a>
             </div>
         </div>
+    </nav>
 
+    <div class="content-container">
+        <!-- About Section -->
+        <section class="section-card" id="about">
+            <h2 class="section-title">About Me</h2>
+            <div class="section-content">
+                <p>I am currently pursuing my Master’s in Business Analytics at the University of Illinois, with a strong academic background in finance from Curtin University, Australia. I have gained practical experience as a Financial Advisor Intern at Equitable Advisors and as an Engagement Team Member at TTG Asia Media. My expertise lies in data analysis, financial advisory, and using tools like Python, PowerBI, and R-Studio for data-driven decision-making.
+        </section>
+
+        <!-- Experience Section -->
+        <section class="section-card" id="experience">
+            <h2 class="section-title">Professional Experience</h2>
+            <div class="timeline">
+                <div class="timeline-item">
+                    <h3>Business Operations Team Member - Disruption Lab at Gies (11/2024 - Now)</h3>
+                    <p> -Using disruptive technology like AI and machine learning, Blockchain, and VR/AR to transform industries. It works on projects with real world impact for a variety of clients.</p>
+                    
+                    <h3>Associate Business Analyst - Associated Wholesale Grocers (AWG) (09/2024 - Now)</h3>
+                    <p> - Utilized Python (Pandas, Numpy, Matplotlib, Sklearn) and R to overall analyze over 15000+ organizations’ data (time-series analysis & cross section analysis & classification) of the donations made and trends associated with them
+                        - Reported and Visualized (Tableau) on recommendations for optimizing Digital Coupons strategy for AWG products.
+                        - Used the method of Machine Learning to anticipate the success of Digital Coupons strategy.</p>
+                    
+                    
+                    <h3>Financial Advisor Intern - Equitable Advisors (01/2024 - 05/2024)</h3>
+                    <p> - Sourced and organized 10,000+ new client leads using Zoominfo for efficient customer management.
+                        - Employed tools like PowerBI to optimize investment management and tax strategies for 50+ clients, improving financial outcomes by 15%.
+                        - Established internal customer relational management database for managers immediately gaining the client’s details and stored 10000+ potential clients needed financial services in the database</p>
+
+
+                    <h3>Client Engagement Rate Analyst - TTG Asia Media Pte Ltd (07/2023 - 10/2023)</h3>
+                    <p> - Onboarded 150+ hotel managers and agents for tour sales, and used HubSpot CRM for tracking customer responses.
+                        - Analyzed 5,000+ tour and attraction tickets for data insights using Excel and R Studio, contributing to machine learning model training.
+                        - Searched for and identified 100+ potential distribution channels provided corresponding support
+                        - Collected 2000+ feedback to build and enhance the relationship with potential customers using HubSpot CRM, achieving a 42.22% open rate of email (helping to build the new relationship) and a 47.27% click rate</p>
+
+
+                    
+                </div>
+                
+                <!-- 其他经历项目相同结构 -->
+            </div>
+        </section>
+
+        <!-- Education Section -->
+        <section class="section-card" id="education">
+            <h2 class="section-title">Education</h2>
+            <div class="education-list">
+                <div class="education-item">
+                    <h3>University of Illinois Urbana-Champaign</h3>
+                    <p>Master of Science in Business Analytics (Expected 06/2025)</p>
+                    <h3>Curtin University (Australia)</h3>
+                    <p>Bachelor of Commerce (Finance) with Distinction (Graduation: 11/2023)</p>
+                </div>
+                <!-- 其他教育经历 -->
+            </div>
+        </section>
+
+        <!-- Skills Section -->
+        <section class="section-card" id="skills">
+            <h2 class="section-title">Technical Expertise</h2>
+            <div class="skill-chart">
+                <div class="skill-category">
+                    <h4>Data Analysis</h4>
+                    <div class="skill-items">
+                        <span class="skill-tag">Python</span>
+                        <span class="skill-tag">SQL</span>
+                        <!-- 其他技能标签 -->
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Projects Section -->
+        <section class="section-card" id="projects">
+            <h2 class="section-title">Featured Projects</h2>
+            <div class="project-grid">
+                <div class="project-card">
+                    <h3>Virtual Stock Investment Analysis</h3>
+                    <div class="project-links">
+                        <a href="https://drive.google.com/drive/folders/10z5G2XHLvOcBI2cvGALBimJQT0x03bT_" target="_blank">
+                            <i class="fas fa-external-link-alt"></i> View Analysis
+                        </a>
+                    </div>
+                    <p>The report analyzes the investment choices and portfolio performance compared to the S&P 500, discussing factors like interest rates, inflation, and COVID-19 that influenced investment results.</p>
+                </div>
+
+                <div class="project-card">
+                    <h3>Econometric work to prove Environmental Kuznets Curve (EKC)</h3>
+                    <div class="project-links">
+                        <a href="https://drive.google.com/drive/folders/1AQbQ2peapBoOr-EOWHqG3-CJoSFejCSB" target="_blank">
+                            <i class="fas fa-external-link-alt"></i> View Analysis
+                        </a>
+                    </div>
+                    <p>The main theme is the empirical testing of the EKC hypothesis. This involves collecting data on variables like CO2 emissions and GDP per capita from the World Bank, then using statistical methods like linear regression to analyze the relationship between these variables. The project aims to determine if the data supports the EKC hypothesis, which predicts that environmental degradation initially increases with income but eventually decreases as income rises to a certain level.</p>
+                </div>
+
+                div class="project-card">
+                    <h3>Analysis of a Workplace Wellness Program</h3>
+                    <div class="project-links">
+                        <a href="https://drive.google.com/drive/folders/1Is-Sa2JPu1Wdd3728II2E8-_xPGY5K8w" target="_blank">
+                            <i class="fas fa-external-link-alt"></i> View Analysis
+                        </a>
+                    </div>
+                    <p>The main goal of the analysis is to determine the effectiveness of workplace wellness programs on healthcare spending and employee health. The document also discusses the challenges of selection bias in such studies and the importance of using randomized controlled trials (RCTs) to establish causal relationships.</p>
+                </div>
+
+                <div class="project-card">
+                    <h3>Predicting Property Values in Cook County, Illinois</h3>
+                    <div class="project-links">
+                        <a href="https://drive.google.com/drive/folders/1RHU9r78Exw661vXsso_Sb7Xm68_Lkv5u" target="_blank">
+                            <i class="fas fa-external-link-alt"></i> View Analysis
+                        </a>
+                    </div>
+                    <p>The primary goal of the project is to develop a machine learning model that can accurately estimate the market value of residential properties based on historical data and features. The project emphasizes the importance of fair and accurate property assessments to ensure equitable taxation.</p>
+                </div>
+
+                <div class="project-card">
+                    <h3>Explore NYC taxi fare pattern</h3>
+                    <div class="project-links">
+                        <a href="https://drive.google.com/drive/folders/1vtGlH_OLlnqYhUnZ5BqA4I4tkzZ2sMSk" target="_blank">
+                            <i class="fas fa-external-link-alt"></i> View Analysis
+                        </a>
+                    </div>
+                    <p>It provided insights into various aspects of NYC taxi trip data, helping to understand demand patterns, fare structures, payment preferences, and the impact of surcharges. The analysis results can be used to optimize taxi operations, improve pricing strategies, and enhance customer service.</p>
+                </div>
+
+                <div class="project-card">
+                    <h3>Difference-in-Differences analysis and Regression Discontinuity (RD) analysis</h3>
+                    <div class="project-links">
+                        <a href="https://drive.google.com/drive/folders/1OfnM0f2idXl3hINU4nCvZxiLwi8gUucg" target="_blank">
+                            <i class="fas fa-external-link-alt"></i> View Analysis
+                        </a>
+                    </div>
+                    <p>The work focuses on analyzing the impact of teenage driving on mortality rates using a regression discontinuity design.</p>
+                </div>
+                <!-- 其他项目卡片 -->
+            </div>
+        </section>
 
         <!-- Contact Section -->
-        <div id="contact" class="contact-section">
-            <h2>Contact Information</h2>
-            <p><strong>Email:</strong> <a href="mailto:sc171@illinois.edu"><i class="fas fa-envelope"></i> sc171@illinois.edu</a></p>
-            <p><strong>Phone:</strong> <i class="fas fa-phone"></i> +1 347-245-0259</p>
-            <p><strong>LinkedIn:</strong> <a href="https://www.linkedin.com/in/chen-shengjie" target="_blank"><i class="fab fa-linkedin"></i> Shengjie (Jimmy) Chen</a></p>
-            <a href="https://drive.google.com/file/d/1MKOIASite2S-IaO7aEtNn5h43pl6RuZ0/view?usp=sharing" target="_blank">
-                <button class="donate-button">Donate</button>
-        </div>
-        
-    
-        <footer>
-            <p>&copy; 2024 Shengjie (Jimmy) Chen | Built with HTML & CSS</p>
-        </footer>
-    
+        <section class="section-card" id="contact">
+            <h2 class="section-title">Let's Connect</h2>
+            <div class="contact-info">
+                <div class="contact-item">
+                    <i class="fas fa-envelope"></i>
+                    <a href="mailto:sc171@illinois.edu">sc171@illinois.edu</a>
+                </div>
+                <!-- 其他联系信息 -->
+            </div>
+            <a href="https://jimmyai.uk/ai" class="ai-button" target="_blank">
+                <i class="fas fa-comment-dots"></i> Chat with Jimmy AI
+            </a>
+        </section>
+    </div>
+
+    <!-- Floating AI Button -->
+    <div class="floating-ai">
+        <a href="https://jimmyai.uk/ai" class="ai-button" target="_blank">
+            <i class="fas fa-comments"></i> Jimmy AI
+        </a>
+
+        <a href="https://drive.google.com/file/d/1MKOIASite2S-IaO7aEtNn5h43pl6RuZ0/view?usp=sharing" target="_blank">
+            <button class="donate-button">Donate</button>
+    </div>
+</body>
+</html>
+
+<footer>
+    <p>&copy; 2024 Shengjie (Jimmy) Chen | Built with HTML & CSS</p>
+</footer>

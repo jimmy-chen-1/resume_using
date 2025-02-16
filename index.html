@@ -50,9 +50,22 @@
             width: 100%;
             height: 100%;
             z-index: -1;
-            background: linear-gradient(-45deg, #f8f9fa, #e9ecef);
-            background-size: 400% 400%;
-            animation: gradientBG 15s ease infinite;
+            background: url('bgweb.jpg') center/cover;
+            /* 添加深色遮罩提升文字可读性 */
+            &::after {
+                content: '';
+                position: absolute;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                background: rgba(42, 42, 114, 0.4); /* 使用导航栏同款颜色遮罩 */
+            }
+        }
+
+        .section-card {
+            background: rgba(255, 255, 255, 0.93);
+            backdrop-filter: blur(8px);
         }
 
         @keyframes gradientBG {
@@ -138,53 +151,24 @@
             box-shadow: 0 8px 25px rgba(0,0,0,0.15);
         }
 
+        .animated-bg {
+        background: url('https://example.com/your-image.jpg') center/cover;
+        /* 添加遮罩层提升文字可读性 */
+        &::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(255,255,255,0.9);
+        }
+}
+
     </style>
 </head>
 
 
-<canvas id="particle-canvas"></canvas>
-
-<script>
-// 添加粒子动画脚本
-const canvas = document.getElementById('particle-canvas');
-const ctx = canvas.getContext('2d');
-canvas.width = window.innerWidth;
-canvas.height = window.innerHeight;
-
-const particles = [];
-class Particle {
-    constructor() {
-        this.x = Math.random() * canvas.width;
-        this.y = Math.random() * canvas.height;
-        this.size = Math.random() * 2 + 1;
-        this.speedX = Math.random() * 3 - 1.5;
-        this.speedY = Math.random() * 3 - 1.5;
-    }
-    update() {
-        this.x += this.speedX;
-        this.y += this.speedY;
-        if (this.size > 0.2) this.size -= 0.05;
-    }
-    draw() {
-        ctx.fillStyle = 'rgba(42,42,114,0.5)';
-        ctx.beginPath();
-        ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
-        ctx.fill();
-    }
-}
-
-function animate() {
-    ctx.clearRect(0, 0, canvas.width, canvas.height);
-    if (particles.length < 100) particles.push(new Particle());
-    particles.forEach((particle, index) => {
-        particle.update();
-        particle.draw();
-        if (particle.size <= 0.2) particles.splice(index, 1);
-    });
-    requestAnimationFrame(animate);
-}
-animate();
-</script>
 
 <body>
     <div class="animated-bg"></div>

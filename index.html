@@ -239,7 +239,9 @@
         /* 响应式设计 */
         @media (max-width: 768px) {
             .nav-links {
-                display: none;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
             }
             
             .container {
@@ -251,14 +253,32 @@
                 grid-template-columns: 1fr;
             }
         }
+
+        .section-card:hover, .project-card:hover {
+        transform: scale(1.05);
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+        box-shadow: 0 12px 24px rgba(0, 0, 0, 0.2);
+        }
         
+        .ai-button:hover {
+        background: linear-gradient(135deg, #00b894, var(--accent-color));
+        transform: scale(1.05);
+        box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+        transition: all 0.3s ease;
+        }
+
+        .navbar:hover {
+        background: rgba(42, 42, 114, 0.85);
+        transition: background 0.3s ease;
+        }
+
     </style>
 </head>
 
 <body>
     <div class="animated-bg"></div>
 
-    <<nav class="navbar">
+    <nav class="navbar">
         <div class="nav-container">
           <!-- 移动端优先的结构 -->
           <div class="nav-links mobile-only">
@@ -278,7 +298,7 @@
         <section class="section-card" id="about">
             <h2 class="section-title">About Me</h2>
             <div class="section-content">
-                <p>I am currently pursuing my Master’s in Business Analytics at the University of Illinois, with a strong academic background in finance from Curtin University, Australia. I have gained practical experience as a Financial Advisor Intern at Equitable Advisors and as an Engagement Team Member at TTG Asia Media. My expertise lies in data analysis, financial advisory, and using tools like Python, PowerBI, and R-Studio for data-driven decision-making.
+                <p>I am currently pursuing my Master’s in Business Analytics at the University of Illinois, with a strong academic background in finance from Curtin University, Australia. I have gained practical experience as a Financial Advisor Intern at Equitable Advisors and as an Engagement Team Member at TTG Asia Media. My expertise lies in data analysis, financial advisory, and using tools like Python, SQL, and R-Studio for data-driven decision-making.
         </section>
 
         <!-- Experience Section -->
@@ -286,12 +306,12 @@
             <h2 class="section-title">Professional Experience</h2>
             <div class="timeline">
                 <div class="timeline-item">
-                    <h3>Business Operations Team Member - Disruption Lab at Gies (11/2024 - Now)</h3>
+                    <h3>Business Operations Team Member - Disruption Lab at Gies (11/2024 - Now) </h3>
                     <p> -Using disruptive technology like AI and machine learning, Blockchain, and VR/AR to transform industries. It works on projects with real world impact for a variety of clients.</p>                    
                 </div>
 
                 <div class="timeline-item">
-                    <h3>Associate Business Analyst - Associated Wholesale Grocers (AWG) (09/2024 - Now)</h3>
+                    <h3>Associate Business Analyst - Associated Wholesale Grocers (AWG) (09/2024 - Now) </h3>
                     <p> - Utilized Python (Pandas, Numpy, Matplotlib, Sklearn) and R to overall analyze over 15000+ organizations’ data (time-series analysis & cross section analysis & classification) of the donations made and trends associated with them<br>
                         - Reported and Visualized (Tableau) on recommendations for optimizing Digital Coupons strategy for AWG products.<br>
                         - Used the method of Machine Learning to anticipate the success of Digital Coupons strategy.</p>                  
@@ -366,7 +386,6 @@
                         <span class="skill-tag">SAS</span>
                         <span class="skill-tag">R</span>
                         <span class="skill-tag">KNIME</span>
-                        <span class="skill-tag">SAS</span>
                         <span class="skill-tag">Wolfram</span>
                         <span class="skill-tag">AWS(Amazon Website Service)</span>
                         <span class="skill-tag">MongoDB</span>
@@ -390,7 +409,7 @@
                 <div class="project-card">
                     <h3>Virtual Stock Investment Analysis</h3>
                     <div class="project-links">
-                        <a href="https://drive.google.com/drive/folders/10z5G2XHLvOcBI2cvGALBimJQT0x03bT_" target="_blank">
+                        <a href="https://drive.google.com/drive/folders/10z5G2XHLvOcBI2cvGALBimJQT0x03bT_" target="_blank" rel="noopener noreferrer">
                             <i class="fas fa-external-link-alt"></i> View Analysis
                         </a>
                     </div>
@@ -400,7 +419,7 @@
                 <div class="project-card">
                     <h3>Econometric work to prove Environmental Kuznets Curve (EKC)</h3>
                     <div class="project-links">
-                        <a href="https://drive.google.com/drive/folders/1AQbQ2peapBoOr-EOWHqG3-CJoSFejCSB" target="_blank">
+                        <a href="https://drive.google.com/drive/folders/1AQbQ2peapBoOr-EOWHqG3-CJoSFejCSB" target="_blank" rel="noopener noreferrer">
                             <i class="fas fa-external-link-alt"></i> View Analysis
                         </a>
                     </div>
@@ -410,7 +429,7 @@
                 <div class="project-card">
                     <h3>Analysis of a Workplace Wellness Program</h3>
                     <div class="project-links">
-                        <a href="https://drive.google.com/drive/folders/1Is-Sa2JPu1Wdd3728II2E8-_xPGY5K8w" target="_blank">
+                        <a href="https://drive.google.com/drive/folders/1Is-Sa2JPu1Wdd3728II2E8-_xPGY5K8w" target="_blank" rel="noopener noreferrer">
                             <i class="fas fa-external-link-alt"></i> View Analysis
                         </a>
                     </div>
@@ -420,7 +439,7 @@
                 <div class="project-card">
                     <h3>Predicting Property Values in Cook County, Illinois</h3>
                     <div class="project-links">
-                        <a href="https://drive.google.com/drive/folders/1RHU9r78Exw661vXsso_Sb7Xm68_Lkv5u" target="_blank">
+                        <a href="https://drive.google.com/drive/folders/1RHU9r78Exw661vXsso_Sb7Xm68_Lkv5u" target="_blank" rel="noopener noreferrer">
                             <i class="fas fa-external-link-alt"></i> View Analysis
                         </a>
                     </div>
@@ -430,7 +449,7 @@
                 <div class="project-card">
                     <h3>Explore NYC taxi fare pattern</h3>
                     <div class="project-links">
-                        <a href="https://drive.google.com/drive/folders/1vtGlH_OLlnqYhUnZ5BqA4I4tkzZ2sMSk" target="_blank">
+                        <a href="https://drive.google.com/drive/folders/1vtGlH_OLlnqYhUnZ5BqA4I4tkzZ2sMSk" target="_blank" rel="noopener noreferrer">
                             <i class="fas fa-external-link-alt"></i> View Analysis
                         </a>
                     </div>

@@ -190,9 +190,21 @@
         /* 时间轴样式修正 */
         .timeline-item {
             position: relative;
-            padding: 1.5rem;
-            margin-left: 2rem;
+            padding: 2rem;
+            margin-left: 30px;
             border-left: 3px solid var(--secondary-color);
+        }
+
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: -10px;
+            top: 25px;
+            width: 16px;
+            height: 16px;
+            background: white;
+            border: 3px solid var(--secondary-color);
+            border-radius: 50%;
         }
 
         /* 项目网格布局优化 */

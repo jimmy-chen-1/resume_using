@@ -214,6 +214,31 @@
             align-items: center;
             gap: 0.5rem;
         }
+
+        /* 悬浮特效 */
+        .hover-zoom {
+            transition: transform 0.3s ease;
+        }
+
+        .hover-zoom:hover {
+            transform: scale(1.03);
+        }
+
+        /* 响应式设计 */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+            
+            .container {
+                padding: 1rem;
+                margin: 1rem;
+            }
+            
+            .project-cards {
+                grid-template-columns: 1fr;
+            }
+        }
         
     </style>
 </head>
@@ -418,7 +443,6 @@
             <h2 class="section-title">Let's Connect</h2>
             <div class="contact-info">
                 <div class="contact-item">
-                    <i class="fas fa-envelope"></i>
                 </div>
                 <!-- 其他联系信息 -->
             </div>

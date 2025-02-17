@@ -90,6 +90,85 @@
             transition: all 0.3s ease;
         }
 
+        /* 添加移动端响应式样式 */
+        @media (max-width: 768px) {
+        /* 导航栏优化 */
+        .nav-container {
+            flex-wrap: wrap;
+            padding: 0 15px;
+        }
+
+        .logo {
+            position: static;
+            order: 1;
+            width: 100%;
+            transform: none;
+            text-align: center;
+            margin: 10px 0;
+        }
+
+        .logo h2 {
+            font-size: 1.4rem !important;
+            white-space: normal;
+            line-height: 1.3;
+        }
+
+        .nav-links {
+            order: 2;
+            width: 100%;
+            justify-content: center;
+            margin-top: 10px;
+        }
+
+        /* AI按钮优化 */
+        .ai-button {
+            padding: 0.6rem 1.2rem;
+            font-size: 0.9rem;
+        }
+
+        /* 全局调整 */
+        .content-container {
+            margin: 80px auto 30px;
+        }
+
+        .section-card {
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        /* 时间轴优化 */
+        .timeline::before {
+            left: 8px;
+        }
+
+        .timeline-item {
+            padding-left: 2rem;
+            margin-left: 0;
+        }
+
+        .timeline-item::before {
+            left: -2px;
+            width: 16px;
+            height: 16px;
+        }
+        }
+
+        @media (max-width: 480px) {
+        /* 超小屏幕优化 */
+        .logo h2 {
+            font-size: 1.2rem !important;
+        }
+
+        .ai-button {
+            width: 100%;
+            justify-content: center;
+        }
+
+        .project-card {
+            padding: 1rem;
+        }
+        }
+
         /* 内容容器 */
         .content-container {
             max-width: 1200px;
@@ -142,18 +221,26 @@
 <body>
     <div class="animated-bg"></div>
 
-    <nav class="navbar">
+    <<nav class="navbar">
         <div class="nav-container">
-            <div class="logo">
-                <h2>Shengjie (Jimmy) CHEN</h2>
-            </div>
-            <div class="nav-links">
-                <a href="https://jimmyai.uk/ai" class="ai-button" target="_blank">
-                    <i class="fas fa-robot"></i> Try Jimmy AI
-                </a>
-            </div>
+          <!-- 移动端优先的结构 -->
+          <div class="nav-links mobile-only">
+            <a href="https://jimmyai.uk/ai" class="ai-button" target="_blank">
+              <i class="fas fa-robot"></i> Try Jimmy AI
+            </a>
+          </div>
+      
+          <div class="logo">
+            <h2>Shengjie (Jimmy) CHEN</h2>
+          </div>
+      
+          <div class="nav-links desktop-only">
+            <a href="https://jimmyai.uk/ai" class="ai-button" target="_blank">
+              <i class="fas fa-robot"></i> Try Jimmy AI
+            </a>
+          </div>
         </div>
-    </nav>
+      </nav>
 
     <div class="content-container">
         <!-- About Section -->

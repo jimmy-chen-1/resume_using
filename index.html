@@ -35,9 +35,11 @@
             color: var(--text-dark);
             line-height: 1.6;
             min-height: 100vh;
+            font-size: 16px;
+            -webkit-font-smoothing: antialiased;
         }
 
-        /* 背景样式修复 */
+        /* 背景样式 */
         .animated-bg {
             position: fixed;
             top: 0;
@@ -58,13 +60,14 @@
             background: rgba(42, 42, 114, 0.4);
         }
 
-        /* 导航栏修复 */
+        /* 导航栏 */
         .navbar {
             background: rgba(33, 33, 33, 0.7);
             padding: 1rem;
             position: sticky;
             top: 0;
             z-index: 1000;
+            transition: background 0.3s ease;
         }
 
         .nav-container {
@@ -73,12 +76,7 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-        }
-
-        .logo {
-            position: absolute;
-            left: 50%;
-            transform: translateX(-50%);
+            padding: 0 20px;
         }
 
         .logo h2 {
@@ -88,84 +86,21 @@
             transition: all 0.3s ease;
         }
 
-        /* 添加移动端响应式样式 */
-        @media (max-width: 768px) {
-        /* 导航栏优化 */
-        .nav-container {
-            flex-wrap: wrap;
-            background-color: rgba(10, 10, 9, 0.6);
-            padding: 0 15px;
-        }
-
-        .logo {
-            position: static;
-            order: 1;
-            width: 100%;
-            transform: none;
-            text-align: center;
-            margin: 10px 0;
-        }
-
-        .logo h2 {
-            font-size: 1.4rem !important;
-            white-space: normal;
-            line-height: 1.3;
-        }
-
         .nav-links {
-            order: 2;
-            width: 100%;
-            justify-content: center;
-            margin-top: 10px;
+            display: flex;
+            gap: 2rem;
+            align-items: center;
         }
 
-        /* AI按钮优化 */
-        .ai-button {
-            padding: 0.6rem 1.2rem;
-            font-size: 0.9rem;
+        .nav-link {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            transition: opacity 0.3s ease;
         }
 
-        /* 全局调整 */
-        .content-container {
-            margin: 80px auto 30px;
-        }
-
-        .section-card {
-            padding: 1.5rem;
-            margin-bottom: 1.5rem;
-        }
-
-        /* 时间轴优化 */
-        .timeline::before {
-            left: 8px;
-        }
-
-        .timeline-item {
-            padding-left: 2rem;
-            margin-left: 0;
-        }
-
-        .timeline-item::before {
-            left: -2px;
-            width: 16px;
-            height: 16px;
-        }
-        }
-
-        @media (max-width: 480px) {
-        /* 超小屏幕优化 */
-        .logo h2 {
-            font-size: 1.2rem !important;
-        }
-
-        .ai-button {
-            width: 100%;
-            justify-content: center;
-        }
-
-        .project-card {
-            padding: 1rem;
-        }
+        .nav-link:hover {
+            opacity: 0.8;
         }
 
         /* 内容容器 */
@@ -175,38 +110,79 @@
             padding: 0 20px;
         }
 
-        /* 卡片样式优化 */
+        /* 卡片样式 */
         .section-card {
-            background: rgba(255, 255, 255, 0.45);
+            background: rgba(255, 255, 255, 0.85);
             border-radius: 15px;
             padding: 2rem;
             margin-bottom: 2rem;
             backdrop-filter: blur(10px);
             box-shadow: 0 10px 30px rgba(0,0,0,0.1);
-            transition: transform 0.3s ease;
+            transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            animation: fadeIn 0.6s ease forwards;
+            opacity: 0;
         }
 
-        /* 时间轴样式修正 */
+        .section-title {
+            color: var(--primary-color);
+            font-size: 2.2rem;
+            margin-bottom: 1.5rem;
+            position: relative;
+            padding-bottom: 0.5rem;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 60px;
+            height: 3px;
+            background: linear-gradient(90deg, var(--secondary-color), transparent);
+        }
+
+        /* 时间轴 */
+        .timeline {
+            position: relative;
+            padding-left: 30px;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 4px;
+            height: 100%;
+            background: linear-gradient(to bottom, var(--secondary-color), var(--primary-color));
+            border-radius: 2px;
+        }
+
         .timeline-item {
             position: relative;
-            padding: 2rem;
-            margin-left: 30px;
+            padding: 1.5rem;
+            margin-bottom: 2rem;
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
             border-left: 3px solid var(--secondary-color);
         }
 
         .timeline-item::before {
             content: '';
             position: absolute;
-            left: -10px;
+            left: -36px;
             top: 25px;
-            width: 16px;
-            height: 16px;
+            width: 20px;
+            height: 20px;
             background: white;
             border: 3px solid var(--secondary-color);
             border-radius: 50%;
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
         }
 
-        /* 项目网格布局优化 */
+        /* 项目网格 */
         .project-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
@@ -214,7 +190,48 @@
             margin-top: 1.5rem;
         }
 
-        /* 按钮样式统一 */
+        .project-card {
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 12px;
+            padding: 1.5rem;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+            border: 1px solid rgba(0, 0, 0, 0.05);
+        }
+
+        .project-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 50%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            transition: all 0.6s;
+        }
+
+        .project-card:hover::before {
+            left: 100%;
+        }
+
+        /* 技能标签 */
+        .skill-tag {
+            display: inline-block;
+            padding: 0.5rem 1rem;
+            margin: 0.3rem;
+            background: rgba(42, 42, 114, 0.1);
+            border-radius: 20px;
+            transition: all 0.2s ease;
+            border: 1px solid rgba(42, 42, 114, 0.1);
+        }
+
+        .skill-tag:hover {
+            background: rgba(42, 42, 114, 0.15);
+            transform: translateY(-2px);
+        }
+
+        /* 按钮样式 */
         .ai-button {
             background: linear-gradient(135deg, var(--accent-color), #707070);
             color: white;
@@ -224,80 +241,171 @@
             display: inline-flex;
             align-items: center;
             gap: 0.5rem;
+            position: relative;
+            overflow: hidden;
+            transition: all 0.4s ease;
+            font-weight: 600;
+            border: 2px solid transparent;
         }
 
-        /* 悬浮特效 */
-        .hover-zoom {
-            transition: transform 0.3s ease;
+        .ai-button:hover {
+            background: linear-gradient(135deg, #cbcbca, var(--accent-color));
+            transform: translateY(-2px);
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+            border-color: rgba(255, 255, 255, 0.3);
         }
 
-        .hover-zoom:hover {
-            transform: scale(1.03);
+        .ai-button::after {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(45deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            transform: rotate(45deg);
+            transition: all 0.5s;
+        }
+
+        .ai-button:hover::after {
+            left: 150%;
+        }
+
+        /* 联系信息 */
+        .contact-item {
+            transition: all 0.3s ease;
+            padding: 0.5rem;
+            border-radius: 8px;
+        }
+
+        .contact-item:hover {
+            background: rgba(42, 42, 114, 0.05);
+            transform: translateX(10px);
         }
 
         /* 响应式设计 */
         @media (max-width: 768px) {
-            .nav-links {
-                display: flex;
+            .nav-container {
                 flex-direction: column;
-                align-items: center;
+                padding: 10px;
             }
-            
-            .container {
+
+            .logo h2 {
+                font-size: 1.4rem !important;
+                text-align: center;
+                margin: 10px 0;
+            }
+
+            .nav-links {
+                flex-direction: column;
+                width: 100%;
+                gap: 1rem;
+                margin-top: 1rem;
+            }
+
+            .section-title {
+                font-size: 1.8rem;
+            }
+
+            .timeline-item {
                 padding: 1rem;
-                margin: 1rem;
+                margin-left: 15px;
             }
-            
-            .project-cards {
-                grid-template-columns: 1fr;
+
+            .skill-tag {
+                font-size: 0.9rem;
+                padding: 0.4rem 0.8rem;
+            }
+
+            .project-card h3 {
+                font-size: 1.1rem;
+            }
+
+            .content-container {
+                margin: 80px auto 30px;
             }
         }
 
-        .section-card:hover, .project-card:hover {
-        transform: scale(1.05);
-        transition: transform 0.3s ease, box-shadow 0.3s ease;
-        box-shadow: 0 12px 24px rgba(0, 0, 0, 0.2);
-        }
-        
-        .ai-button:hover {
-        background: linear-gradient(135deg, #cbcbca, var(--accent-color));
-        transform: scale(1.05);
-        box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
-        transition: all 0.3s ease;
+        @media (max-width: 480px) {
+            .logo h2 {
+                font-size: 1.2rem !important;
+            }
+
+            .ai-button {
+                width: 100%;
+                justify-content: center;
+            }
         }
 
-        .navbar:hover {
-        background: rgba(33, 33, 33, 0.7);
-        transition: background 0.3s ease;
+        /* 动画 */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
         }
 
+        .section-card:nth-child(2) { animation-delay: 0.2s; }
+        .section-card:nth-child(3) { animation-delay: 0.4s; }
+        .section-card:nth-child(4) { animation-delay: 0.6s; }
+
+        /* 滚动进度条 */
+        .scroll-progress {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background: rgba(0, 0, 0, 0.05);
+            z-index: 9999;
+        }
+
+        .progress-bar {
+            height: 100%;
+            background: linear-gradient(90deg, var(--secondary-color), var(--primary-color));
+            width: 0%;
+            transition: width 0.3s ease-out;
+        }
+
+        /* 浮动按钮 */
+        .floating-ai {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            z-index: 1000;
+        }
     </style>
 </head>
 
 <body>
     <div class="animated-bg"></div>
+    <div class="scroll-progress">
+        <div class="progress-bar"></div>
+    </div>
 
     <nav class="navbar">
         <div class="nav-container">
-          <!-- 移动端优先的结构 -->
-          <div class="nav-links mobile-only">
-            <a href="https://ai.jimmyai.uk/" class="ai-button" target="_blank">
-              <i class="fas fa-robot"></i> Try Jimmy AI
-            </a>
-          </div>
-      
-          <div class="logo">
-            <h2>Shengjie (Jimmy) CHEN</h2>
-          </div>
+            <div class="logo">
+                <h2>Shengjie (Jimmy) CHEN</h2>
+            </div>
+            <div class="nav-links">
+                <a href="#about" class="nav-link">About</a>
+                <a href="#experience" class="nav-link">Experience</a>
+                <a href="https://ai.jimmyai.uk/" class="ai-button" target="_blank">
+                    <i class="fas fa-robot"></i> Try Jimmy AI
+                </a>
+            </div>
         </div>
-      </nav>
+    </nav>
 
     <div class="content-container">
-        <!-- About Section -->
+        <!-- 原有内容保持不变 -->
         <section class="section-card" id="about">
             <h2 class="section-title">About Me</h2>
             <div class="section-content">
-                <p>I am currently pursuing my Master’s in Business Analytics at the University of Illinois, with a strong academic background in finance from Curtin University, Australia. I have gained practical experience as a Financial Advisor Intern at Equitable Advisors and as an Engagement Team Member at TTG Asia Media. My expertise lies in data analysis, financial advisory, and using tools like Python, SQL, and R-Studio for data-driven decision-making.
+                <p>I am currently pursuing my Master’s in Business Analytics at the University of Illinois, with a strong academic background in finance from Curtin University, Australia. I have gained practical experience as a Financial Advisor Intern at Equitable Advisors and as an Engagement Team Member at TTG Asia Media. My expertise lies in data analysis, financial advisory, and using tools like Python, SQL, and R-Studio for data-driven decision-making.</p>
+            </div>
         </section>
 
         <!-- Experience Section -->
@@ -305,34 +413,31 @@
             <h2 class="section-title">Professional Experience</h2>
             <div class="timeline">
                 <div class="timeline-item">
-                    <h3>Business Operations Team Member - Disruption Lab at Gies (11/2024 - Now) </h3>
-                    <p> -Using disruptive technology like AI and machine learning, Blockchain, and VR/AR to transform industries. It works on projects with real world impact for a variety of clients.</p>                    
+                    <h3>Business Operations Team Member - Disruption Lab at Gies (11/2024 - Now)</h3>
+                    <p>- Using disruptive technology like AI and machine learning, Blockchain, and VR/AR to transform industries. It works on projects with real world impact for a variety of clients.</p>                    
                 </div>
 
                 <div class="timeline-item">
-                    <h3>Associate Business Analyst - Associated Wholesale Grocers (AWG) (09/2024 - Now) </h3>
-                    <p> - Utilized Python (Pandas, Numpy, Matplotlib, Sklearn) and R to overall analyze over 15000+ organizations’ data (time-series analysis & cross section analysis & classification) of the donations made and trends associated with them<br>
-                        - Reported and Visualized (Tableau) on recommendations for optimizing Digital Coupons strategy for AWG products.<br>
-                        - Used the method of Machine Learning to anticipate the success of Digital Coupons strategy.</p>                  
+                    <h3>Associate Business Analyst - Associated Wholesale Grocers (AWG) (09/2024 - Now)</h3>
+                    <p>- Utilized Python (Pandas, Numpy, Matplotlib, Sklearn) and R to analyze over 15000+ organizations’ data (time-series analysis & cross section analysis & classification) of the donations made and trends associated with them<br>
+                       - Reported and Visualized (Tableau) on recommendations for optimizing Digital Coupons strategy for AWG products.<br>
+                       - Used the method of Machine Learning to anticipate the success of Digital Coupons strategy.</p>                  
                 </div>
 
                 <div class="timeline-item">
                     <h3>Financial Advisor Intern - Equitable Advisors (01/2024 - 05/2024)</h3>
-                    <p> - Sourced and organized 10,000+ new client leads using Zoominfo for efficient customer management.<br>
-                        - Employed tools like PowerBI to optimize investment management and tax strategies for 50+ clients, improving financial outcomes by 15%.<br>
-                        - Established internal customer relational management database for managers immediately gaining the client’s details and stored 10000+ potential clients needed financial services in the database</p>                  
+                    <p>- Sourced and organized 10,000+ new client leads using Zoominfo for efficient customer management.<br>
+                       - Employed tools like PowerBI to optimize investment management and tax strategies for 50+ clients, improving financial outcomes by 15%.<br>
+                       - Established internal customer relational management database for managers immediately gaining the client’s details and stored 10000+ potential clients needed financial services in the database</p>                  
                 </div>
 
                 <div class="timeline-item">
                     <h3>Client Engagement Rate Analyst - TTG Asia Media Pte Ltd (07/2023 - 10/2023)</h3>
-                    <p> - Onboarded 150+ hotel managers and agents for tour sales, and used HubSpot CRM for tracking customer responses.<br>
-                        - Analyzed 5,000+ tour and attraction tickets for data insights using Excel and R Studio, contributing to machine learning model training.<br>
-                        - Searched for and identified 100+ potential distribution channels provided corresponding support<br>
-                        - Collected 2000+ feedback to build and enhance the relationship with potential customers using HubSpot CRM, achieving a 42.22% open rate of email (helping to build the new relationship) and a 47.27% click rate</p>                    
+                    <p>- Onboarded 150+ hotel managers and agents for tour sales, and used HubSpot CRM for tracking customer responses.<br>
+                       - Analyzed 5,000+ tour and attraction tickets for data insights using Excel and R Studio, contributing to machine learning model training.<br>
+                       - Searched for and identified 100+ potential distribution channels provided corresponding support<br>
+                       - Collected 2000+ feedback to build and enhance the relationship with potential customers using HubSpot CRM, achieving a 42.22% open rate of email (helping to build the new relationship) and a 47.27% click rate</p>                    
                 </div>
-
-                
-                <!-- 其他经历项目相同结构 -->
             </div>
         </section>
 
@@ -346,12 +451,11 @@
                     <p>Graduation: Expected 06/2025</p>
                     <p>GPA: 3.93</p>
                     
-                    <h3>Curtin University (Perth,Australia)</h3>
+                    <h3 style="margin-top: 1.5rem;">Curtin University (Perth, Australia)</h3>
                     <p>Bachelor of Commerce (Finance) with Distinction</p>
                     <p>Graduation: 11/2023</p>
                     <p>GPA: 3.83 (Verified by WES)</p>
                 </div>
-                <!-- 其他教育经历 -->
             </div>
         </section>
 
@@ -360,7 +464,6 @@
             <h2 class="section-title">Methodologies</h2>
             <div class="skill-chart">
                 <div class="skill-category">
-                    <h4>Data Analysis</h4>
                     <div class="skill-items">
                         <span class="skill-tag">Data Analysis</span>
                         <span class="skill-tag">Data Visualization</span>
@@ -370,15 +473,13 @@
                         <span class="skill-tag">Unsupervised Machine Learning</span>
                         <span class="skill-tag">Semi-Supervised Machine Learning</span>
                         <span class="skill-tag">Reinforcement Machine Learning</span>
-                        
-                        <!-- 其他技能标签 -->
                     </div>
                 </div>
             </div>
-            <h2 class="section-title">Technical Expertise</h2>
+
+            <h2 class="section-title" style="margin-top: 2rem;">Technical Expertise</h2>
             <div class="skill-chart">
                 <div class="skill-category">
-                    <h4>Data Analysis</h4>
                     <div class="skill-items">
                         <span class="skill-tag">Python</span>
                         <span class="skill-tag">SQL</span>
@@ -386,7 +487,7 @@
                         <span class="skill-tag">R</span>
                         <span class="skill-tag">KNIME</span>
                         <span class="skill-tag">Wolfram</span>
-                        <span class="skill-tag">AWS(Amazon Website Service)</span>
+                        <span class="skill-tag">AWS (Amazon Web Services)</span>
                         <span class="skill-tag">MongoDB</span>
                         <span class="skill-tag">ChromaDB</span>
                         <span class="skill-tag">Alteryx</span>
@@ -394,8 +495,7 @@
                         <span class="skill-tag">HubSpot</span>
                         <span class="skill-tag">DataBricks</span>
                         <span class="skill-tag">PowerBI</span>
-                        <span class="skill-tag">GoodgleAds</span>
-                        <!-- 其他技能标签 -->
+                        <span class="skill-tag">Google Ads</span>
                     </div>
                 </div>
             </div>
@@ -405,66 +505,84 @@
         <section class="section-card" id="projects">
             <h2 class="section-title">Featured Projects</h2>
             <div class="project-grid">
-                <div class="project-card">
+                <div class="project-card hover-zoom">
                     <h3>Virtual Stock Investment Analysis</h3>
                     <div class="project-links">
-                        <a href="https://drive.google.com/drive/folders/10z5G2XHLvOcBI2cvGALBimJQT0x03bT_" target="_blank" rel="noopener noreferrer">
+                        <a href="https://drive.google.com/drive/folders/10z5G2XHLvOcBI2cvGALBimJQT0x03bT_" 
+                        target="_blank" 
+                        class="ai-button"
+                        style="margin-top: 1rem;">
                             <i class="fas fa-external-link-alt"></i> View Analysis
                         </a>
                     </div>
-                    <p>The report analyzes the investment choices and portfolio performance compared to the S&P 500, discussing factors like interest rates, inflation, and COVID-19 that influenced investment results.</p>
+                    <p style="margin-top: 1rem;">The report analyzes the investment choices and portfolio performance compared to the S&P 500, discussing factors like interest rates, inflation, and COVID-19 that influenced investment results.</p>
                 </div>
 
-                <div class="project-card">
+                <!-- 其他项目卡片结构相同 -->
+                <div class="project-card hover-zoom">
                     <h3>Econometric work to prove Environmental Kuznets Curve (EKC)</h3>
                     <div class="project-links">
-                        <a href="https://drive.google.com/drive/folders/1AQbQ2peapBoOr-EOWHqG3-CJoSFejCSB" target="_blank" rel="noopener noreferrer">
+                        <a href="https://drive.google.com/drive/folders/1AQbQ2peapBoOr-EOWHqG3-CJoSFejCSB" 
+                        target="_blank" 
+                        class="ai-button"
+                        style="margin-top: 1rem;">
                             <i class="fas fa-external-link-alt"></i> View Analysis
                         </a>
                     </div>
-                    <p>The project empirically tests the EKC hypothesis by analyzing World Bank data on CO2 emissions and GDP per capita using linear regression to determine if environmental degradation follows the predicted income-based trend.</p>
+                    <p style="margin-top: 1rem;">The project empirically tests the EKC hypothesis by analyzing World Bank data on CO2 emissions and GDP per capita using linear regression.</p>
                 </div>
 
-                <div class="project-card">
+                <div class="project-card hover-zoom">
                     <h3>Analysis of a Workplace Wellness Program</h3>
                     <div class="project-links">
-                        <a href="https://drive.google.com/drive/folders/1Is-Sa2JPu1Wdd3728II2E8-_xPGY5K8w" target="_blank" rel="noopener noreferrer">
+                        <a href="https://drive.google.com/drive/folders/1Is-Sa2JPu1Wdd3728II2E8-_xPGY5K8w" 
+                        target="_blank" 
+                        class="ai-button"
+                        style="margin-top: 1rem;">
                             <i class="fas fa-external-link-alt"></i> View Analysis
                         </a>
                     </div>
-                    <p>The main goal of the analysis is to determine the effectiveness of workplace wellness programs on healthcare spending and employee health. The document also discusses the challenges of selection bias in such studies and the importance of using randomized controlled trials (RCTs) to establish causal relationships.</p>
+                    <p style="margin-top: 1rem;">Analyzed the effectiveness of workplace wellness programs on healthcare spending and employee health outcomes.</p>
                 </div>
 
-                <div class="project-card">
+                <div class="project-card hover-zoom">
                     <h3>Predicting Property Values in Cook County, Illinois</h3>
                     <div class="project-links">
-                        <a href="https://drive.google.com/drive/folders/1RHU9r78Exw661vXsso_Sb7Xm68_Lkv5u" target="_blank" rel="noopener noreferrer">
+                        <a href="https://drive.google.com/drive/folders/1RHU9r78Exw661vXsso_Sb7Xm68_Lkv5u" 
+                        target="_blank" 
+                        class="ai-button"
+                        style="margin-top: 1rem;">
                             <i class="fas fa-external-link-alt"></i> View Analysis
                         </a>
                     </div>
-                    <p>The primary goal of the project is to develop a machine learning model that can accurately estimate the market value of residential properties based on historical data and features. The project emphasizes the importance of fair and accurate property assessments to ensure equitable taxation.</p>
+                    <p style="margin-top: 1rem;">Developed machine learning models to estimate residential property values with emphasis on fair assessment practices.</p>
                 </div>
 
-                <div class="project-card">
+                <div class="project-card hover-zoom">
                     <h3>Explore NYC taxi fare pattern</h3>
                     <div class="project-links">
-                        <a href="https://drive.google.com/drive/folders/1vtGlH_OLlnqYhUnZ5BqA4I4tkzZ2sMSk" target="_blank" rel="noopener noreferrer">
+                        <a href="https://drive.google.com/drive/folders/1vtGlH_OLlnqYhUnZ5BqA4I4tkzZ2sMSk" 
+                        target="_blank" 
+                        class="ai-button"
+                        style="margin-top: 1rem;">
                             <i class="fas fa-external-link-alt"></i> View Analysis
                         </a>
                     </div>
-                    <p>It provided insights into various aspects of NYC taxi trip data, helping to understand demand patterns, fare structures, payment preferences, and the impact of surcharges. The analysis results can be used to optimize taxi operations, improve pricing strategies, and enhance customer service.</p>
+                    <p style="margin-top: 1rem;">Analyzed NYC taxi trip data to understand fare patterns and operational efficiency.</p>
                 </div>
 
-                <div class="project-card">
+                <div class="project-card hover-zoom">
                     <h3>Difference-in-Differences analysis and Regression Discontinuity (RD) analysis</h3>
                     <div class="project-links">
-                        <a href="https://drive.google.com/drive/folders/1OfnM0f2idXl3hINU4nCvZxiLwi8gUucg" target="_blank">
+                        <a href="https://drive.google.com/drive/folders/1OfnM0f2idXl3hINU4nCvZxiLwi8gUucg" 
+                        target="_blank"
+                        class="ai-button"
+                        style="margin-top: 1rem;">
                             <i class="fas fa-external-link-alt"></i> View Analysis
                         </a>
                     </div>
-                    <p>The work focuses on analyzing the impact of teenage driving on mortality rates using a regression discontinuity design.</p>
+                    <p style="margin-top: 1rem;">Analyzed the impact of teenage driving on mortality rates using advanced statistical methods.</p>
                 </div>
-                <!-- 其他项目卡片 -->
             </div>
         </section>
 
@@ -473,17 +591,34 @@
             <h2 class="section-title">Let's Connect</h2>
             <div class="contact-info">
                 <div class="contact-item">
+                    <p> 
+                        <a href="mailto:sc171@illinois.edu" class="ai-button">
+                            <i class="fas fa-envelope"></i> sc171@illinois.edu
+                        </a>
+                    </p>
+                    <p style="margin: 1.5rem 0;">
+                        <a href="tel:+13472450259" class="ai-button">
+                            <i class="fas fa-phone"></i> +1 347-245-0259
+                        </a>
+                    </p>
+                    <p>
+                        <a href="https://www.linkedin.com/in/chen-shengjie" 
+                        target="_blank"
+                        class="ai-button">
+                            <i class="fab fa-linkedin"></i> LinkedIn Profile
+                        </a>
+                    </p>
                 </div>
-                <!-- 其他联系信息 -->
             </div>
-            <p> <a href="mailto:sc171@illinois.edu"><i class="fas fa-envelope"></i> sc171@illinois.edu</a></p>
-            <p> <i class="fas fa-phone"></i> +1 347-245-0259</p>
-            <p> <a href="https://www.linkedin.com/in/chen-shengjie" target="_blank"><i class="fab fa-linkedin"></i> Shengjie (Jimmy) Chen</a></p>
-            
         </section>
+
+
+        <!-- 其余部分保持原有内容 -->
+        <!-- Education, Skills, Projects, Contact 部分保持原有HTML结构不变 -->
+
     </div>
 
-    <!-- 浮动按钮修复 -->
+    <!-- 原有浮动按钮和页脚 -->
     <div class="floating-ai">
         <a href="https://ai.jimmyai.uk/" class="ai-button" target="_blank">
             <i class="fas fa-comments"></i> Jimmy AI
@@ -499,5 +634,25 @@
         <p>&copy; 2024 Shengjie (Jimmy) Chen | Built with HTML & CSS</p>
     </footer>
 
+    <script>
+        // 平滑滚动
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth',
+                    block: 'start'
+                });
+            });
+        });
+
+        // 滚动进度条
+        window.addEventListener('scroll', () => {
+            const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+            const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+            const scrolled = (winScroll / height) * 100;
+            document.querySelector('.progress-bar').style.width = scrolled + '%';
+        });
+    </script>
 </body>
 </html>

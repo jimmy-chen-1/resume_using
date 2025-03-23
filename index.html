@@ -17,365 +17,315 @@
 
     <style>
         :root {
-            --primary-color: #2A2A72;
-            --secondary-color: #009FFD;
-            --accent-color: #999e9d;
-            --text-dark: #2C3E50;
-            --text-light: #ECF0F1;
+          --primary: #FF8BAB; /* 主色调-樱花粉 */
+          --secondary: #7ED0FF; /* 辅色-晴空蓝 */
+          --accent: #FFD166; /* 强调色-奶油黄 */
+          --text: #4A4A4A; /* 正文颜色 */
+          --bg: #FFF5F7; /* 背景色 */
+          --card-bg: rgba(255, 255, 255, 0.95); /* 卡片背景 */
+          --shadow: 0 8px 32px rgba(0, 0, 0, 0.08); /* 柔和阴影 */
         }
-
+        
+        /* 基础UX优化 */
         * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
+          margin: 0;
+          padding: 0;
+          box-sizing: border-box;
+          -webkit-tap-highlight-color: transparent; /* 移除点击高光 */
         }
-
+        
         body {
-            font-family: 'Poppins', sans-serif;
-            color: var(--text-dark);
-            line-height: 1.6;
-            min-height: 100vh;
-            font-size: 16px;
-            -webkit-font-smoothing: antialiased;
+          font-family: 'Poppins', system-ui, -apple-system, sans-serif;
+          color: var(--text);
+          line-height: 1.6;
+          background: var(--bg);
+          min-height: 100vh;
+          scroll-behavior: smooth; /* 平滑滚动 */
         }
-
-        /* 背景样式 */
-        .animated-bg {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: -1;
-            background: url('back12.png') center/cover;
+        
+        /* 增强可访问性 */
+        a:focus-visible,
+        button:focus-visible {
+          outline: 3px solid var(--accent);
+          outline-offset: 2px;
         }
-
-        .animated-bg::after {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(42, 42, 114, 0.4);
-        }
-
-        /* 导航栏 */
+        
+        /* 导航栏UX优化 */
         .navbar {
-            background: rgba(33, 33, 33, 0.7);
-            padding: 1rem;
-            position: sticky;
-            top: 0;
-            z-index: 1000;
-            transition: background 0.3s ease;
+          background: rgba(255, 255, 255, 0.98);
+          backdrop-filter: blur(10px);
+          box-shadow: var(--shadow);
+          position: sticky;
+          top: 0;
+          z-index: 1000;
+          padding: 1rem 0;
         }
-
+        
         .nav-container {
-            max-width: 1200px;
-            margin: 0 auto;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 0 20px;
+          max-width: 1200px;
+          margin: 0 auto;
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          padding: 0 2rem;
         }
-
-        .logo h2 {
-            color: #fff !important;
-            font-size: 1.8rem;
-            white-space: nowrap;
-            transition: all 0.3s ease;
+        
+        .logo {
+          font-size: 1.5rem;
+          color: var(--primary);
+          font-weight: 700;
+          transition: transform 0.2s;
         }
-
+        
+        .logo:hover {
+          transform: rotate(-3deg);
+        }
+        
         .nav-links {
-            display: flex;
-            gap: 2rem;
-            align-items: center;
+          display: flex;
+          gap: 2rem;
+          align-items: center;
         }
-
+        
         .nav-link {
-            color: white;
-            text-decoration: none;
-            font-weight: 500;
-            transition: opacity 0.3s ease;
+          color: var(--text);
+          text-decoration: none;
+          padding: 0.5rem 1rem;
+          border-radius: 2rem;
+          transition: all 0.2s;
+          position: relative;
         }
-
-        .nav-link:hover {
-            opacity: 0.8;
+        
+        .nav-link::before {
+          content: '';
+          position: absolute;
+          bottom: 0;
+          left: 0;
+          width: 0;
+          height: 2px;
+          background: var(--primary);
+          transition: width 0.3s ease;
         }
-
-        /* 内容容器 */
-        .content-container {
-            max-width: 1200px;
-            margin: 100px auto 50px;
-            padding: 0 20px;
+        
+        .nav-link:hover::before {
+          width: 100%;
         }
-
-        /* 卡片样式 */
-        .section-card {
-            background: rgba(255, 255, 255, 0.85);
-            border-radius: 15px;
-            padding: 2rem;
-            margin-bottom: 2rem;
-            backdrop-filter: blur(10px);
-            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
-            transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            animation: fadeIn 0.6s ease forwards;
-            opacity: 0;
-        }
-
-        .section-title {
-            color: var(--primary-color);
-            font-size: 2.2rem;
-            margin-bottom: 1.5rem;
-            position: relative;
-            padding-bottom: 0.5rem;
-        }
-
-        .section-title::after {
-            content: '';
-            position: absolute;
+        
+        /* 移动端导航优化 */
+        @media (max-width: 768px) {
+          .nav-container {
+            padding: 0 1rem;
+          }
+        
+          .nav-links {
+            position: fixed;
             bottom: 0;
             left: 0;
-            width: 60px;
-            height: 3px;
-            background: linear-gradient(90deg, var(--secondary-color), transparent);
-        }
-
-        /* 时间轴 */
-        .timeline {
-            position: relative;
-            padding-left: 30px;
-        }
-
-        .timeline::before {
-            content: '';
-            position: absolute;
-            left: 0;
-            top: 0;
-            width: 4px;
-            height: 100%;
-            background: linear-gradient(to bottom, var(--secondary-color), var(--primary-color));
-            border-radius: 2px;
-        }
-
-        .timeline-item {
-            position: relative;
-            padding: 1.5rem;
-            margin-bottom: 2rem;
-            background: rgba(255, 255, 255, 0.9);
-            border-radius: 8px;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
-            border-left: 3px solid var(--secondary-color);
-        }
-
-        .timeline-item::before {
-            content: '';
-            position: absolute;
-            left: -36px;
-            top: 25px;
-            width: 20px;
-            height: 20px;
-            background: white;
-            border: 3px solid var(--secondary-color);
-            border-radius: 50%;
-            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
-        }
-
-        /* 项目网格 */
-        .project-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 1.5rem;
-            margin-top: 1.5rem;
-        }
-
-        .project-card {
-            background: rgba(255, 255, 255, 0.9);
-            border-radius: 12px;
-            padding: 1.5rem;
-            transition: all 0.3s ease;
-            position: relative;
-            overflow: hidden;
-            border: 1px solid rgba(0, 0, 0, 0.05);
-        }
-
-        .project-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 50%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
-            transition: all 0.6s;
-        }
-
-        .project-card:hover::before {
-            left: 100%;
-        }
-
-        /* 技能标签 */
-        .skill-tag {
-            display: inline-block;
-            padding: 0.5rem 1rem;
-            margin: 0.3rem;
-            background: rgba(42, 42, 114, 0.1);
-            border-radius: 20px;
-            transition: all 0.2s ease;
-            border: 1px solid rgba(42, 42, 114, 0.1);
-        }
-
-        .skill-tag:hover {
-            background: rgba(42, 42, 114, 0.15);
-            transform: translateY(-2px);
-        }
-
-        /* 按钮样式 */
-        .ai-button {
-            background: linear-gradient(135deg, var(--accent-color), #707070);
-            color: white;
-            padding: 0.8rem 1.5rem;
-            border-radius: 30px;
-            text-decoration: none;
-            display: inline-flex;
-            align-items: center;
-            gap: 0.5rem;
-            position: relative;
-            overflow: hidden;
-            transition: all 0.4s ease;
-            font-weight: 600;
-            border: 2px solid transparent;
-        }
-
-        .ai-button:hover {
-            background: linear-gradient(135deg, #cbcbca, var(--accent-color));
-            transform: translateY(-2px);
-            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
-            border-color: rgba(255, 255, 255, 0.3);
-        }
-
-        .ai-button::after {
-            content: '';
-            position: absolute;
-            top: -50%;
-            left: -50%;
-            width: 200%;
-            height: 200%;
-            background: linear-gradient(45deg, transparent, rgba(255, 255, 255, 0.2), transparent);
-            transform: rotate(45deg);
-            transition: all 0.5s;
-        }
-
-        .ai-button:hover::after {
-            left: 150%;
-        }
-
-        /* 联系信息 */
-        .contact-item {
-            transition: all 0.3s ease;
-            padding: 0.5rem;
-            border-radius: 8px;
-        }
-
-        .contact-item:hover {
-            background: rgba(42, 42, 114, 0.05);
-            transform: translateX(10px);
-        }
-
-        /* 响应式设计 */
-        @media (max-width: 768px) {
-            .nav-container {
-                flex-direction: column;
-                padding: 10px;
-            }
-
-            .logo h2 {
-                font-size: 1.4rem !important;
-                text-align: center;
-                margin: 10px 0;
-            }
-
-            .nav-links {
-                flex-direction: column;
-                width: 100%;
-                gap: 1rem;
-                margin-top: 1rem;
-            }
-
-            .section-title {
-                font-size: 1.8rem;
-            }
-
-            .timeline-item {
-                padding: 1rem;
-                margin-left: 15px;
-            }
-
-            .skill-tag {
-                font-size: 0.9rem;
-                padding: 0.4rem 0.8rem;
-            }
-
-            .project-card h3 {
-                font-size: 1.1rem;
-            }
-
-            .content-container {
-                margin: 80px auto 30px;
-            }
-        }
-
-        @media (max-width: 480px) {
-            .logo h2 {
-                font-size: 1.2rem !important;
-            }
-
-            .ai-button {
-                width: 100%;
-                justify-content: center;
-            }
-        }
-
-        /* 动画 */
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        .section-card:nth-child(2) { animation-delay: 0.2s; }
-        .section-card:nth-child(3) { animation-delay: 0.4s; }
-        .section-card:nth-child(4) { animation-delay: 0.6s; }
-
-        /* 滚动进度条 */
-        .scroll-progress {
-            position: fixed;
-            top: 0;
-            left: 0;
             width: 100%;
-            height: 3px;
-            background: rgba(0, 0, 0, 0.05);
-            z-index: 9999;
-        }
-
-        .progress-bar {
-            height: 100%;
-            background: linear-gradient(90deg, var(--secondary-color), var(--primary-color));
-            width: 0%;
-            transition: width 0.3s ease-out;
-        }
-
-        /* 浮动按钮 */
-        .floating-ai {
-            position: fixed;
-            bottom: 30px;
-            right: 30px;
+            background: white;
+            justify-content: space-around;
+            padding: 1rem;
+            box-shadow: 0 -4px 20px rgba(0, 0, 0, 0.05);
+            display: none; /* 默认隐藏 */
+          }
+        
+          .nav-active .nav-links {
             display: flex;
-            flex-direction: column;
-            gap: 15px;
-            z-index: 1000;
+          }
+        
+          .menu-toggle {
+            display: block;
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            color: var(--primary);
+          }
         }
-    </style>
+        
+        /* 卡片交互优化 */
+        .section-card {
+          background: var(--card-bg);
+          border-radius: 1.5rem;
+          padding: 2rem;
+          margin: 2rem 0;
+          box-shadow: var(--shadow);
+          transition: transform 0.3s, box-shadow 0.3s;
+          border: 1px solid rgba(255, 139, 171, 0.1);
+        }
+        
+        .section-card:hover {
+          transform: translateY(-5px);
+          box-shadow: 0 12px 40px rgba(0, 0, 0, 0.1);
+        }
+        
+        /* 加载动画优化 */
+        @keyframes cardEntrance {
+          from {
+            opacity: 0;
+            transform: translateY(20px);
+          }
+          to {
+            opacity: 1;
+            transform: translateY(0);
+          }
+        }
+        
+        .section-card {
+          animation: cardEntrance 0.6s ease forwards;
+          opacity: 0;
+        }
+        
+        /* 时间轴UX增强 */
+        .timeline {
+          position: relative;
+          padding-left: 2rem;
+        }
+        
+        .timeline::before {
+          content: '';
+          position: absolute;
+          left: 0;
+          top: 0;
+          height: 100%;
+          width: 4px;
+          background: linear-gradient(
+            to bottom,
+            var(--primary),
+            var(--secondary)
+          );
+          border-radius: 2px;
+        }
+        
+        .timeline-item {
+          position: relative;
+          padding: 1.5rem;
+          margin-bottom: 2rem;
+          background: var(--card-bg);
+          border-radius: 1rem;
+          box-shadow: var(--shadow);
+          transition: transform 0.3s;
+        }
+        
+        .timeline-item:hover {
+          transform: translateX(10px);
+        }
+        
+        /* 技能标签交互 */
+        .skill-tag {
+          display: inline-block;
+          padding: 0.5rem 1rem;
+          margin: 0.5rem;
+          background: rgba(255, 139, 171, 0.1);
+          border-radius: 2rem;
+          color: var(--primary);
+          transition: all 0.2s;
+          cursor: default;
+          border: 1px solid rgba(255, 139, 171, 0.2);
+        }
+        
+        .skill-tag:hover {
+          background: rgba(255, 139, 171, 0.2);
+          transform: scale(1.05);
+        }
+        
+        /* 按钮UX增强 */
+        .ai-button {
+          display: inline-flex;
+          align-items: center;
+          gap: 0.5rem;
+          padding: 0.8rem 1.5rem;
+          background: linear-gradient(135deg, var(--primary), var(--accent));
+          color: white;
+          border-radius: 2rem;
+          text-decoration: none;
+          transition: all 0.3s;
+          position: relative;
+          overflow: hidden;
+        }
+        
+        .ai-button::after {
+          content: '';
+          position: absolute;
+          width: 100%;
+          height: 100%;
+          background: rgba(255, 255, 255, 0.1);
+          left: -100%;
+          top: 0;
+          transition: left 0.4s;
+        }
+        
+        .ai-button:hover::after {
+          left: 100%;
+        }
+        
+        /* 项目卡片深度交互 */
+        .project-card {
+          background: var(--card-bg);
+          border-radius: 1rem;
+          padding: 1.5rem;
+          transition: all 0.3s;
+          position: relative;
+          overflow: hidden;
+        }
+        
+        .project-card::before {
+          content: '';
+          position: absolute;
+          top: 0;
+          left: -100%;
+          width: 50%;
+          height: 100%;
+          background: linear-gradient(
+            90deg,
+            transparent,
+            rgba(255, 255, 255, 0.4),
+            transparent
+          );
+          transition: left 0.6s;
+        }
+        
+        .project-card:hover::before {
+          left: 100%;
+        }
+        
+        /* 联系表单动效 */
+        .contact-item {
+          transition: transform 0.3s;
+        }
+        
+        .contact-item:hover {
+          transform: translateY(-3px);
+        }
+        
+        /* 进度条视觉优化 */
+        .scroll-progress {
+          height: 4px;
+          background: rgba(126, 208, 255, 0.1);
+        }
+        
+        .progress-bar {
+          background: linear-gradient(90deg, var(--primary), var(--secondary));
+          height: 100%;
+        }
+        
+        /* 加载状态指示器 */
+        .loading-indicator {
+          position: fixed;
+          top: 50%;
+          left: 50%;
+          transform: translate(-50%, -50%);
+          width: 50px;
+          height: 50px;
+          border: 4px solid var(--secondary);
+          border-top-color: var(--primary);
+          border-radius: 50%;
+          animation: spin 1s linear infinite;
+        }
+        
+        @keyframes spin {
+          to { transform: rotate(360deg); }
+        }
+        </style>
 </head>
 
 <body>

@@ -1,307 +1,271 @@
-{% extends "base.html" %}
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, minimum-scale=1.0">
+    <title>Jimmy Chen | AI Innovator</title>
+    <link rel="icon" type="image/x-icon" href="/static/aiai.ico">
+    
+    <!-- 字体和图标 -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 
-{% block content %}
-<div class="sim-container">
-    <!-- 左侧面板 -->
-    <div class="dashboard-panel">
-        <div class="sim-header">
-            <h2><i class="fas fa-chart-line"></i> 商业模拟进度追踪</h2>
-            <div class="status-indicator {% if running %}running{% else %}stopped{% endif %}">
-                <i class="fas fa-{% if running %}play-circle{% else %}stop-circle{% endif %}"></i>
-                {{ '运行中' if running else '已结束' }}
-            </div>
-        </div>
+    <style>
+        :root {
+            --primary-accent: #6366f1;
+            --background: #0f172a;
+            --surface: rgba(255, 255, 255, 0.05);
+            --text-primary: #f8fafc;
+            --glass-effect: linear-gradient(135deg, rgba(255,255,255,0.1), rgba(255,255,255,0.05));
+            --transition-config: cubic-bezier(0.4, 0, 0.2, 1) 0.15s;
+        }
 
-        <!-- 进度指示器 -->
-        <div class="progress-card animated-card">
-            <div class="progress-header">
-                <h3><i class="fas fa-tasks"></i> 模拟进度</h3>
-                <div class="time-info">
-                    {% if start_time %}
-                    <i class="fas fa-clock"></i>
-                    <span>已运行: {{ (now - start_time|to_datetime).seconds//3600 }}h {{ (now - start_time|to_datetime).seconds//60%60 }}m</span>
-                    {% endif %}
-                </div>
-            </div>
-            <div class="progress-bar-container">
-                <div class="progress-bar" style="width: {{ progress }}%">
-                    <span class="progress-text">{{ progress }}%</span>
-                </div>
-            </div>
-        </div>
+        body {
+            background: var(--background);
+            color: var(--text-primary);
+            font-family: 'Inter', sans-serif;
+            margin: 0;
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
 
-        <!-- 动态网格布局 -->
-        <div class="dynamic-grid">
-            <div class="stat-card animated-card">
-                <div class="stat-icon">
-                    <i class="fas fa-calendar-alt"></i>
-                </div>
-                <div class="stat-content">
-                    <span class="stat-label">模拟天数</span>
-                    <span class="stat-value">
-                        {% if logs %}
-                            {{ logs|last|extract_day if logs|last else 0 }}
-                        {% else %}0{% endif %}/{{ config.SIMULATION_DAYS }}
-                    </span>
-                </div>
-            </div>
-            
-            <div class="stat-card animated-card">
-                <div class="stat-icon">
-                    <i class="fas fa-coins"></i>
-                </div>
-                <div class="stat-content">
-                    <span class="stat-label">当前利润</span>
-                    <span class="stat-value">${{ simulation_status.result.total_profit|default(0)|round(2) }}</span>
-                </div>
-            </div>
-        </div>
+        .neon-grid {
+            position: fixed;
+            width: 200vw;
+            height: 200vh;
+            background-image:
+                linear-gradient(var(--surface) 1px, transparent 1px),
+                linear-gradient(90deg, var(--surface) 1px, transparent 1px);
+            background-size: 40px 40px;
+            mask-image: radial-gradient(ellipse at center, black 20%, transparent 80%);
+            pointer-events: none;
+            z-index: 0;
+            animation: gridMove 40s linear infinite;
+            transform: rotate(3deg);
+        }
 
-        <!-- 日志面板 -->
-        <div class="log-card animated-card">
-            <div class="log-header">
-                <h3><i class="fas fa-clipboard-list"></i> 实时事件日志</h3>
-                <span class="badge">最近5条</span>
-            </div>
-            <div class="log-content">
-                {% if logs %}
-                    {% for log in logs[-5:] %}
-                    <div class="log-item">
-                        <span class="log-time">{{ now.strftime('%H:%M:%S') }}</span>
-                        <span class="log-message">{{ log }}</span>
-                    </div>
-                    {% endfor %}
-                {% else %}
-                    <div class="log-item empty">等待日志更新...</div>
-                {% endif %}
-            </div>
-        </div>
-    </div>
+        @keyframes gridMove {
+            0% { transform: translate(-5%, -5%) rotate(3deg); }
+            50% { transform: translate(5%, 5%) rotate(3deg); }
+            100% { transform: translate(-5%, -5%) rotate(3deg); }
+        }
 
-    <!-- 右侧可视化面板 -->
-    <div class="visualization-panel">
-        <div class="result-card animated-card">
-            <h3><i class="fas fa-chart-area"></i> 趋势可视化</h3>
-            <div class="chart-container" id="latestChart">
-                {% if progress >= 100 and simulation_status.result.charts %}
-                <img src="{{ url_for('static', filename='simulation_results/' + simulation_status.result.charts[-1]) }}" 
-                     alt="最终结果图表"
-                     class="live-chart">
-                {% else %}
-                <div class="chart-placeholder">
-                    <i class="fas fa-chart-bar fa-pulse"></i>
-                    <span class="loading-text">{{ '加载最终结果...' if progress >=100 else '模拟进行中...' }}</span>
-                </div>
-                {% endif %}
-            </div>
-            <div class="chart-footer">
-                <i class="fas fa-sync-alt"></i>
-                <span class="update-time">最后更新: {{ now.strftime('%Y-%m-%d %H:%M:%S') }}</span>
-            </div>
-        </div>
-    </div>
-</div>
+        .hero-section {
+            position: relative;
+            min-height: 90vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 2rem;
+        }
 
-<script>
-document.addEventListener('DOMContentLoaded', () => {
-    const PROGRESS_UPDATE_INTERVAL = 2000;
-    const progressBar = document.querySelector('.progress-bar');
-    const logContent = document.querySelector('.log-content');
-    const latestChart = document.getElementById('latestChart');
-    let updateTimer = null;
+        .hero-content {
+            max-width: 1200px;
+            text-align: center;
+            z-index: 1;
+        }
 
-    // 动态网格交互效果
-    const dynamicGrid = document.querySelector('.dynamic-grid');
-    if(dynamicGrid) {
-        dynamicGrid.addEventListener('mouseover', (e) => {
-            if (e.target.closest('.stat-card')) {
-                dynamicGrid.style.gap = '1.5rem';
-                dynamicGrid.style.transform = 'scale(1.005)';
+        .ai-platform-card {
+            background: var(--surface);
+            backdrop-filter: blur(20px);
+            border-radius: 24px;
+            padding: 4rem;
+            margin: 2rem;
+            border: 1px solid rgba(255,255,255,0.1);
+            box-shadow: 0 16px 48px rgba(0,0,0,0.2);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .main-title {
+            font-size: 4rem;
+            background: linear-gradient(45deg, #818cf8, #6366f1);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 1.5rem;
+            letter-spacing: -0.05em;
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 2rem;
+            justify-content: center;
+            margin-top: 3rem;
+        }
+
+        .glow-btn {
+            display: inline-flex;
+            align-items: center;
+            padding: 1.2rem 2.5rem;
+            background: linear-gradient(135deg, var(--primary-accent) 0%, #818cf8 100%);
+            border-radius: 12px;
+            color: white;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            position: relative;
+            overflow: hidden;
+            gap: 0.8rem;
+        }
+
+        .glow-btn i {
+            font-size: 1.2em;
+            transition: transform 0.3s ease;
+        }
+
+        .glow-btn:hover i {
+            transform: scale(1.1);
+        }
+
+        .feature-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 4rem;
+            padding: 0 2rem;
+        }
+
+        .feature-card {
+            background: var(--surface);
+            padding: 2rem;
+            border-radius: 16px;
+            border: 1px solid rgba(255,255,255,0.1);
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .feature-card h3 {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin: 0 0 1rem;
+        }
+
+        .feature-card i {
+            font-size: 1.5em;
+            background: linear-gradient(45deg, #818cf8, #6366f1);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            transition: all 0.3s ease;
+        }
+
+        .feature-card:hover i {
+            transform: rotate(10deg) scale(1.2);
+        }
+
+        @media (max-width: 768px) {
+            .main-title {
+                font-size: 2.5rem;
             }
-        });
-        
-        dynamicGrid.addEventListener('mouseout', () => {
-            dynamicGrid.style.gap = '1.2rem';
-            dynamicGrid.style.transform = 'scale(1)';
-        });
-    }
+            
+            .ai-platform-card {
+                padding: 2rem;
+                margin: 1rem;
+            }
+            
+            .cta-buttons {
+                flex-direction: column;
+                gap: 1rem;
+            }
 
-    // 图表加载函数
-    const loadLatestChart = () => {
-        fetch('/get_latest_chart')
-            .then(response => {
-                if (!response.ok) throw new Error('图表加载失败');
-                return response.json();
-            })
-            .then(data => {
-                if(data.path && latestChart) {
-                    latestChart.innerHTML = `
-                        <img src="${data.path}" 
-                             alt="实时趋势图" 
-                             class="live-chart"
-                             onerror="this.onerror=null;this.src='/static/error-chart.png'">`;
-                }
-            })
-            .catch(error => {
-                console.error('图表加载错误:', error);
-                if(latestChart) {
-                    latestChart.innerHTML = `
-                        <div class="chart-error">
-                            <i class="fas fa-exclamation-triangle"></i>
-                            <p>图表加载失败</p>
-                        </div>`;
-                }
-            });
-    };
+            .feature-card {
+                padding: 1.5rem;
+            }
 
-    // 界面更新函数
-    const updateInterface = (data) => {
-        // 更新进度条
-        if(progressBar) {
-            progressBar.style.width = `${data.progress}%`;
-            progressBar.querySelector('.progress-text').textContent = `${data.progress}%`;
+            .feature-card i {
+                font-size: 1.2em;
+            }
         }
+    </style>
+</head>
+<body>
+    <div class="neon-grid"></div>
 
-        // 更新日志
-        if(logContent) {
-            logContent.innerHTML = data.logs.slice(-5).map(log => `
-                <div class="log-item">
-                    <span class="log-time">${new Date().toLocaleTimeString()}</span>
-                    <span class="log-message">${log}</span>
+    <nav class="neu-navbar">
+        <div class="nav-container">
+            <a class="nav-brand" href="/">
+                <img src="/static/aiai.ico" class="nav-logo" alt="AI Logo">
+                Jimmy Chen
+            </a>
+            <div class="nav-links">
+                <a href="https://ai.jimmyai.uk/" class="glow-btn" target="_blank">
+                    <i class="fas fa-robot"></i> AI Platform
+                </a>
+                <a href="about.html" class="glow-btn">
+                    <i class="fas fa-user"></i> About Me
+                </a>
+            </div>
+        </div>
+    </nav>
+
+    <main>
+        <section class="hero-section">
+            <div class="hero-content">
+                <div class="ai-platform-card">
+                    <h1 class="main-title">Next-Gen AI Solutions</h1>
+                    <p style="font-size: 1.2rem; opacity: 0.9; max-width: 800px; margin: 0 auto;">
+                        Transform your business with cutting-edge artificial intelligence powered by deep learning and advanced analytics.
+                    </p>
+                    
+                    <div class="cta-buttons">
+                        <a href="https://ai.jimmyai.uk/" class="glow-btn" target="_blank">
+                            <i class="fas fa-rocket"></i> Try Demo Now
+                        </a>
+                        <a href="about.html" class="glow-btn">
+                            <i class="fas fa-scroll"></i> My Journey
+                        </a>
+                    </div>
+
+                    <div class="feature-grid">
+                        <div class="feature-card">
+                            <h3><i class="fas fa-brain"></i> Neural Architecture</h3>
+                            <p>State-of-the-art transformer models for natural language processing</p>
+                        </div>
+                        <div class="feature-card">
+                            <h3><i class="fas fa-chart-line"></i> Predictive Analytics</h3>
+                            <p>Real-time data processing with 98.7% prediction accuracy</p>
+                        </div>
+                        <div class="feature-card">
+                            <h3><i class="fas fa-shield-alt"></i> Enterprise Security</h3>
+                            <p>Military-grade encryption for all data transactions</p>
+                        </div>
+                    </div>
                 </div>
-            `).join('');
-            logContent.scrollTop = logContent.scrollHeight;
-        }
+            </div>
+        </section>
+    </main>
 
-        // 自动加载最终图表
-        if(data.progress >= 100) {
-            loadLatestChart();
-            clearInterval(updateTimer);
-        }
-    };
-
-    // 获取进度数据
-    const fetchProgressData = () => {
-        fetch('/get_progress')
-            .then(response => {
-                if (!response.ok) throw new Error(`HTTP错误: ${response.status}`);
-                return response.json();
-            })
-            .then(data => {
-                updateInterface(data);
-                if(data.running) {
-                    updateTimer = setTimeout(fetchProgressData, PROGRESS_UPDATE_INTERVAL);
-                }
-            })
-            .catch(error => {
-                console.error('进度更新失败:', error);
-                if(logContent) {
-                    logContent.innerHTML += `
-                        <div class="log-item error">
-                            <i class="fas fa-exclamation-circle"></i>
-                            连接错误: ${error.message}
-                        </div>`;
-                }
+    <script>
+        // 动态背景增强
+        document.addEventListener('DOMContentLoaded', () => {
+            const grid = document.querySelector('.neon-grid');
+            
+            // 鼠标移动互动
+            document.addEventListener('mousemove', (e) => {
+                const x = e.clientX / window.innerWidth - 0.5;
+                const y = e.clientY / window.innerHeight - 0.5;
+                grid.style.transform = `translate(${x * 20}px, ${y * 20}px) rotate(3deg)`;
             });
-    };
 
-    // 初始化加载
-    fetchProgressData();
+            // 自动浮动动画
+            setInterval(() => {
+                const time = Date.now() * 0.001;
+                grid.style.backgroundPosition = `${Math.cos(time) * 20}px ${Math.sin(time) * 20}px`;
+            }, 50);
+        });
 
-    // 页面可见性处理
-    document.addEventListener('visibilitychange', () => {
-        if (document.visibilityState === 'visible') {
-            fetchProgressData();
-            if(progress >= 100) loadLatestChart();
-        }
-    });
-
-    // 窗口调整时重置布局
-    window.addEventListener('resize', () => {
-        if(progress >= 100) loadLatestChart();
-    });
-});
-</script>
-
-<style>
-/* ========== 全局样式 ========== */
-.sim-container {
-    display: grid;
-    grid-template-columns: 1fr 1.5fr;
-    gap: 2rem;
-    padding: 2rem;
-    max-width: 1400px;
-    margin: 0 auto;
-    background: rgba(255,255,255,0.02);
-    border-radius: 16px;
-    box-shadow: 0 8px 32px rgba(0,0,0,0.1);
-}
-
-/* 动态网格过渡效果 */
-.dynamic-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-    gap: 1.2rem;
-    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-}
-
-/* 统计卡片悬停动画 */
-.stat-card {
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-    transform-origin: center;
-}
-
-.stat-card:hover {
-    transform: translateY(-5px) scale(1.02);
-    box-shadow: 0 8px 25px rgba(0,0,0,0.15);
-}
-
-/* 进度条动态效果 */
-.progress-bar {
-    transition: width 0.5s cubic-bezier(0.4, 0, 0.2, 1),
-                background 0.5s ease;
-    will-change: width;
-}
-
-/* 图表加载动画 */
-.fa-pulse {
-    animation: chartLoading 2s ease-in-out infinite;
-}
-
-@keyframes chartLoading {
-    0% { opacity: 0.6; transform: scale(0.95); }
-    50% { opacity: 1; transform: scale(1.05); }
-    100% { opacity: 0.6; transform: scale(0.95); }
-}
-
-/* 响应式设计 */
-@media (max-width: 1200px) {
-    .sim-container {
-        grid-template-columns: 1fr;
-        padding: 1.5rem;
-    }
-    
-    .live-chart {
-        height: 400px;
-    }
-    
-    .dynamic-grid {
-        grid-template-columns: 1fr;
-    }
-}
-
-@media (max-width: 768px) {
-    .sim-container {
-        padding: 1rem;
-    }
-    
-    .live-chart {
-        height: 300px;
-    }
-    
-    .stat-card {
-        padding: 1rem;
-    }
-}
-</style>
-{% endblock %}
+        // 按钮交互增强
+        document.querySelectorAll('.glow-btn').forEach(btn => {
+            btn.addEventListener('mouseenter', () => {
+                btn.style.transform = 'translateY(-3px) scale(1.05)';
+                btn.style.filter = 'brightness(1.1)';
+            });
+            
+            btn.addEventListener('mouseleave', () => {
+                btn.style.transform = 'translateY(0) scale(1)';
+                btn.style.filter = 'brightness(1)';
+            });
+        });
+    </script>
+</body>
+</html>

@@ -2,131 +2,107 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, minimum-scale=1.0, viewport-fit=cover">
     <title>Jimmy Chen</title>
-    <!-- Favicon配置 -->
-    <link rel="icon" type="image/png" sizes="32x32" href="aiai.png">
+    <link rel="icon" type="image/x-icon" href="/static/aiai.ico">
     
     <!-- 广告脚本 -->
-    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7386315001938281"
-     crossorigin="anonymous"></script>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7386315001938281" crossorigin="anonymous"></script>
 
     <!-- 字体和样式 -->
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 
     <style>
         :root {
-            --primary-color: #2A2A72;
-            --secondary-color: #009FFD;
-            --accent-color: #999e9d;
-            --text-dark: #2C3E50;
-            --text-light: #ECF0F1;
-        }
-
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
+            --primary-accent: #6366f1;
+            --background: #0f172a;
+            --surface: rgba(255, 255, 255, 0.05);
+            --text-primary: #f8fafc;
+            --glass-effect: linear-gradient(135deg, rgba(255,255,255,0.1), rgba(255,255,255,0.05));
+            --transition-config: cubic-bezier(0.4, 0, 0.2, 1) 0.15s;
+            --vh: 1vh;
         }
 
         body {
-            font-family: 'Poppins', sans-serif;
-            color: var(--text-dark);
-            line-height: 1.6;
-            min-height: 100vh;
-            font-size: 16px;
+            background: var(--background);
+            min-height: calc(var(--vh, 1vh) * 100);
+            color: var(--text-primary);
+            font-family: 'Inter', system-ui, -apple-system, sans-serif;
             -webkit-font-smoothing: antialiased;
         }
 
-        /* 背景样式 */
-        .animated-bg {
+        .neon-grid {
             position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: -1;
-            background: url('back12.png') center/cover;
+            width: 100vw;
+            height: 100vh;
+            background-image:
+                linear-gradient(var(--surface) 1px, transparent 1px),
+                linear-gradient(90deg, var(--surface) 1px, transparent 1px);
+            background-size: 40px 40px;
+            mask-image: radial-gradient(ellipse at center, black 30%, transparent 70%);
+            pointer-events: none;
+            z-index: 0;
         }
 
-        .animated-bg::after {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(42, 42, 114, 0.4);
-        }
-
-        /* 导航栏 */
-        .navbar {
-            background: rgba(33, 33, 33, 0.7);
-            padding: 1rem;
+        .neu-navbar {
+            --nav-height: 64px;
+            height: var(--nav-height);
+            background: var(--surface);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+            box-shadow: 0 8px 32px rgba(0,0,0,0.1);
             position: sticky;
             top: 0;
-            z-index: 1000;
-            transition: background 0.3s ease;
+            z-index: 2;
         }
 
         .nav-container {
             max-width: 1200px;
             margin: 0 auto;
+            padding: 0 2rem;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 0 20px;
+            height: 100%;
         }
 
-        .logo h2 {
-            color: #fff !important;
-            font-size: 1.8rem;
-            white-space: nowrap;
-            transition: all 0.3s ease;
-        }
-
-        .nav-links {
+        .nav-brand {
             display: flex;
-            gap: 2rem;
             align-items: center;
+            gap: 12px;
+            font-size: 1.4rem;
+            color: var(--text-primary);
         }
 
-        .nav-link {
-            color: white;
-            text-decoration: none;
-            font-weight: 500;
-            transition: opacity 0.3s ease;
+        .nav-logo {
+            width: 36px;
+            height: 36px;
+            filter: drop-shadow(0 2px 4px rgba(0,0,0,0.2));
         }
 
-        .nav-link:hover {
-            opacity: 0.8;
+        .neuro-container {
+            position: relative;
+            max-width: 1000px;
+            margin: 2rem auto;
+            padding: 2rem;
+            background: var(--surface);
+            backdrop-filter: blur(20px);
+            border-radius: 24px;
+            border: 1px solid rgba(255,255,255,0.1);
+            box-shadow: 0 16px 48px rgba(0,0,0,0.2);
+            flex: 1;
         }
 
-        /* 内容容器 */
-        .content-container {
-            max-width: 1200px;
-            margin: 100px auto 50px;
-            padding: 0 20px;
-        }
-
-        /* 卡片样式 */
         .section-card {
-            background: rgba(255, 255, 255, 0.85);
-            border-radius: 15px;
+            background: rgba(255, 255, 255, 0.03);
+            border-radius: 16px;
             padding: 2rem;
             margin-bottom: 2rem;
-            backdrop-filter: blur(10px);
-            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
-            transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.70);
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            animation: fadeIn 0.6s ease forwards;
-            opacity: 0;
         }
 
         .section-title {
-            color: var(--primary-color);
-            font-size: 2.2rem;
+            font-size: 2rem;
             margin-bottom: 1.5rem;
             position: relative;
             padding-bottom: 0.5rem;
@@ -139,10 +115,9 @@
             left: 0;
             width: 60px;
             height: 3px;
-            background: linear-gradient(90deg, var(--secondary-color), transparent);
+            background: linear-gradient(90deg, var(--primary-accent), transparent);
         }
 
-        /* 时间轴 */
         .timeline {
             position: relative;
             padding-left: 30px;
@@ -155,7 +130,7 @@
             top: 0;
             width: 4px;
             height: 100%;
-            background: linear-gradient(to bottom, var(--secondary-color), var(--primary-color));
+            background: linear-gradient(to bottom, var(--primary-accent), #8b5cf6);
             border-radius: 2px;
         }
 
@@ -163,10 +138,9 @@
             position: relative;
             padding: 1.5rem;
             margin-bottom: 2rem;
-            background: rgba(255, 255, 255, 0.9);
+            background: rgba(255, 255, 255, 0.03);
             border-radius: 8px;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
-            border-left: 3px solid var(--secondary-color);
+            border-left: 3px solid var(--primary-accent);
         }
 
         .timeline-item::before {
@@ -176,13 +150,11 @@
             top: 25px;
             width: 20px;
             height: 20px;
-            background: white;
-            border: 3px solid var(--secondary-color);
+            background: var(--background);
+            border: 3px solid var(--primary-accent);
             border-radius: 50%;
-            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
         }
 
-        /* 项目网格 */
         .project-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
@@ -191,163 +163,44 @@
         }
 
         .project-card {
-            background: rgba(255, 255, 255, 0.75);
+            background: rgba(255, 255, 255, 0.03);
             border-radius: 12px;
             padding: 1.5rem;
-            transition: all 0.3s ease;
-            position: relative;
-            overflow: hidden;
-            border: 1px solid rgba(0, 0, 0, 0.05);
+            border: 1px solid rgba(255,255,255,0.1);
+            transition: transform 0.3s ease;
         }
 
-        .project-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 50%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
-            transition: all 0.6s;
+        .project-card:hover {
+            transform: translateY(-5px);
         }
 
-        .project-card:hover::before {
-            left: 100%;
-        }
-
-        /* 技能标签 */
         .skill-tag {
             display: inline-block;
             padding: 0.5rem 1rem;
             margin: 0.3rem;
-            background: rgba(42, 42, 114, 0.1);
+            background: rgba(99, 102, 241, 0.1);
             border-radius: 20px;
+            border: 1px solid rgba(99, 102, 241, 0.2);
             transition: all 0.2s ease;
-            border: 1px solid rgba(42, 42, 114, 0.1);
         }
 
-        .skill-tag:hover {
-            background: rgba(42, 42, 114, 0.15);
-            transform: translateY(-2px);
-        }
-
-        /* 按钮样式 */
-        .ai-button {
-            background: linear-gradient(135deg, var(--accent-color), #707070);
-            color: white;
-            padding: 0.8rem 1.5rem;
-            border-radius: 30px;
-            text-decoration: none;
+        .glow-btn {
             display: inline-flex;
             align-items: center;
-            gap: 0.5rem;
-            position: relative;
-            overflow: hidden;
-            transition: all 0.4s ease;
-            font-weight: 600;
-            border: 2px solid transparent;
-        }
-
-        .ai-button:hover {
-            background: linear-gradient(135deg, #cbcbca, var(--accent-color));
-            transform: translateY(-2px);
-            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
-            border-color: rgba(255, 255, 255, 0.3);
-        }
-
-        .ai-button::after {
-            content: '';
-            position: absolute;
-            top: -50%;
-            left: -50%;
-            width: 200%;
-            height: 200%;
-            background: linear-gradient(45deg, transparent, rgba(255, 255, 255, 0.2), transparent);
-            transform: rotate(45deg);
-            transition: all 0.5s;
-        }
-
-        .ai-button:hover::after {
-            left: 150%;
-        }
-
-        /* 联系信息 */
-        .contact-item {
-            transition: all 0.3s ease;
-            padding: 0.5rem;
+            padding: 0.8rem 1.8rem;
+            background: linear-gradient(135deg, var(--primary-accent) 0%, #818cf8 100%);
             border-radius: 8px;
+            color: white !important;
+            font-weight: 500;
+            transition: all 0.2s ease;
+            text-decoration: none;
         }
 
-        .contact-item:hover {
-            background: rgba(42, 42, 114, 0.05);
-            transform: translateX(10px);
+        .glow-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 20px -4px rgba(99, 102, 241, 0.4);
         }
 
-        /* 响应式设计 */
-        @media (max-width: 768px) {
-            .nav-container {
-                flex-direction: column;
-                padding: 10px;
-            }
-
-            .logo h2 {
-                font-size: 1.4rem !important;
-                text-align: center;
-                margin: 10px 0;
-            }
-
-            .nav-links {
-                flex-direction: column;
-                width: 100%;
-                gap: 1rem;
-                margin-top: 1rem;
-            }
-
-            .section-title {
-                font-size: 1.8rem;
-            }
-
-            .timeline-item {
-                padding: 1rem;
-                margin-left: 15px;
-            }
-
-            .skill-tag {
-                font-size: 0.9rem;
-                padding: 0.4rem 0.8rem;
-            }
-
-            .project-card h3 {
-                font-size: 1.1rem;
-            }
-
-            .content-container {
-                margin: 80px auto 30px;
-            }
-        }
-
-        @media (max-width: 480px) {
-            .logo h2 {
-                font-size: 1.2rem !important;
-            }
-
-            .ai-button {
-                width: 100%;
-                justify-content: center;
-            }
-        }
-
-        /* 动画 */
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        .section-card:nth-child(2) { animation-delay: 0.2s; }
-        .section-card:nth-child(3) { animation-delay: 0.4s; }
-        .section-card:nth-child(4) { animation-delay: 0.6s; }
-
-        /* 滚动进度条 */
         .scroll-progress {
             position: fixed;
             top: 0;
@@ -360,12 +213,11 @@
 
         .progress-bar {
             height: 100%;
-            background: linear-gradient(90deg, var(--secondary-color), var(--primary-color));
+            background: linear-gradient(90deg, var(--primary-accent), #8b5cf6);
             width: 0%;
             transition: width 0.3s ease-out;
         }
 
-        /* 浮动按钮 */
         .floating-ai {
             position: fixed;
             bottom: 30px;
@@ -375,32 +227,54 @@
             gap: 15px;
             z-index: 1000;
         }
+
+        @media (max-width: 768px) {
+            .neuro-container {
+                margin: 1rem;
+                border-radius: 16px;
+                padding: 1.5rem;
+            }
+            
+            .nav-container {
+                padding: 0 1rem;
+                flex-direction: column;
+                gap: 1rem;
+                height: auto;
+                padding: 1rem;
+            }
+
+            .project-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .timeline-item {
+                padding: 1rem;
+                margin-left: 15px;
+            }
+        }
     </style>
 </head>
 
 <body>
-    <div class="animated-bg"></div>
+    <div class="neon-grid"></div>
     <div class="scroll-progress">
         <div class="progress-bar"></div>
     </div>
 
-    <nav class="navbar">
+    <nav class="neu-navbar">
         <div class="nav-container">
-            <div class="logo">
-                <h2>Shengjie (Jimmy) CHEN</h2>
-            </div>
+            <a class="nav-brand" href="#">
+                <img src="/static/aiai.ico" class="nav-logo" alt="Logo">
+                Jimmy Chen
+            </a>
             <div class="nav-links">
-                <a href="#about" class="nav-link">About</a>
-                <a href="#experience" class="nav-link">Experience</a>
-                <a href="https://ai.jimmyai.uk/" class="ai-button" target="_blank">
-                    <i class="fas fa-robot"></i> Try Jimmy AI
-                </a>
+                <a href="#about" class="glow-btn">About</a>
+                <a href="#experience" class="glow-btn" style="margin-left: 1rem;">Experience</a>
             </div>
         </div>
     </nav>
 
-    <div class="content-container">
-        <!-- 原有内容保持不变 -->
+    <main class="neuro-container">
         <section class="section-card" id="about">
             <h2 class="section-title">About Me</h2>
             <div class="section-content">
@@ -408,7 +282,6 @@
             </div>
         </section>
 
-        <!-- Experience Section -->
         <section class="section-card" id="experience">
             <h2 class="section-title">Professional Experience</h2>
             <div class="timeline">
@@ -441,7 +314,6 @@
             </div>
         </section>
 
-        <!-- Education Section -->
         <section class="section-card" id="education">
             <h2 class="section-title">Education</h2>
             <div class="education-list">
@@ -459,7 +331,6 @@
             </div>
         </section>
 
-        <!-- Skills Section -->
         <section class="section-card" id="skills">
             <h2 class="section-title">Methodologies</h2>
             <div class="skill-chart">
@@ -501,16 +372,15 @@
             </div>
         </section>
 
-        <!-- Projects Section -->
         <section class="section-card" id="projects">
             <h2 class="section-title">Featured Projects</h2>
             <div class="project-grid">
-                <div class="project-card hover-zoom">
+                <div class="project-card">
                     <h3>Virtual Stock Investment Analysis</h3>
                     <div class="project-links">
                         <a href="https://drive.google.com/drive/folders/10z5G2XHLvOcBI2cvGALBimJQT0x03bT_" 
                         target="_blank" 
-                        class="ai-button"
+                        class="glow-btn"
                         style="margin-top: 1rem;">
                             <i class="fas fa-external-link-alt"></i> View Analysis
                         </a>
@@ -518,13 +388,12 @@
                     <p style="margin-top: 1rem;">The report analyzes the investment choices and portfolio performance compared to the S&P 500, discussing factors like interest rates, inflation, and COVID-19 that influenced investment results.</p>
                 </div>
 
-                <!-- 其他项目卡片结构相同 -->
-                <div class="project-card hover-zoom">
+                <div class="project-card">
                     <h3>Econometric work to prove Environmental Kuznets Curve (EKC)</h3>
                     <div class="project-links">
                         <a href="https://drive.google.com/drive/folders/1AQbQ2peapBoOr-EOWHqG3-CJoSFejCSB" 
                         target="_blank" 
-                        class="ai-button"
+                        class="glow-btn"
                         style="margin-top: 1rem;">
                             <i class="fas fa-external-link-alt"></i> View Analysis
                         </a>
@@ -532,12 +401,12 @@
                     <p style="margin-top: 1rem;">The project empirically tests the EKC hypothesis by analyzing World Bank data on CO2 emissions and GDP per capita using linear regression.</p>
                 </div>
 
-                <div class="project-card hover-zoom">
+                <div class="project-card">
                     <h3>Analysis of a Workplace Wellness Program</h3>
                     <div class="project-links">
                         <a href="https://drive.google.com/drive/folders/1Is-Sa2JPu1Wdd3728II2E8-_xPGY5K8w" 
                         target="_blank" 
-                        class="ai-button"
+                        class="glow-btn"
                         style="margin-top: 1rem;">
                             <i class="fas fa-external-link-alt"></i> View Analysis
                         </a>
@@ -545,12 +414,12 @@
                     <p style="margin-top: 1rem;">Analyzed the effectiveness of workplace wellness programs on healthcare spending and employee health outcomes.</p>
                 </div>
 
-                <div class="project-card hover-zoom">
+                <div class="project-card">
                     <h3>Predicting Property Values in Cook County, Illinois</h3>
                     <div class="project-links">
                         <a href="https://drive.google.com/drive/folders/1RHU9r78Exw661vXsso_Sb7Xm68_Lkv5u" 
                         target="_blank" 
-                        class="ai-button"
+                        class="glow-btn"
                         style="margin-top: 1rem;">
                             <i class="fas fa-external-link-alt"></i> View Analysis
                         </a>
@@ -558,12 +427,12 @@
                     <p style="margin-top: 1rem;">Developed machine learning models to estimate residential property values with emphasis on fair assessment practices.</p>
                 </div>
 
-                <div class="project-card hover-zoom">
+                <div class="project-card">
                     <h3>Explore NYC taxi fare pattern</h3>
                     <div class="project-links">
                         <a href="https://drive.google.com/drive/folders/1vtGlH_OLlnqYhUnZ5BqA4I4tkzZ2sMSk" 
                         target="_blank" 
-                        class="ai-button"
+                        class="glow-btn"
                         style="margin-top: 1rem;">
                             <i class="fas fa-external-link-alt"></i> View Analysis
                         </a>
@@ -571,12 +440,12 @@
                     <p style="margin-top: 1rem;">Analyzed NYC taxi trip data to understand fare patterns and operational efficiency.</p>
                 </div>
 
-                <div class="project-card hover-zoom">
+                <div class="project-card">
                     <h3>Difference-in-Differences analysis and Regression Discontinuity (RD) analysis</h3>
                     <div class="project-links">
                         <a href="https://drive.google.com/drive/folders/1OfnM0f2idXl3hINU4nCvZxiLwi8gUucg" 
                         target="_blank"
-                        class="ai-button"
+                        class="glow-btn"
                         style="margin-top: 1rem;">
                             <i class="fas fa-external-link-alt"></i> View Analysis
                         </a>
@@ -586,55 +455,63 @@
             </div>
         </section>
 
-        <!-- Contact Section -->
         <section class="section-card" id="contact">
             <h2 class="section-title">Let's Connect</h2>
             <div class="contact-info">
                 <div class="contact-item">
                     <p> 
-                        <a href="mailto:sc171@illinois.edu" class="ai-button">
+                        <a href="mailto:sc171@illinois.edu" class="glow-btn">
                             <i class="fas fa-envelope"></i> sc171@illinois.edu
                         </a>
                     </p>
                     <p style="margin: 1.5rem 0;">
-                        <a href="tel:+13472450259" class="ai-button">
+                        <a href="tel:+13472450259" class="glow-btn">
                             <i class="fas fa-phone"></i> +1 347-245-0259
                         </a>
                     </p>
                     <p>
                         <a href="https://www.linkedin.com/in/chen-shengjie" 
                         target="_blank"
-                        class="ai-button">
+                        class="glow-btn">
                             <i class="fab fa-linkedin"></i> LinkedIn Profile
                         </a>
                     </p>
                 </div>
             </div>
         </section>
+    </main>
 
-
-        <!-- 其余部分保持原有内容 -->
-        <!-- Education, Skills, Projects, Contact 部分保持原有HTML结构不变 -->
-
-    </div>
-
-    <!-- 原有浮动按钮和页脚 -->
     <div class="floating-ai">
-        <a href="https://ai.jimmyai.uk/" class="ai-button" target="_blank">
-            <i class="fas fa-comments"></i> Jimmy AI
+        <a href="https://ai.jimmyai.uk/" class="glow-btn" target="_blank">
+            <i class="fas fa-robot"></i> Jimmy AI
         </a>
         <a href="https://drive.google.com/file/d/1MKOIASite2S-IaO7aEtNn5h43pl6RuZ0/view" 
-           class="ai-button" 
+           class="glow-btn" 
            target="_blank">
             <i class="fas fa-hand-holding-heart"></i> Donate
         </a>
     </div>
 
-    <footer>
+    <footer style="text-align: center; padding: 2rem; color: rgba(255,255,255,0.6);">
         <p>&copy; 2024 Shengjie (Jimmy) Chen | Built with HTML & CSS</p>
     </footer>
 
     <script>
+        // 视口高度适配
+        function updateViewportHeight() {
+            document.documentElement.style.setProperty('--vh', `${window.innerHeight * 0.01}px`);
+        }
+        window.addEventListener('resize', updateViewportHeight);
+        updateViewportHeight();
+
+        // 滚动进度条
+        window.addEventListener('scroll', () => {
+            const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+            const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+            const scrolled = (winScroll / height) * 100;
+            document.querySelector('.progress-bar').style.width = scrolled + '%';
+        });
+
         // 平滑滚动
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
@@ -646,12 +523,12 @@
             });
         });
 
-        // 滚动进度条
-        window.addEventListener('scroll', () => {
-            const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
-            const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
-            const scrolled = (winScroll / height) * 100;
-            document.querySelector('.progress-bar').style.width = scrolled + '%';
+        // 按钮交互反馈
+        document.querySelectorAll('.glow-btn').forEach(btn => {
+            btn.addEventListener('click', () => {
+                btn.style.transform = 'scale(0.98)';
+                setTimeout(() => btn.style.transform = 'translateY(-2px)', 100);
+            });
         });
     </script>
 </body>

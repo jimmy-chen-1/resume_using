@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, minimum-scale=1.0">
+    <title>Support Jimmy's AI Project</title>
+    <link rel="icon" type="image/x-icon" href="/aiai.ico">
+    
+    <!-- 共用样式 -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+
+    <style>
+        /* 复用主站样式 */
+        :root {
+            --primary-accent: #6366f1;
+            --background: #0f172a;
+            --surface: rgba(255, 255, 255, 0.05);
+            --text-primary: #f8fafc;
+        }
+
+        body {
+            background: var(--background);
+            color: var(--text-primary);
+            font-family: 'Inter', sans-serif;
+            margin: 0;
+            min-height: 100vh;
+        }
+
+        .neon-grid {
+            position: fixed;
+            width: 200vw;
+            height: 200vh;
+            background-image:
+                linear-gradient(var(--surface) 1px, transparent 1px),
+                linear-gradient(90deg, var(--surface) 1px, transparent 1px);
+            background-size: 40px 40px;
+            mask-image: radial-gradient(ellipse at center, black 20%, transparent 80%);
+            pointer-events: none;
+            z-index: 0;
+            animation: gridMove 40s linear infinite;
+        }
+
+        .neuro-container {
+            position: relative;
+            max-width: 800px;
+            margin: 4rem auto;
+            padding: 3rem;
+            background: var(--surface);
+            backdrop-filter: blur(20px);
+            border-radius: 24px;
+            border: 1px solid rgba(255,255,255,0.1);
+            text-align: center;
+        }
+
+        .donate-image {
+            width: 100%;
+            max-width: 500px;
+            margin: 2rem 0;
+            border-radius: 16px;
+            transition: transform 0.3s ease;
+            cursor: zoom-in;
+        }
+
+        .donate-image:hover {
+            transform: scale(1.03);
+        }
+
+        .back-btn {
+            display: inline-flex;
+            align-items: center;
+            margin-top: 2rem;
+            padding: 0.8rem 1.5rem;
+            background: rgba(99, 102, 241, 0.2);
+            border-radius: 8px;
+            color: var(--text-primary);
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .back-btn:hover {
+            background: var(--primary-accent);
+            transform: translateX(-5px);
+        }
+
+        @media (max-width: 768px) {
+            .neuro-container {
+                margin: 2rem 1rem;
+                padding: 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="neon-grid"></div>
+
+    <nav class="neu-navbar">
+        <div class="nav-container">
+            <a class="nav-brand" href="/">
+                <img src="aiai.ico" class="nav-logo" alt="AI Logo">
+                Jimmy Chen
+            </a>
+            <div class="nav-links">
+                <a href="https://ai.jimmyai.uk/" class="glow-btn">
+                    <i class="fas fa-arrow-left"></i> Back to AI
+                </a>
+            </div>
+        </div>
+    </nav>
+
+    <main>
+        <div class="neuro-container">
+            <h1>Support Our AI Development</h1>
+            <p>Your contribution helps us maintain servers and improve AI capabilities</p>
+            
+            <!-- 捐赠二维码图片 -->
+            <a href="donate.png" target="_blank">
+                <img href="donate.png" 
+                     alt="Donation QR Code" 
+                     class="donate-image">
+            </a>
+
+            <p>Scan or click the QR code to support</p>
+            
+            <a href="https://ai.jimmyai.uk/" class="back-btn">
+                <i class="fas fa-chevron-left"></i> Return to AI Platform
+            </a>
+        </div>
+    </main>
+
+    <script>
+        // 图片点击放大功能
+        document.querySelector('.donate-image').addEventListener('click', function() {
+            this.classList.toggle('zoomed');
+            if(this.classList.contains('zoomed')) {
+                this.style.transform = 'scale(2) translateY(25%)';
+                this.style.cursor = 'zoom-out';
+            } else {
+                this.style.transform = 'scale(1)';
+                this.style.cursor = 'zoom-in';
+            }
+        });
+    </script>
+</body>
+</html>

@@ -1,15 +1,12 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="zh-CN">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, minimum-scale=1.0, viewport-fit=cover">
-    <title>Jimmy Chen</title>
-    <link rel="icon" type="image/x-icon" href="aiai.png">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, minimum-scale=1.0">
+    <title>Jimmy Chen | AI Innovator</title>
+    <link rel="icon" type="image/x-icon" href="/static/aiai.ico">
     
-    <!-- 广告脚本 -->
-    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7386315001938281" crossorigin="anonymous"></script>
-
-    <!-- 字体和样式 -->
+    <!-- 字体和图标 -->
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 
@@ -21,15 +18,14 @@
             --text-primary: #f8fafc;
             --glass-effect: linear-gradient(135deg, rgba(255,255,255,0.1), rgba(255,255,255,0.05));
             --transition-config: cubic-bezier(0.4, 0, 0.2, 1) 0.15s;
-            --vh: 1vh;
         }
 
         body {
             background: var(--background);
-            min-height: calc(var(--vh, 1vh) * 100);
             color: var(--text-primary);
-            font-family: 'Inter', system-ui, -apple-system, sans-serif;
-            -webkit-font-smoothing: antialiased;
+            font-family: 'Inter', sans-serif;
+            margin: 0;
+            min-height: 100vh;
         }
 
         .neon-grid {
@@ -45,489 +41,175 @@
             z-index: 0;
         }
 
-        .neu-navbar {
-            --nav-height: 64px;
-            height: var(--nav-height);
-            background: var(--surface);
-            backdrop-filter: blur(12px);
-            border-bottom: 1px solid rgba(255,255,255,0.1);
-            box-shadow: 0 8px 32px rgba(0,0,0,0.1);
-            position: sticky;
-            top: 0;
-            z-index: 2;
-        }
-
-        .nav-container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 2rem;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            height: 100%;
-        }
-
-        .nav-brand {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            font-size: 1.4rem;
-            color: var(--text-primary);
-        }
-
-        .nav-logo {
-            width: 36px;
-            height: 36px;
-            filter: drop-shadow(0 2px 4px rgba(0,0,0,0.2));
-        }
-
-        .neuro-container {
+        .hero-section {
             position: relative;
-            max-width: 1000px;
-            margin: 2rem auto;
+            min-height: 90vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
             padding: 2rem;
+        }
+
+        .hero-content {
+            max-width: 1200px;
+            text-align: center;
+            z-index: 1;
+        }
+
+        .ai-platform-card {
             background: var(--surface);
             backdrop-filter: blur(20px);
             border-radius: 24px;
+            padding: 4rem;
+            margin: 2rem;
             border: 1px solid rgba(255,255,255,0.1);
             box-shadow: 0 16px 48px rgba(0,0,0,0.2);
-            flex: 1;
         }
 
-        .section-card {
-            background: rgba(255, 255, 255, 0.03);
-            border-radius: 16px;
-            padding: 2rem;
-            margin-bottom: 2rem;
-        }
-
-        .section-title {
-            font-size: 2rem;
+        .main-title {
+            font-size: 4rem;
+            background: linear-gradient(45deg, #818cf8, #6366f1);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
             margin-bottom: 1.5rem;
-            position: relative;
-            padding-bottom: 0.5rem;
         }
 
-        .section-title::after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 60px;
-            height: 3px;
-            background: linear-gradient(90deg, var(--primary-accent), transparent);
-        }
-
-        .timeline {
-            position: relative;
-            padding-left: 30px;
-        }
-
-        .timeline::before {
-            content: '';
-            position: absolute;
-            left: 0;
-            top: 0;
-            width: 4px;
-            height: 100%;
-            background: linear-gradient(to bottom, var(--primary-accent), #8b5cf6);
-            border-radius: 2px;
-        }
-
-        .timeline-item {
-            position: relative;
-            padding: 1.5rem;
-            margin-bottom: 2rem;
-            background: rgba(255, 255, 255, 0.03);
-            border-radius: 8px;
-            border-left: 3px solid var(--primary-accent);
-        }
-
-        .timeline-item::before {
-            content: '';
-            position: absolute;
-            left: -36px;
-            top: 25px;
-            width: 20px;
-            height: 20px;
-            background: var(--background);
-            border: 3px solid var(--primary-accent);
-            border-radius: 50%;
-        }
-
-        .project-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 1.5rem;
-            margin-top: 1.5rem;
-        }
-
-        .project-card {
-            background: rgba(255, 255, 255, 0.03);
-            border-radius: 12px;
-            padding: 1.5rem;
-            border: 1px solid rgba(255,255,255,0.1);
-            transition: transform 0.3s ease;
-        }
-
-        .project-card:hover {
-            transform: translateY(-5px);
-        }
-
-        .skill-tag {
-            display: inline-block;
-            padding: 0.5rem 1rem;
-            margin: 0.3rem;
-            background: rgba(99, 102, 241, 0.1);
-            border-radius: 20px;
-            border: 1px solid rgba(99, 102, 241, 0.2);
-            transition: all 0.2s ease;
+        .cta-buttons {
+            display: flex;
+            gap: 2rem;
+            justify-content: center;
+            margin-top: 3rem;
         }
 
         .glow-btn {
             display: inline-flex;
             align-items: center;
-            padding: 0.8rem 1.8rem;
+            padding: 1.2rem 2.5rem;
             background: linear-gradient(135deg, var(--primary-accent) 0%, #818cf8 100%);
-            border-radius: 8px;
-            color: white !important;
-            font-weight: 500;
-            transition: all 0.2s ease;
+            border-radius: 12px;
+            color: white;
+            font-weight: 600;
+            transition: all 0.3s ease;
             text-decoration: none;
+            position: relative;
+            overflow: hidden;
         }
 
         .glow-btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 4px 20px -4px rgba(99, 102, 241, 0.4);
+            transform: translateY(-3px);
+            box-shadow: 0 8px 32px rgba(99, 102, 241, 0.3);
         }
 
-        .scroll-progress {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 3px;
-            background: rgba(0, 0, 0, 0.05);
-            z-index: 9999;
+        .feature-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 4rem;
+            padding: 0 2rem;
         }
 
-        .progress-bar {
-            height: 100%;
-            background: linear-gradient(90deg, var(--primary-accent), #8b5cf6);
-            width: 0%;
-            transition: width 0.3s ease-out;
+        .feature-card {
+            background: var(--surface);
+            padding: 2rem;
+            border-radius: 16px;
+            border: 1px solid rgba(255,255,255,0.1);
+            transition: transform 0.3s ease;
         }
 
-        .floating-ai {
-            position: fixed;
-            bottom: 30px;
-            right: 30px;
-            display: flex;
-            flex-direction: column;
-            gap: 15px;
-            z-index: 1000;
+        .feature-card:hover {
+            transform: translateY(-5px);
         }
 
         @media (max-width: 768px) {
-            .neuro-container {
-                margin: 1rem;
-                border-radius: 16px;
-                padding: 1.5rem;
+            .main-title {
+                font-size: 2.5rem;
             }
             
-            .nav-container {
-                padding: 0 1rem;
+            .ai-platform-card {
+                padding: 2rem;
+            }
+            
+            .cta-buttons {
                 flex-direction: column;
-                gap: 1rem;
-                height: auto;
-                padding: 1rem;
-            }
-
-            .project-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .timeline-item {
-                padding: 1rem;
-                margin-left: 15px;
             }
         }
     </style>
 </head>
-
 <body>
     <div class="neon-grid"></div>
-    <div class="scroll-progress">
-        <div class="progress-bar"></div>
-    </div>
 
     <nav class="neu-navbar">
         <div class="nav-container">
-            <a class="nav-brand" href="#">
-                <img src="/static/aiai.ico" class="nav-logo" alt="Logo">
+            <a class="nav-brand" href="/">
+                <img src="/static/aiai.ico" class="nav-logo" alt="AI Logo">
                 Jimmy Chen
             </a>
             <div class="nav-links">
-                <a href="#about" class="glow-btn">About</a>
-                <a href="#experience" class="glow-btn" style="margin-left: 1rem;">Experience</a>
+                <a href="https://ai.jimmyai.uk/" class="glow-btn" target="_blank">
+                    <i class="fas fa-robot"></i> AI Platform
+                </a>
+                <a href="about.html" class="glow-btn">
+                    <i class="fas fa-user"></i> About Me
+                </a>
             </div>
         </div>
     </nav>
 
-    <main class="neuro-container">
-        <section class="section-card" id="about">
-            <h2 class="section-title">About Me</h2>
-            <div class="section-content">
-                <p>I am currently pursuing my Master’s in Business Analytics at the University of Illinois, with a strong academic background in finance from Curtin University, Australia. I have gained practical experience as a Financial Advisor Intern at Equitable Advisors and as an Engagement Team Member at TTG Asia Media. My expertise lies in data analysis, financial advisory, and using tools like Python, SQL, and R-Studio for data-driven decision-making.</p>
-            </div>
-        </section>
-
-        <section class="section-card" id="experience">
-            <h2 class="section-title">Professional Experience</h2>
-            <div class="timeline">
-                <div class="timeline-item">
-                    <h3>Business Operations Team Member - Disruption Lab at Gies (11/2024 - Now)</h3>
-                    <p>- Using disruptive technology like AI and machine learning, Blockchain, and VR/AR to transform industries. It works on projects with real world impact for a variety of clients.</p>                    
-                </div>
-
-                <div class="timeline-item">
-                    <h3>Associate Business Analyst - Associated Wholesale Grocers (AWG) (09/2024 - Now)</h3>
-                    <p>- Utilized Python (Pandas, Numpy, Matplotlib, Sklearn) and R to analyze over 15000+ organizations’ data (time-series analysis & cross section analysis & classification) of the donations made and trends associated with them<br>
-                       - Reported and Visualized (Tableau) on recommendations for optimizing Digital Coupons strategy for AWG products.<br>
-                       - Used the method of Machine Learning to anticipate the success of Digital Coupons strategy.</p>                  
-                </div>
-
-                <div class="timeline-item">
-                    <h3>Financial Advisor Intern - Equitable Advisors (01/2024 - 05/2024)</h3>
-                    <p>- Sourced and organized 10,000+ new client leads using Zoominfo for efficient customer management.<br>
-                       - Employed tools like PowerBI to optimize investment management and tax strategies for 50+ clients, improving financial outcomes by 15%.<br>
-                       - Established internal customer relational management database for managers immediately gaining the client’s details and stored 10000+ potential clients needed financial services in the database</p>                  
-                </div>
-
-                <div class="timeline-item">
-                    <h3>Client Engagement Rate Analyst - TTG Asia Media Pte Ltd (07/2023 - 10/2023)</h3>
-                    <p>- Onboarded 150+ hotel managers and agents for tour sales, and used HubSpot CRM for tracking customer responses.<br>
-                       - Analyzed 5,000+ tour and attraction tickets for data insights using Excel and R Studio, contributing to machine learning model training.<br>
-                       - Searched for and identified 100+ potential distribution channels provided corresponding support<br>
-                       - Collected 2000+ feedback to build and enhance the relationship with potential customers using HubSpot CRM, achieving a 42.22% open rate of email (helping to build the new relationship) and a 47.27% click rate</p>                    
-                </div>
-            </div>
-        </section>
-
-        <section class="section-card" id="education">
-            <h2 class="section-title">Education</h2>
-            <div class="education-list">
-                <div class="education-item">
-                    <h3>University of Illinois Urbana-Champaign</h3>
-                    <p>Master of Science in Business Analytics</p>
-                    <p>Graduation: Expected 06/2025</p>
-                    <p>GPA: 3.93</p>
+    <main>
+        <section class="hero-section">
+            <div class="hero-content">
+                <div class="ai-platform-card">
+                    <h1 class="main-title">Next-Gen AI Solutions</h1>
+                    <p style="font-size: 1.2rem; opacity: 0.9; max-width: 800px; margin: 0 auto;">
+                        Transform your business with cutting-edge artificial intelligence powered by deep learning and advanced analytics.
+                    </p>
                     
-                    <h3 style="margin-top: 1.5rem;">Curtin University (Perth, Australia)</h3>
-                    <p>Bachelor of Commerce (Finance) with Distinction</p>
-                    <p>Graduation: 11/2023</p>
-                    <p>GPA: 3.83 (Verified by WES)</p>
-                </div>
-            </div>
-        </section>
-
-        <section class="section-card" id="skills">
-            <h2 class="section-title">Methodologies</h2>
-            <div class="skill-chart">
-                <div class="skill-category">
-                    <div class="skill-items">
-                        <span class="skill-tag">Data Analysis</span>
-                        <span class="skill-tag">Data Visualization</span>
-                        <span class="skill-tag">Financial Analysis</span>
-                        <span class="skill-tag">Local AI Establish</span>
-                        <span class="skill-tag">Supervised Machine Learning</span>
-                        <span class="skill-tag">Unsupervised Machine Learning</span>
-                        <span class="skill-tag">Semi-Supervised Machine Learning</span>
-                        <span class="skill-tag">Reinforcement Machine Learning</span>
-                    </div>
-                </div>
-            </div>
-
-            <h2 class="section-title" style="margin-top: 2rem;">Technical Expertise</h2>
-            <div class="skill-chart">
-                <div class="skill-category">
-                    <div class="skill-items">
-                        <span class="skill-tag">Python</span>
-                        <span class="skill-tag">SQL</span>
-                        <span class="skill-tag">SAS</span>
-                        <span class="skill-tag">R</span>
-                        <span class="skill-tag">KNIME</span>
-                        <span class="skill-tag">Wolfram</span>
-                        <span class="skill-tag">AWS (Amazon Web Services)</span>
-                        <span class="skill-tag">MongoDB</span>
-                        <span class="skill-tag">ChromaDB</span>
-                        <span class="skill-tag">Alteryx</span>
-                        <span class="skill-tag">Zoominfo</span>
-                        <span class="skill-tag">HubSpot</span>
-                        <span class="skill-tag">DataBricks</span>
-                        <span class="skill-tag">PowerBI</span>
-                        <span class="skill-tag">Google Ads</span>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <section class="section-card" id="projects">
-            <h2 class="section-title">Featured Projects</h2>
-            <div class="project-grid">
-                <div class="project-card">
-                    <h3>Virtual Stock Investment Analysis</h3>
-                    <div class="project-links">
-                        <a href="https://drive.google.com/drive/folders/10z5G2XHLvOcBI2cvGALBimJQT0x03bT_" 
-                        target="_blank" 
-                        class="glow-btn"
-                        style="margin-top: 1rem;">
-                            <i class="fas fa-external-link-alt"></i> View Analysis
+                    <div class="cta-buttons">
+                        <a href="https://ai.jimmyai.uk/" class="glow-btn" target="_blank">
+                            <i class="fas fa-rocket"></i> Try Demo Now
+                        </a>
+                        <a href="about.html" class="glow-btn">
+                            <i class="fas fa-scroll"></i> My Journey
                         </a>
                     </div>
-                    <p style="margin-top: 1rem;">The report analyzes the investment choices and portfolio performance compared to the S&P 500, discussing factors like interest rates, inflation, and COVID-19 that influenced investment results.</p>
-                </div>
 
-                <div class="project-card">
-                    <h3>Econometric work to prove Environmental Kuznets Curve (EKC)</h3>
-                    <div class="project-links">
-                        <a href="https://drive.google.com/drive/folders/1AQbQ2peapBoOr-EOWHqG3-CJoSFejCSB" 
-                        target="_blank" 
-                        class="glow-btn"
-                        style="margin-top: 1rem;">
-                            <i class="fas fa-external-link-alt"></i> View Analysis
-                        </a>
+                    <div class="feature-grid">
+                        <div class="feature-card">
+                            <h3><i class="fas fa-brain"></i> Neural Architecture</h3>
+                            <p>State-of-the-art transformer models for natural language processing</p>
+                        </div>
+                        <div class="feature-card">
+                            <h3><i class="fas fa-chart-line"></i> Predictive Analytics</h3>
+                            <p>Real-time data processing with 98.7% prediction accuracy</p>
+                        </div>
+                        <div class="feature-card">
+                            <h3><i class="fas fa-shield-alt"></i> Enterprise Security</h3>
+                            <p>Military-grade encryption for all data transactions</p>
+                        </div>
                     </div>
-                    <p style="margin-top: 1rem;">The project empirically tests the EKC hypothesis by analyzing World Bank data on CO2 emissions and GDP per capita using linear regression.</p>
-                </div>
-
-                <div class="project-card">
-                    <h3>Analysis of a Workplace Wellness Program</h3>
-                    <div class="project-links">
-                        <a href="https://drive.google.com/drive/folders/1Is-Sa2JPu1Wdd3728II2E8-_xPGY5K8w" 
-                        target="_blank" 
-                        class="glow-btn"
-                        style="margin-top: 1rem;">
-                            <i class="fas fa-external-link-alt"></i> View Analysis
-                        </a>
-                    </div>
-                    <p style="margin-top: 1rem;">Analyzed the effectiveness of workplace wellness programs on healthcare spending and employee health outcomes.</p>
-                </div>
-
-                <div class="project-card">
-                    <h3>Predicting Property Values in Cook County, Illinois</h3>
-                    <div class="project-links">
-                        <a href="https://drive.google.com/drive/folders/1RHU9r78Exw661vXsso_Sb7Xm68_Lkv5u" 
-                        target="_blank" 
-                        class="glow-btn"
-                        style="margin-top: 1rem;">
-                            <i class="fas fa-external-link-alt"></i> View Analysis
-                        </a>
-                    </div>
-                    <p style="margin-top: 1rem;">Developed machine learning models to estimate residential property values with emphasis on fair assessment practices.</p>
-                </div>
-
-                <div class="project-card">
-                    <h3>Explore NYC taxi fare pattern</h3>
-                    <div class="project-links">
-                        <a href="https://drive.google.com/drive/folders/1vtGlH_OLlnqYhUnZ5BqA4I4tkzZ2sMSk" 
-                        target="_blank" 
-                        class="glow-btn"
-                        style="margin-top: 1rem;">
-                            <i class="fas fa-external-link-alt"></i> View Analysis
-                        </a>
-                    </div>
-                    <p style="margin-top: 1rem;">Analyzed NYC taxi trip data to understand fare patterns and operational efficiency.</p>
-                </div>
-
-                <div class="project-card">
-                    <h3>Difference-in-Differences analysis and Regression Discontinuity (RD) analysis</h3>
-                    <div class="project-links">
-                        <a href="https://drive.google.com/drive/folders/1OfnM0f2idXl3hINU4nCvZxiLwi8gUucg" 
-                        target="_blank"
-                        class="glow-btn"
-                        style="margin-top: 1rem;">
-                            <i class="fas fa-external-link-alt"></i> View Analysis
-                        </a>
-                    </div>
-                    <p style="margin-top: 1rem;">Analyzed the impact of teenage driving on mortality rates using advanced statistical methods.</p>
-                </div>
-            </div>
-        </section>
-
-        <section class="section-card" id="contact">
-            <h2 class="section-title">Let's Connect</h2>
-            <div class="contact-info">
-                <div class="contact-item">
-                    <p> 
-                        <a href="mailto:sc171@illinois.edu" class="glow-btn">
-                            <i class="fas fa-envelope"></i> sc171@illinois.edu
-                        </a>
-                    </p>
-                    <p style="margin: 1.5rem 0;">
-                        <a href="tel:+13472450259" class="glow-btn">
-                            <i class="fas fa-phone"></i> +1 347-245-0259
-                        </a>
-                    </p>
-                    <p>
-                        <a href="https://www.linkedin.com/in/chen-shengjie" 
-                        target="_blank"
-                        class="glow-btn">
-                            <i class="fab fa-linkedin"></i> LinkedIn Profile
-                        </a>
-                    </p>
                 </div>
             </div>
         </section>
     </main>
 
-    <div class="floating-ai">
-        <a href="https://ai.jimmyai.uk/" class="glow-btn" target="_blank">
-            <i class="fas fa-robot"></i> Jimmy AI
-        </a>
-        <a href="https://drive.google.com/file/d/1MKOIASite2S-IaO7aEtNn5h43pl6RuZ0/view" 
-           class="glow-btn" 
-           target="_blank">
-            <i class="fas fa-hand-holding-heart"></i> Donate
-        </a>
-    </div>
-
-    <footer style="text-align: center; padding: 2rem; color: rgba(255,255,255,0.6);">
-        <p>&copy; 2024 Shengjie (Jimmy) Chen | Built with HTML & CSS</p>
-    </footer>
-
     <script>
-        // 视口高度适配
-        function updateViewportHeight() {
-            document.documentElement.style.setProperty('--vh', `${window.innerHeight * 0.01}px`);
-        }
-        window.addEventListener('resize', updateViewportHeight);
-        updateViewportHeight();
-
-        // 滚动进度条
-        window.addEventListener('scroll', () => {
-            const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
-            const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
-            const scrolled = (winScroll / height) * 100;
-            document.querySelector('.progress-bar').style.width = scrolled + '%';
-        });
-
-        // 平滑滚动
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                document.querySelector(this.getAttribute('href')).scrollIntoView({
-                    behavior: 'smooth',
-                    block: 'start'
-                });
+        // 动态背景增强
+        document.addEventListener('DOMContentLoaded', () => {
+            const grid = document.querySelector('.neon-grid');
+            document.addEventListener('mousemove', (e) => {
+                const x = e.clientX / window.innerWidth;
+                const y = e.clientY / window.innerHeight;
+                grid.style.transform = `translate(${x * 20}px, ${y * 20}px)`;
             });
         });
 
-        // 按钮交互反馈
+        // 按钮交互
         document.querySelectorAll('.glow-btn').forEach(btn => {
-            btn.addEventListener('click', () => {
-                btn.style.transform = 'scale(0.98)';
-                setTimeout(() => btn.style.transform = 'translateY(-2px)', 100);
+            btn.addEventListener('mouseenter', () => {
+                btn.style.transform = 'translateY(-3px) scale(1.05)';
+            });
+            btn.addEventListener('mouseleave', () => {
+                btn.style.transform = 'translateY(0) scale(1)';
             });
         });
     </script>

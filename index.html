@@ -10,6 +10,8 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Orbitron:wght@500;700&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
   <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
+  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet" />
 
   <style>
     :root {
@@ -36,12 +38,45 @@
       z-index: -1;
     }
 
+    header.navbar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      padding: 1rem 2rem;
+      background: rgba(15, 23, 42, 0.7);
+      backdrop-filter: blur(10px);
+      z-index: 1000;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 1px solid rgba(255,255,255,0.1);
+    }
+
+    .navbar a {
+      color: #fff;
+      text-decoration: none;
+      font-weight: 500;
+      margin: 0 1rem;
+      transition: 0.3s;
+    }
+
+    .navbar a:hover {
+      color: #93c5fd;
+    }
+
+    .section-divider {
+      width: 100%;
+      height: 120px;
+      background: linear-gradient(to bottom, transparent, rgba(255,255,255,0.03), transparent);
+    }
+
     .hero-section {
       display: flex;
       justify-content: center;
       align-items: center;
       min-height: 90vh;
-      padding: 2rem;
+      padding: 6rem 2rem 2rem;
     }
 
     .hero-content {
@@ -126,7 +161,6 @@
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
       gap: 2rem;
-      animation: fadeInUp 1s ease-out 0.5s forwards;
     }
 
     .feature-card {
@@ -138,17 +172,17 @@
       transition: transform 0.3s ease, box-shadow 0.3s ease;
     }
 
+    .feature-card:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 12px 32px rgba(99, 102, 241, 0.3);
+    }
+
     .feature-card h3 {
       display: flex;
       align-items: center;
       gap: 1rem;
       margin: 0 0 0.75rem;
       font-size: 1.1rem;
-    }
-
-    .feature-card:hover {
-      transform: translateY(-8px);
-      box-shadow: 0 12px 32px rgba(99, 102, 241, 0.3);
     }
 
     .feature-card i {
@@ -210,11 +244,92 @@
 </head>
 <body>
   <div id="particles-js"></div>
+  <header class="navbar">
+    <div style="font-weight: 700; font-size: 1.2rem; color: #fff">JimmyAI</div>
+    <nav>
+      <a href="#">Home</a>
+      <a href="#demo">Demo</a>
+      <a href="#about">About</a>
+      <a href="#contact">Contact</a>
+    </nav>
+  </header>
   <main>
-    <!-- 内容保持不变 -->
+    <section class="hero-section" id="home" data-aos="fade-up">
+      <div class="hero-content">
+        <div class="ai-platform-card">
+          <h1 class="main-title">Jimmy provided Data & Machine Learning Solutions</h1>
+          <p style="font-size: 1.1rem; opacity: 0.9; max-width: 800px; margin: 0 auto;">
+            Transform your business with cutting-edge artificial intelligence powered by deep learning and advanced analytics.
+          </p>
+
+          <div class="cta-buttons">
+            <a href="https://ai.jimmyai.uk/" class="glow-btn">
+              <i class="fas fa-rocket"></i> Try JimmyAI Now
+            </a>
+            <a href="#about" class="glow-btn">
+              <i class="fas fa-scroll"></i> About Me
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <div class="section-divider"></div>
+
+    <section id="demo" data-aos="fade-up">
+      <h2 class="feature-section-title">Machine Learning Demonstration</h2>
+      <div class="feature-grid">
+        <div class="feature-card">
+          <a href="https://huggingface.co/spaces/jimmysc171/lstm_weather" target="_blank" style="text-decoration: none; color: inherit;">
+            <h3><i class="fas fa-brain"></i> LSTM - Weather Forecast</h3>
+          </a>
+          <p>This project leverages a Long Short-Term Memory neural network to perform short-term weather forecasting, with a focus on temperature prediction.</p>
+        </div>
+        <div class="feature-card">
+          <h3><i class="fas fa-chart-line"></i> Predictive Analytics</h3>
+          <p>Real-time data processing with 98.7% prediction accuracy in business scenarios.</p>
+        </div>
+        <div class="feature-card">
+          <h3><i class="fas fa-shield-alt"></i> Enterprise Security</h3>
+          <p>High-grade encryption for all data transactions and model protection.</p>
+        </div>
+      </div>
+    </section>
+
+    <div class="section-divider"></div>
+
+    <section class="about-section" id="about" data-aos="fade-up">
+      <div class="about-container">
+        <div class="about-card">
+          <h3><i class="fas fa-user-astronaut"></i> About Jimmy</h3>
+          <p>I'm a data analyst and machine learning engineer passionate about building intelligent systems that solve real-world problems.</p>
+        </div>
+        <div class="about-card">
+          <h3><i class="fas fa-briefcase"></i> What I Offer</h3>
+          <ul>
+            <li>📊 Data preprocessing, cleaning & visualization</li>
+            <li>🤖 Deep learning model development (LSTM, CNN, transformers)</li>
+            <li>🧠 Model training & evaluation on real-world data</li>
+            <li>🧰 App integration with Flask, Streamlit or Gradio</li>
+            <li>☁️ Deployment using Docker, Cloudflare, AWS</li>
+            <li>📈 Custom dashboards for clients & stakeholders</li>
+          </ul>
+        </div>
+        <div class="about-card" id="contact">
+          <h3><i class="fas fa-envelope-open-text"></i> Contact</h3>
+          <p>Email me at <a href="mailto:jimmy@example.com">jimmy@example.com</a><br>
+             Or <a href="https://linkedin.com/in/yourprofile" target="_blank">connect via LinkedIn</a>.</p>
+        </div>
+      </div>
+    </section>
   </main>
+  <div class="section-divider"></div>
   <script>
     particlesJS.load('particles-js', 'https://cdn.jsdelivr.net/gh/VincentGarreau/particles.js/particles.json');
+    AOS.init({
+      duration: 1000,
+      once: true
+    });
   </script>
 </body>
 </html>

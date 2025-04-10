@@ -1,219 +1,204 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, minimum-scale=1.0">
-    <title>Jimmy Chen | Machine Learning | Data Analyst</title>
-    <link rel="icon" type="image/x-icon" href="aiai.ico">
-    
-    <!-- 字体和图标 -->
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, minimum-scale=1.0" />
+  <title>Jimmy Chen | Machine Learning | Data Analyst</title>
+  <link rel="icon" type="image/x-icon" href="aiai.ico" />
 
-    <style>
-        :root {
-            --primary-accent: #6366f1;
-            --background: #0f172a;
-            --surface: rgba(255, 255, 255, 0.05);
-            --text-primary: #f8fafc;
-            --glass-effect: linear-gradient(135deg, rgba(255,255,255,0.1), rgba(255,255,255,0.05));
-            --transition-config: cubic-bezier(0.4, 0, 0.2, 1) 0.15s;
-        }
+  <!-- 字体和图标 -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
 
-        body {
-            background: var(--background);
-            color: var(--text-primary);
-            font-family: 'Inter', sans-serif;
-            margin: 0;
-            min-height: 100vh;
-            overflow-x: hidden;
-        }
+  <style>
+    :root {
+      --primary-accent: #6366f1;
+      --background: #0f172a;
+      --surface: rgba(255, 255, 255, 0.05);
+      --text-primary: #f8fafc;
+    }
 
-        .hero-section {
-            position: relative;
-            min-height: 90vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            padding: 2rem;
-        }
+    body {
+      background: var(--background);
+      color: var(--text-primary);
+      font-family: "Inter", sans-serif;
+      margin: 0;
+      overflow-x: hidden;
+    }
 
-        .hero-content {
-            max-width: 960px;
-            margin: 0 auto;
-            text-align: center;
-            padding: 2rem;
-            z-index: 1;
-        }
+    .hero-section {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      padding: 2rem;
+    }
 
-        .ai-platform-card {
-            background: var(--surface);
-            backdrop-filter: blur(20px);
-            border-radius: 24px;
-            padding: 3rem;
-            border: 1px solid rgba(255,255,255,0.1);
-            box-shadow: 0 16px 48px rgba(0,0,0,0.2);
-        }
+    .hero-content {
+      max-width: 960px;
+      margin: 0 auto;
+      text-align: center;
+      z-index: 1;
+    }
 
-        .main-title {
-            font-size: 3rem;
-            background: linear-gradient(45deg, #818cf8, #6366f1);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            margin-bottom: 1.5rem;
-            letter-spacing: -0.05em;
-        }
+    .ai-platform-card {
+      background: var(--surface);
+      backdrop-filter: blur(20px);
+      border-radius: 24px;
+      padding: 3rem;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      box-shadow: 0 16px 48px rgba(0, 0, 0, 0.2);
+    }
 
-        .cta-buttons {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 1.5rem;
-            justify-content: center;
-            margin: 2rem 0 3rem;
-        }
+    .main-title {
+      font-size: 3rem;
+      background: linear-gradient(45deg, #818cf8, #6366f1);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      margin-bottom: 1.5rem;
+      letter-spacing: -0.05em;
+    }
 
-        .glow-btn {
-            display: inline-flex;
-            align-items: center;
-            padding: 1rem 2rem;
-            background: linear-gradient(135deg, var(--primary-accent) 0%, #818cf8 100%);
-            border-radius: 12px;
-            color: white;
-            font-weight: 600;
-            transition: all 0.3s ease;
-            text-decoration: none;
-            gap: 0.8rem;
-        }
+    .cta-buttons {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1.5rem;
+      justify-content: center;
+      margin: 2rem 0 3rem;
+    }
 
-        .glow-btn i {
-            font-size: 1.2em;
-            transition: transform 0.3s ease;
-        }
+    .glow-btn {
+      display: inline-flex;
+      align-items: center;
+      padding: 1rem 2rem;
+      background: linear-gradient(135deg, var(--primary-accent), #818cf8);
+      border-radius: 12px;
+      color: white;
+      font-weight: 600;
+      text-decoration: none;
+      transition: 0.3s ease;
+      gap: 0.8rem;
+    }
 
-        .glow-btn:hover i {
-            transform: scale(1.1);
-        }
+    .glow-btn i {
+      font-size: 1.2em;
+      transition: transform 0.3s ease;
+    }
 
-        .feature-grid {
-            max-width: 960px;
-            margin: 0 auto;
-            padding: 0 1rem;
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 2rem;
-        }
+    .glow-btn:hover i {
+      transform: scale(1.1);
+    }
 
-        .feature-card {
-            background: var(--surface);
-            padding: 1.5rem;
-            border-radius: 12px;
-            border: 1px solid rgba(255,255,255,0.1);
-            box-shadow: 0 4px 16px rgba(0,0,0,0.15);
-            transition: all 0.3s ease;
-        }
+    .feature-section-title {
+      text-align: center;
+      font-size: 2.2rem;
+      margin: 4rem 0 2rem;
+      background: linear-gradient(45deg, #818cf8, #6366f1);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
 
-        .feature-card h3 {
-            display: flex;
-            align-items: center;
-            gap: 1rem;
-            margin: 0 0 0.75rem;
-            font-size: 1.1rem;
-        }
+    .feature-grid {
+      max-width: 960px;
+      margin: 0 auto;
+      padding: 0 1rem 3rem;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 2rem;
+      opacity: 0;
+      transform: translateY(40px);
+      animation: fadeInUp 1s ease-out 0.5s forwards;
+    }
 
-        .feature-card i {
-            font-size: 1.5em;
-            background: linear-gradient(45deg, #818cf8, #6366f1);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            transition: all 0.3s ease;
-        }
+    .feature-card {
+      background: var(--surface);
+      padding: 1.5rem;
+      border-radius: 12px;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
 
-        .feature-card:hover i {
-            transform: rotate(10deg) scale(1.2);
-        }
+    .feature-card h3 {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      margin: 0 0 0.75rem;
+      font-size: 1.1rem;
+    }
 
-        section h2 {
-            text-align: center;
-            font-size: 2.2rem;
-            margin-bottom: 2rem;
-            background: linear-gradient(45deg, #818cf8, #6366f1);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
+    .feature-card i {
+      font-size: 1.5em;
+      background: linear-gradient(45deg, #818cf8, #6366f1);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
 
-        @media (max-width: 768px) {
-            .main-title {
-                font-size: 2rem;
-            }
+    .feature-card:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 12px 32px rgba(99, 102, 241, 0.25);
+    }
 
-            .feature-grid {
-                padding: 0 1rem;
-            }
+    @keyframes fadeInUp {
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
 
-            .feature-card {
-                padding: 1.2rem;
-            }
-        }
-    </style>
+    @media (max-width: 768px) {
+      .main-title {
+        font-size: 2rem;
+      }
+
+      .feature-card {
+        padding: 1.2rem;
+      }
+    }
+  </style>
 </head>
 <body>
 
-    <main>
-        <section class="hero-section">
-            <div class="hero-content">
-                <div class="ai-platform-card">
-                    <h1 class="main-title">Jimmy provided Data & Machine Learning Solutions</h1>
-                    <p style="font-size: 1.1rem; opacity: 0.9; max-width: 800px; margin: 0 auto;">
-                        Transform your business with cutting-edge artificial intelligence powered by deep learning and advanced analytics.
-                    </p>
-                    
-                    <div class="cta-buttons">
-                        <a href="https://ai.jimmyai.uk/" class="glow-btn">
-                            <i class="fas fa-rocket"></i> Try JimmyAI Now
-                        </a>
-                        <a href="about.html" class="glow-btn">
-                            <i class="fas fa-scroll"></i> About Me
-                        </a>
-                    </div>
-                </div>
+  <main>
+    <section class="hero-section">
+      <div class="hero-content">
+        <div class="ai-platform-card">
+          <h1 class="main-title">Jimmy provided Data & Machine Learning Solutions</h1>
+          <p style="font-size: 1.1rem; opacity: 0.9; max-width: 800px; margin: 0 auto;">
+            Transform your business with cutting-edge artificial intelligence powered by deep learning and advanced analytics.
+          </p>
+
+          <div class="cta-buttons">
+            <a href="https://ai.jimmyai.uk/" class="glow-btn">
+              <i class="fas fa-rocket"></i> Try JimmyAI Now
+            </a>
+            <a href="about.html" class="glow-btn">
+              <i class="fas fa-scroll"></i> About Me
+            </a>
+          </div>
+
+          <!-- 👇 Machine Learning Demonstration 模块嵌入 -->
+          <h2 class="feature-section-title">Machine Learning Demonstration</h2>
+          <div class="feature-grid">
+            <div class="feature-card">
+              <a href="https://huggingface.co/spaces/jimmysc171/lstm_weather" target="_blank" style="text-decoration: none; color: inherit;">
+                <h3><i class="fas fa-brain"></i> LSTM - Weather Forecast</h3>
+              </a>
+              <p>This project leverages a Long Short-Term Memory neural network to perform short-term weather forecasting, with a focus on temperature prediction.</p>
             </div>
-        </section>
-
-        <!-- 🧠 新模块：Machine Learning Demonstration -->
-        <section>
-            <h2>Machine Learning Demonstration</h2>
-            <div class="feature-grid">
-                <div class="feature-card">
-                    <a href="https://huggingface.co/spaces/jimmysc171/lstm_weather" target="_blank" style="text-decoration: none; color: inherit;">
-                        <h3><i class="fas fa-brain"></i> LSTM - Weather Forecast</h3>
-                    </a>
-                    <p>This project leverages a Long Short-Term Memory neural network to perform short-term weather forecasting, with a focus on temperature prediction. </p>
-                </div>
-                
-                <div class="feature-card">
-                    <h3><i class="fas fa-chart-line"></i> Predictive Analytics</h3>
-                    <p>Real-time data processing with 98.7% prediction accuracy</p>
-                </div>
-
-                <div class="feature-card">
-                    <h3><i class="fas fa-shield-alt"></i> Enterprise Security</h3>
-                    <p>High-grade encryption for all data transactions</p>
-                </div>
+            <div class="feature-card">
+              <h3><i class="fas fa-chart-line"></i> Predictive Analytics</h3>
+              <p>Real-time data processing with 98.7% prediction accuracy in business scenarios.</p>
             </div>
-        </section>
-    </main>
+            <div class="feature-card">
+              <h3><i class="fas fa-shield-alt"></i> Enterprise Security</h3>
+              <p>High-grade encryption for all data transactions and model protection.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
 
-    <script>
-        document.querySelectorAll('.glow-btn').forEach(btn => {
-            btn.addEventListener('mouseenter', () => {
-                btn.style.transform = 'translateY(-3px) scale(1.05)';
-                btn.style.filter = 'brightness(1.1)';
-            });
-            btn.addEventListener('mouseleave', () => {
-                btn.style.transform = 'translateY(0) scale(1)';
-                btn.style.filter = 'brightness(1)';
-            });
-        });
-    </script>
 </body>
 </html>

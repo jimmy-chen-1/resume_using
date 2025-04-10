@@ -9,6 +9,7 @@
   <!-- 字体和图标 -->
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Orbitron:wght@500;700&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
+  <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
 
   <style>
     :root {
@@ -24,6 +25,15 @@
       font-family: 'Inter', sans-serif;
       margin: 0;
       overflow-x: hidden;
+    }
+
+    #particles-js {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: -1;
     }
 
     .hero-section {
@@ -58,6 +68,20 @@
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
       margin-bottom: 1.5rem;
+      animation: typing 3s steps(40, end), blink-caret 0.75s step-end infinite;
+      white-space: nowrap;
+      overflow: hidden;
+      border-right: 3px solid #00fff0;
+    }
+
+    @keyframes typing {
+      from { width: 0 }
+      to { width: 100% }
+    }
+
+    @keyframes blink-caret {
+      0%, 100% { border-color: transparent; }
+      50% { border-color: #00fff0; }
     }
 
     .cta-buttons {
@@ -79,6 +103,12 @@
       text-decoration: none;
       transition: 0.3s ease;
       gap: 0.8rem;
+      box-shadow: 0 0 12px rgba(129, 140, 248, 0.3);
+    }
+
+    .glow-btn:hover {
+      transform: scale(1.05);
+      box-shadow: 0 0 20px rgba(129, 140, 248, 0.6);
     }
 
     .feature-section-title {
@@ -178,6 +208,7 @@
   </style>
 </head>
 <body>
+  <div id="particles-js"></div>
   <main>
     <section class="hero-section">
       <div class="hero-content">
@@ -196,7 +227,6 @@
             </a>
           </div>
 
-          <!-- 👇 Machine Learning Demonstration 模块嵌入 -->
           <h2 class="feature-section-title">Machine Learning Demonstration</h2>
           <div class="feature-grid">
             <div class="feature-card">
@@ -218,7 +248,6 @@
       </div>
     </section>
 
-    <!-- 👇 作者信息、服务与联系模块 -->
     <section class="about-section">
       <div class="about-container">
         <div class="about-card">
@@ -227,7 +256,16 @@
         </div>
         <div class="about-card">
           <h3><i class="fas fa-briefcase"></i> What I Offer</h3>
-          <p>AI model development, data cleaning, interactive dashboards, predictive analytics, web app deployment with Docker/Cloudflare.</p>
+          <p>I provide full-cycle AI solutions including:
+            <ul>
+              <li>📊 Data preprocessing, cleaning & visualization</li>
+              <li>🤖 Deep learning model development (LSTM, CNN, transformers)</li>
+              <li>🧠 Model training & evaluation on real-world data</li>
+              <li>🧰 App integration with Flask, Streamlit or Gradio</li>
+              <li>☁️ Deployment using Docker, Cloudflare, AWS</li>
+              <li>📈 Custom dashboards for clients & stakeholders</li>
+            </ul>
+          </p>
         </div>
         <div class="about-card">
           <h3><i class="fas fa-envelope-open-text"></i> Contact</h3>
@@ -236,5 +274,10 @@
       </div>
     </section>
   </main>
+  <script>
+    particlesJS.load('particles-js', 'https://cdn.jsdelivr.net/gh/VincentGarreau/particles.js/particles.json', function() {
+      console.log('particles.js loaded');
+    });
+  </script>
 </body>
 </html>

@@ -48,11 +48,12 @@
       top: 0;
       left: 0;
       width: 100%;
-      padding: 1rem 2rem;
+      padding: 1rem;
       background: rgba(15, 23, 42, 0.7);
       backdrop-filter: blur(10px);
       z-index: 1000;
       display: flex;
+      flex-wrap: wrap;
       justify-content: space-between;
       align-items: center;
       border-bottom: 1px solid rgba(255,255,255,0.1);
@@ -61,7 +62,7 @@
       color: #fff;
       text-decoration: none;
       font-weight: 500;
-      margin: 0 1rem;
+      margin-left: 1rem;
       transition: 0.3s;
     }
     .navbar a:hover {
@@ -77,7 +78,7 @@
       justify-content: center;
       align-items: center;
       min-height: 90vh;
-      padding: 6rem 2rem 2rem;
+      padding: 7rem 2rem 4rem;
       position: relative;
       text-align: center;
     }
@@ -99,7 +100,7 @@
       flex-wrap: wrap;
       gap: 1.5rem;
       justify-content: center;
-      margin: 2rem 0 3rem;
+      margin: 2rem 0 1.5rem;
     }
     .glow-btn {
       display: inline-flex;
@@ -119,21 +120,43 @@
       box-shadow: 0 0 20px rgba(129, 140, 248, 0.6);
     }
     .scroll-down-hint {
-      position: absolute;
-      bottom: 20px;
-      left: 50%;
-      transform: translateX(-50%);
+      position: relative;
+      top: 1.5rem;
       color: #93c5fd;
       animation: bounce 2s infinite;
-      font-size: 1.2rem;
+      font-size: 1.1rem;
     }
     @keyframes bounce {
-      0%, 100% { transform: translateX(-50%) translateY(0); }
-      50% { transform: translateX(-50%) translateY(10px); }
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(8px); }
     }
     .section-divider {
       width: 100%;
       height: 100px;
+    }
+    .about-container {
+      display: flex;
+      flex-direction: column;
+      gap: 2rem;
+    }
+    .about-card {
+      background: rgba(255, 255, 255, 0.03);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      padding: 2rem;
+      border-radius: 16px;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+    }
+    .about-card h3 {
+      font-size: 1.3rem;
+      margin-bottom: 1rem;
+      color: #93c5fd;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+    .about-card ul {
+      padding-left: 1.2rem;
+      line-height: 1.8;
     }
     @keyframes typing {
       from { width: 0 }
@@ -150,7 +173,7 @@
   <div id="particles-js"></div>
   <header class="navbar">
     <div style="font-weight: 700; font-size: 1.2rem; color: #fff">JimmyAI</div>
-    <nav>
+    <nav style="display: flex; flex-wrap: wrap;">
       <a href="#">Home</a>
       <a href="#demo">Demo</a>
       <a href="#about">About</a>
@@ -171,58 +194,54 @@
         <div class="scroll-down-hint">⬇ Scroll down for more</div>
       </div>
     </section>
-    <div class="section-divider"></div>
-    <section id="demo" data-aos="fade-up" style="padding: 5rem 2rem; background: rgba(255,255,255,0.01);">
+
+<!-- Demo Section -->
+<section id="demo" data-aos="fade-up" style="padding: 5rem 2rem; background: rgba(255,255,255,0.01);">
   <div style="max-width: 960px; margin: 0 auto; text-align: center;">
-    <h2 class="feature-section-title" style="font-size: 2.8rem; margin-bottom: 2rem;">Machine Learning Demonstration</h2>
-    <p style="max-width: 800px; margin: 0 auto 3rem; font-size: 1.15rem; opacity: 0.85; line-height: 1.8;">
+    <h2 class="feature-section-title" style="font-size: 2.4rem; margin-bottom: 2rem;">Machine Learning Demonstration</h2>
+    <p style="max-width: 800px; margin: 0 auto 3rem; font-size: 1.1rem; opacity: 0.85; line-height: 1.8;">
       Discover how machine learning models power data-driven decisions. Below are interactive demos and use cases that showcase JimmyAI's predictive power and security design in real-time environments.
     </p>
   </div>
   <div style="max-width: 960px; margin: 0 auto; display: flex; flex-direction: column; gap: 3rem;">
-    <div style="display: flex; flex-direction: row; flex-wrap: wrap; align-items: center; gap: 2rem;">
+    <div style="display: flex; flex-wrap: wrap; align-items: center; gap: 2rem;">
       <div style="flex: 1; min-width: 300px;">
-        <h3 style="font-size: 1.5rem; margin-bottom: 0.5rem; display: flex; align-items: center;"><i class="fas fa-brain" style="margin-right: 0.6rem;"></i> LSTM - Weather Forecast</h3>
-        <p style="line-height: 1.8;">
-          A live demo showcasing temperature prediction using LSTM deep learning models trained on real-world weather time-series data.
-          Users can interactively explore short-term forecasts across selected cities.
-        </p>
-        <a href="https://huggingface.co/spaces/jimmysc171/lstm_weather" target="_blank" class="glow-btn" style="margin-top: 1rem; display: inline-block;">Try Demo</a>
+        <h3><i class="fas fa-brain"></i> LSTM - Weather Forecast</h3>
+        <p>A live demo showcasing temperature prediction using LSTM models trained on real-world time-series data.</p>
+        <a href="https://huggingface.co/spaces/jimmysc171/lstm_weather" target="_blank" class="glow-btn">Try Demo</a>
       </div>
       <div style="flex: 1; min-width: 300px;">
-        <img src="https://user-images.githubusercontent.com/6756943/215312902-8f918753-25b7-4343-8e57-5a05e827d6c2.png" alt="LSTM Forecast Screenshot" style="width: 100%; border-radius: 16px; box-shadow: 0 0 20px rgba(255,255,255,0.1);">
+        <img src="https://user-images.githubusercontent.com/6756943/215312902-8f918753-25b7-4343-8e57-5a05e827d6c2.png" alt="LSTM Forecast Screenshot" style="width: 100%; border-radius: 16px;">
       </div>
     </div>
-    <div style="display: flex; flex-direction: row; flex-wrap: wrap; align-items: center; gap: 2rem;">
+    <div style="display: flex; flex-wrap: wrap; align-items: center; gap: 2rem;">
       <div style="flex: 1; min-width: 300px;">
-        <img src="https://user-images.githubusercontent.com/6756943/215313347-62af2237-5e11-45ad-a3ea-92a99ec1963d.png" alt="Predictive Analytics" style="width: 100%; border-radius: 16px; box-shadow: 0 0 20px rgba(255,255,255,0.1);">
+        <img src="https://user-images.githubusercontent.com/6756943/215313347-62af2237-5e11-45ad-a3ea-92a99ec1963d.png" alt="Predictive Analytics" style="width: 100%; border-radius: 16px;">
       </div>
       <div style="flex: 1; min-width: 300px;">
-        <h3 style="font-size: 1.5rem; margin-bottom: 0.5rem; display: flex; align-items: center;"><i class="fas fa-chart-line" style="margin-right: 0.6rem;"></i> Predictive Analytics</h3>
-        <p style="line-height: 1.8;">
-          Explore real-time data analytics pipelines that integrate business datasets, clean them automatically, and apply statistical models to forecast sales, performance, or risk with 98%+ accuracy.
-        </p>
+        <h3><i class="fas fa-chart-line"></i> Predictive Analytics</h3>
+        <p>Explore data pipelines that clean and model business datasets to forecast performance with high accuracy.</p>
       </div>
     </div>
-    <div style="display: flex; flex-direction: row; flex-wrap: wrap; align-items: center; gap: 2rem;">
+    <div style="display: flex; flex-wrap: wrap; align-items: center; gap: 2rem;">
       <div style="flex: 1; min-width: 300px;">
-        <h3 style="font-size: 1.5rem; margin-bottom: 0.5rem; display: flex; align-items: center;"><i class="fas fa-shield-alt" style="margin-right: 0.6rem;"></i> Enterprise Security</h3>
-        <p style="line-height: 1.8;">
-          Learn how secure model deployment works. From API access tokens to audit logging, this module shows how your predictions are not only accurate—but safe for enterprise use.
-        </p>
+        <h3><i class="fas fa-shield-alt"></i> Enterprise Security</h3>
+        <p>Learn about secure AI model deployment including token control, logging, and reliable access.</p>
       </div>
       <div style="flex: 1; min-width: 300px;">
-        <img src="https://user-images.githubusercontent.com/6756943/215313763-3305c7d9-2fbc-4a4d-b0c1-bde7ad556d06.png" alt="Security Module" style="width: 100%; border-radius: 16px; box-shadow: 0 0 20px rgba(255,255,255,0.1);">
+        <img src="https://user-images.githubusercontent.com/6756943/215313763-3305c7d9-2fbc-4a4d-b0c1-bde7ad556d06.png" alt="Security Module" style="width: 100%; border-radius: 16px;">
       </div>
     </div>
   </div>
 </section>
+
+<!-- About Section -->
 <div class="section-divider"></div>
 <section class="about-section" id="about" data-aos="fade-up">
   <div class="about-container">
     <div class="about-card">
       <h3><i class="fas fa-user-astronaut"></i> About Jimmy</h3>
-      <p>I'm a data analyst and machine learning engineer passionate about building intelligent systems that solve real-world problems.</p>
+      <p>I’m a data analyst and machine learning engineer passionate about building intelligent systems that solve real-world problems.</p>
     </div>
     <div class="about-card">
       <h3><i class="fas fa-briefcase"></i> What I Offer</h3>
@@ -237,21 +256,9 @@
     </div>
     <div class="about-card" id="contact">
       <h3><i class="fas fa-envelope-open-text"></i> Contact</h3>
-      <p>Email me at <a href="mailto:jimmy@example.com">jimmy@example.com</a><br>
-         Or <a href="https://linkedin.com/in/yourprofile" target="_blank">connect via LinkedIn</a>.</p>
+      <p>Email: <a href="mailto:jimmy@example.com">jimmy@example.com</a><br>
+         LinkedIn: <a href="https://linkedin.com/in/yourprofile" target="_blank">yourprofile</a></p>
     </div>
   </div>
 </section>
 </main>
-  <script>
-    particlesJS.load('particles-js', 'https://cdn.jsdelivr.net/gh/VincentGarreau/particles.js/particles.json');
-    AOS.init({ duration: 1000, once: true });
-    window.addEventListener("scroll", () => {
-      const scrollTop = window.scrollY;
-      const docHeight = document.body.scrollHeight - window.innerHeight;
-      const scrollPercent = (scrollTop / docHeight) * 100;
-      document.getElementById("scrollIndicator").style.width = scrollPercent + "%";
-    });
-  </script>
-</body>
-</html>

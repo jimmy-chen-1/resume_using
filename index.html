@@ -309,6 +309,15 @@
       text-shadow: 0 0 8px rgba(147, 197, 253, 0.5);
     }
 @media screen and (max-width: 640px) {
+  .hero-section {
+    padding-bottom: 5rem !important;
+  }
+  .cta-buttons {
+    margin-bottom: 1.5rem !important;
+  }
+  .scroll-down-banner {
+    bottom: 1.5vh !important;
+  }
   .main-title {
     font-size: 1.4rem !important;
     border-right: none;
@@ -389,6 +398,19 @@
       0% { background-position: 0 0, 0 0, 0 0; }
       100% { background-position: 100px 100px, -100px 200px, 0 0; }
     }
+@keyframes fadeToggle {
+  0%, 80% { opacity: 0; }
+  85%, 95% { opacity: 1; }
+  100% { opacity: 0; }
+}
+@keyframes scrollPulse {
+  0%, 100% { opacity: 0.3; transform: translateY(0); }
+  50% { opacity: 1; transform: translateY(6px); }
+}
+@keyframes scrollTextFade {
+  0% { opacity: 0.1; transform: scale(0.95); }
+  100% { opacity: 1; transform: scale(1); }
+}
 </style>
 </head>
 <body>
@@ -433,11 +455,12 @@
 </div>
 </div>
     
-<div class="scroll-down-banner" style="position: absolute; bottom: 4vh; left: 0; width: 100%; display: flex; justify-content: center; z-index: 20; animation: fadeInSlideDown 1.2s ease-out both; pointer-events: none;">
+<div class="scroll-down-banner" style="position: absolute; bottom: 3vh; left: 0; width: 100%; display: flex; justify-content: center; z-index: 20; animation: scrollPulse 1.5s ease-in-out infinite; pointer-events: none;">
   <div style="display: flex; flex-direction: column; align-items: center; gap: 0.3rem;">
-    <span style="color: #a5b4fc; font-size: 1rem; letter-spacing: 0.6px; opacity: 0.8;">Scroll to explore</span>
-    <i class="fas fa-angle-double-down" style="font-size: 2rem; color: #93c5fd; animation: bounce 2s infinite; text-shadow: 0 0 10px rgba(147,197,253,0.4);"></i>
+    <span style="color: #cbd5e1; font-size: 1rem; font-weight: 500; letter-spacing: 0.5px; animation: scrollTextFade 3s ease-in-out infinite alternate;">Scroll to explore</span>
+    <i class="fas fa-angle-double-down" style="font-size: 2rem; color: #93c5fd; animation: bounceGlow 1.5s ease-in-out infinite; text-shadow: 0 0 12px #93c5fd, 0 0 24px #6366f1;"></i>
   </div>
+</div>
 </div>
       <div style="max-width: var(--content-width); margin: 0 auto; display: flex; flex-direction: column; gap: 3rem;">
         <div style="width: 100%; text-align: center; margin-bottom: 2rem;">
@@ -467,6 +490,7 @@
   <div style="flex: 1; min-width: 300px; max-width: 460px; display: flex; flex-direction: column; justify-content: center;">
     <h3 style="font-size: 1.5rem; color: #cbd5e1;"><i class="fas fa-chart-line"></i> Predictive Analytics</h3>
     <p style="line-height: 1.8; font-size: 1.05rem; opacity: 0.9;">Explore data pipelines that clean and model business datasets to forecast performance with high accuracy.</p>
+    <a href="#" target="_blank" class="glow-btn" style="margin-top: 1rem; align-self: start; opacity: 0.4; pointer-events: none;">Coming Soon</a>
   </div>
   <div style="flex: 1; min-width: 300px; max-width: 500px;">
     <img src="https://user-images.githubusercontent.com/6756943/215313347-62af2237-5e11-45ad-a3ea-92a99ec1963d.png" alt="Predictive Analytics" style="width: 100%; border-radius: 16px;">
@@ -478,6 +502,7 @@
   <div style="flex: 1; min-width: 300px; max-width: 460px; display: flex; flex-direction: column; justify-content: center;">
     <h3 style="font-size: 1.5rem; color: #cbd5e1;"><i class="fas fa-shield-alt"></i> Enterprise Security</h3>
     <p style="line-height: 1.8; font-size: 1.05rem; opacity: 0.9;">Learn about secure AI model deployment including token control, logging, and reliable access.</p>
+    <a href="#" target="_blank" class="glow-btn" style="margin-top: 1rem; align-self: start; opacity: 0.4; pointer-events: none;">Coming Soon</a>
   </div>
   <div style="flex: 1; min-width: 300px; max-width: 500px;">
     <img src="https://user-images.githubusercontent.com/6756943/215313763-3305c7d9-2fbc-4a4d-b0c1-bde7ad556d06.png" alt="Security Module" style="width: 100%; border-radius: 16px;">
@@ -525,7 +550,7 @@
     particlesJS.load('particles-js', 'https://cdn.jsdelivr.net/gh/VincentGarreau/particles.js/particles.json');
     AOS.init({ duration: 1000, once: true });
     window.addEventListener("scroll", () => {
-  const hint = document.querySelector('.scroll-down-hint');
+  const hint = document.querySelector('.scroll-down-banner');
   if (window.scrollY > 150 && hint) hint.style.opacity = '0';
   else if (hint) hint.style.opacity = '1';
       const scrollTop = window.scrollY;
@@ -551,5 +576,4 @@
   </script>
 </body>
 </html>
-
 

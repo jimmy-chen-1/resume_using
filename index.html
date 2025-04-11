@@ -278,6 +278,25 @@
         text-shadow: 0 0 16px #93c5fd, 0 0 28px #6366f1;
       }
     }
+    .demo-card {
+      transition: transform 0.4s ease, box-shadow 0.4s ease;
+    }
+    .demo-card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 12px 30px rgba(0,0,0,0.3);
+    }
+    [data-aos] {
+      opacity: 0;
+      transition-property: transform, opacity;
+    }
+    [data-aos].aos-animate {
+      opacity: 1;
+    }
+    @media (max-height: 850px) {
+      .scroll-down-hint {
+        margin-top: 0 !important;
+      }
+    }
 </style>
 </head>
 <body>
@@ -311,49 +330,61 @@
     <i class="fas fa-scroll"></i> About Me
   </a>
 </div>
-        <div class="scroll-down-hint" style="position: absolute; bottom: 2rem; left: 50%; transform: translateX(-50%); display: flex; flex-direction: column; align-items: center; font-size: 1.1rem; color: #ffffff; animation: fadeInSlideDown 1.5s ease-out 0.5s both; opacity: 1; transition: opacity 0.5s ease; pointer-events: none;">
-  <span style="margin-bottom: 0.4rem; letter-spacing: 0.8px; font-weight: 600; font-size: 1.05rem; opacity: 0.95;">Scroll to Explore</span>
-  <i class="fas fa-angles-down" style="font-size: 3.2rem; color: #93c5fd; text-shadow: 0 0 18px rgba(147, 197, 253, 0.8); animation: bounceGlow 1.6s infinite;"></i>
-</div>
+        
       </div>
     </section>
     
 </div>
 </div>
     
-<div class="scroll-down-hint" style="margin: 1rem auto 3rem; text-align: center; animation: fadeInSlideDown 1.5s ease-out 0.5s both; opacity: 1; transition: opacity 0.5s ease;">
-  <span style="display: block; font-size: 1rem; font-weight: 500; color: #cbd5e1; margin-bottom: 0.5rem;">Scroll for More</span>
-  <i class="fas fa-angles-down" style="font-size: 3.8rem; color: #93c5fd; text-shadow: 0 0 22px rgba(147, 197, 253, 0.9); animation: bounceGlow 1.6s infinite;"></i>
+<div class="scroll-down-hint" style="position: absolute; top: calc(100vh - 110px); left: 50%; transform: translateX(-50%); text-align: center; animation: fadeInSlideDown 1.2s ease-out both; opacity: 1; transition: opacity 0.5s ease; animation-delay: 0.5s; z-index: 10;">
+  <span style="display: block; font-size: 1.15rem; font-weight: 600; color: #cbd5e1; margin-bottom: 0.4rem; letter-spacing: 0.4px;">Keep Scrolling</span>
+  <i class="fas fa-angles-down" style="font-size: 4.2rem; color: #93c5fd; text-shadow: 0 0 26px rgba(147, 197, 253, 1); animation: bounceGlow 1.6s infinite;"></i>
 </div>
       <div style="max-width: var(--content-width); margin: 0 auto; display: flex; flex-direction: column; gap: 3rem;">
-        <div style="display: flex; flex-wrap: wrap; align-items: center; gap: 2rem;">
-          <div style="flex: 1; min-width: 300px;">
-  <h2 class="feature-section-title" style="font-size: 3rem; font-weight: 700; text-align: center; margin: 2rem auto 2.5rem; background: linear-gradient(to right, #4f46e5, #6366f1); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">Machine Learning Demonstration</h2>
-  <h3><i class="fas fa-brain"></i> LSTM - Weather Forecast</h3>
-            <p>A live demo showcasing temperature prediction using LSTM models trained on real-world time-series data.</p>
-            <a href="https://huggingface.co/spaces/jimmysc171/lstm_weather" target="_blank" class="glow-btn">Try Demo</a>
-          </div>
-          <div style="flex: 1; min-width: 300px;">
-            <img src="https://user-images.githubusercontent.com/6756943/215312902-8f918753-25b7-4343-8e57-5a05e827d6c2.png" alt="LSTM Forecast Screenshot" style="width: 100%; border-radius: 16px;">
+        <div style="width: 100%; text-align: center; margin-bottom: 2rem;">
+  <h2 class="feature-section-title" style="font-size: 2.8rem; font-weight: 700; background: linear-gradient(to right, #818cf8, #6366f1); -webkit-background-clip: text; -webkit-text-fill-color: transparent; letter-spacing: 0.6px; line-height: 1.4; margin-bottom: 1rem;">Machine Learning Demonstration</h2>
+  <p style="font-size: 1.1rem; max-width: 680px; margin: 0 auto; opacity: 0.9; line-height: 1.8;">
+    Explore a series of interactive modules demonstrating JimmyAI's capabilities in forecasting, analytics, and secure deployment.
+  </p>
+</div>
+<div class="demo-card" data-aos="fade-up" style="display: flex; flex-wrap: wrap; align-items: stretch; justify-content: center; gap: 2.5rem; background: rgba(255, 255, 255, 0.02); padding: 2rem; border-radius: 20px; box-shadow: 0 8px 30px rgba(0, 0, 0, 0.3);">
+  <div style="flex: 1; min-width: 300px; max-width: 460px; display: flex; flex-direction: column; justify-content: center;">
+    <h3 style="font-size: 1.5rem; color: #cbd5e1;"><i class="fas fa-brain"></i> LSTM - Weather Forecast</h3>
+    <p style="line-height: 1.8; font-size: 1.05rem; opacity: 0.9;">A live demo showcasing temperature prediction using LSTM models trained on real-world time-series data.</p>
+    <a href="https://huggingface.co/spaces/jimmysc171/lstm_weather" target="_blank" class="glow-btn" style="margin-top: 1rem; align-self: start;">Try Demo</a>
+  </div>
+  <div style="flex: 1; min-width: 300px; max-width: 500px;">
+    <img src="https://user-images.githubusercontent.com/6756943/215312902-8f918753-25b7-4343-8e57-5a05e827d6c2.png" alt="LSTM Forecast Screenshot" style="width: 100%; border-radius: 16px;">
+  </div>
+</div>
+  <div style="flex: 1; min-width: 300px; max-width: 500px;">
+    
+  </div>
+</div>
+            
           </div>
         </div>
-        <div style="display: flex; flex-wrap: wrap; align-items: center; gap: 2rem;">
-          <div style="flex: 1; min-width: 300px;">
-            <img src="https://user-images.githubusercontent.com/6756943/215313347-62af2237-5e11-45ad-a3ea-92a99ec1963d.png" alt="Predictive Analytics" style="width: 100%; border-radius: 16px;">
-          </div>
-          <div style="flex: 1; min-width: 300px;">
-            <h3><i class="fas fa-chart-line"></i> Predictive Analytics</h3>
-            <p>Explore data pipelines that clean and model business datasets to forecast performance with high accuracy.</p>
+        <div class="demo-card" data-aos="fade-up" style="display: flex; flex-wrap: wrap; align-items: stretch; justify-content: center; gap: 2.5rem; background: rgba(255, 255, 255, 0.02); padding: 2rem; border-radius: 20px; box-shadow: 0 8px 30px rgba(0, 0, 0, 0.3);">
+  <div style="flex: 1; min-width: 300px; max-width: 460px; display: flex; flex-direction: column; justify-content: center;">
+    <h3 style="font-size: 1.5rem; color: #cbd5e1;"><i class="fas fa-chart-line"></i> Predictive Analytics</h3>
+    <p style="line-height: 1.8; font-size: 1.05rem; opacity: 0.9;">Explore data pipelines that clean and model business datasets to forecast performance with high accuracy.</p>
+  </div>
+  <div style="flex: 1; min-width: 300px; max-width: 500px;">
+    <img src="https://user-images.githubusercontent.com/6756943/215313347-62af2237-5e11-45ad-a3ea-92a99ec1963d.png" alt="Predictive Analytics" style="width: 100%; border-radius: 16px;">
+  </div>
+</div>
           </div>
         </div>
-        <div style="display: flex; flex-wrap: wrap; align-items: center; gap: 2rem;">
-          <div style="flex: 1; min-width: 300px;">
-            <h3><i class="fas fa-shield-alt"></i> Enterprise Security</h3>
-            <p>Learn about secure AI model deployment including token control, logging, and reliable access.</p>
-          </div>
-          <div style="flex: 1; min-width: 300px;">
-            <img src="https://user-images.githubusercontent.com/6756943/215313763-3305c7d9-2fbc-4a4d-b0c1-bde7ad556d06.png" alt="Security Module" style="width: 100%; border-radius: 16px;">
-          </div>
+        <div class="demo-card" data-aos="fade-up" style="display: flex; flex-wrap: wrap; align-items: stretch; justify-content: center; gap: 2.5rem; background: rgba(255, 255, 255, 0.02); padding: 2rem; border-radius: 20px; box-shadow: 0 8px 30px rgba(0, 0, 0, 0.3);">
+  <div style="flex: 1; min-width: 300px; max-width: 460px; display: flex; flex-direction: column; justify-content: center;">
+    <h3 style="font-size: 1.5rem; color: #cbd5e1;"><i class="fas fa-shield-alt"></i> Enterprise Security</h3>
+    <p style="line-height: 1.8; font-size: 1.05rem; opacity: 0.9;">Learn about secure AI model deployment including token control, logging, and reliable access.</p>
+  </div>
+  <div style="flex: 1; min-width: 300px; max-width: 500px;">
+    <img src="https://user-images.githubusercontent.com/6756943/215313763-3305c7d9-2fbc-4a4d-b0c1-bde7ad556d06.png" alt="Security Module" style="width: 100%; border-radius: 16px;">
+  </div>
+</div>
         </div>
       </div>
     </section>

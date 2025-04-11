@@ -5,22 +5,19 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Jimmy Chen | Machine Learning | Data Analyst</title>
   <link rel="icon" type="image/x-icon" href="aiai.ico" />
-
-  <!-- 字体和图标 -->
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Orbitron:wght@500;700&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
   <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
   <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
   <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet" />
-
   <style>
     :root {
       --primary-accent: #6366f1;
       --background: #0f172a;
       --surface: rgba(255, 255, 255, 0.04);
       --text-primary: #f8fafc;
+      --container-width: 960px;
     }
-
     body {
       background: var(--background);
       color: var(--text-primary);
@@ -28,7 +25,6 @@
       margin: 0;
       overflow-x: hidden;
     }
-
     #particles-js {
       position: fixed;
       top: 0;
@@ -37,41 +33,16 @@
       height: 100%;
       z-index: -1;
     }
-
-    /* 垂直进度条 */
     .scroll-indicator {
       position: fixed;
-      left: 0;
       top: 0;
-      width: 4px;
-      height: 0;
-      background: linear-gradient(to bottom, #00fff0, #6366f1);
+      left: 0;
+      height: 4px;
+      width: 0;
+      background: linear-gradient(to right, #00fff0, #6366f1);
       z-index: 2000;
-      transition: height 0.2s ease-out;
-      border-radius: 2px;
+      transition: width 0.2s ease-out;
     }
-
-    /* 下拉提示 */
-    .scroll-hint {
-      position: fixed;
-      bottom: 30px;
-      left: 50%;
-      transform: translateX(-50%);
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      color: #93c5fd;
-      opacity: 0.8;
-      animation: float 2s infinite;
-      z-index: 1000;
-      transition: 0.3s;
-    }
-
-    @keyframes float {
-      0%, 100% { transform: translateY(0) translateX(-50%); }
-      50% { transform: translateY(-15px) translateX(-50%); }
-    }
-
     header.navbar {
       position: fixed;
       top: 0;
@@ -86,7 +57,6 @@
       align-items: center;
       border-bottom: 1px solid rgba(255,255,255,0.1);
     }
-
     .navbar a {
       color: #fff;
       text-decoration: none;
@@ -94,112 +64,43 @@
       margin: 0 1rem;
       transition: 0.3s;
     }
-
     .navbar a:hover {
       color: #93c5fd;
     }
-
-    /* 核心内容容器 */
-    .width-container {
-      max-width: 1140px;
+    main {
+      max-width: var(--container-width);
       margin: 0 auto;
-      padding: 0 20px;
+      padding: 0 1rem;
     }
-
     .hero-section {
       display: flex;
       justify-content: center;
       align-items: center;
       min-height: 90vh;
       padding: 6rem 2rem 2rem;
+      position: relative;
+      text-align: center;
     }
-
     .main-title {
       font-family: 'Orbitron', sans-serif;
-      font-size: clamp(2rem, 5vw, 3.6rem);
+      font-size: 3.2rem;
       font-weight: 700;
       background: linear-gradient(to right, #00fff0, #5b7bff, #a855f7);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
       margin-bottom: 1.5rem;
-      line-height: 1.2;
+      animation: typing 3s steps(40, end), blink-caret 0.75s step-end infinite;
+      white-space: nowrap;
+      overflow: hidden;
+      border-right: 3px solid #00fff0;
     }
-
-    /* 响应式功能卡片 */
-    .feature-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-      gap: 2rem;
-      padding: 2rem 0;
-    }
-
-    /* 演示区块优化 */
-    .demo-item {
+    .cta-buttons {
       display: flex;
       flex-wrap: wrap;
-      gap: 2rem;
-      align-items: center;
-      margin: 4rem 0;
+      gap: 1.5rem;
+      justify-content: center;
+      margin: 2rem 0 3rem;
     }
-
-    .demo-item > div {
-      flex: 1;
-      min-width: 280px;
-    }
-
-    /* 移动端优化 */
-    @media (max-width: 768px) {
-      header.navbar {
-        padding: 1rem;
-        flex-direction: column;
-        height: auto;
-      }
-
-      .navbar nav {
-        margin-top: 1rem;
-        flex-wrap: wrap;
-        justify-content: center;
-      }
-
-      .navbar a {
-        margin: 0 0.5rem;
-        font-size: 0.9rem;
-      }
-
-      .hero-section {
-        padding: 8rem 1rem 2rem;
-      }
-
-      .main-title {
-        white-space: normal;
-        text-align: center;
-      }
-
-      .demo-item {
-        flex-direction: column;
-        text-align: center;
-      }
-
-      .demo-item img {
-        order: -1;
-      }
-
-      .cta-buttons {
-        flex-direction: column;
-      }
-    }
-
-    @media (max-width: 480px) {
-      .main-title {
-        font-size: 2rem;
-      }
-
-      .feature-section-title {
-        font-size: 1.8rem !important;
-      }
-    }
-
-    /* 保留原有动画和特效 */
     .glow-btn {
       display: inline-flex;
       align-items: center;
@@ -213,24 +114,39 @@
       gap: 0.8rem;
       box-shadow: 0 0 12px rgba(129, 140, 248, 0.3);
     }
-
     .glow-btn:hover {
       transform: scale(1.05);
       box-shadow: 0 0 20px rgba(129, 140, 248, 0.6);
     }
-
-    .feature-card:hover {
-      transform: translateY(-8px);
+    .scroll-down-hint {
+      position: absolute;
+      bottom: 20px;
+      left: 50%;
+      transform: translateX(-50%);
+      color: #93c5fd;
+      animation: bounce 2s infinite;
+      font-size: 1.2rem;
+    }
+    @keyframes bounce {
+      0%, 100% { transform: translateX(-50%) translateY(0); }
+      50% { transform: translateX(-50%) translateY(10px); }
+    }
+    .section-divider {
+      width: 100%;
+      height: 100px;
+    }
+    @keyframes typing {
+      from { width: 0 }
+      to { width: 100% }
+    }
+    @keyframes blink-caret {
+      0%, 100% { border-color: transparent; }
+      50% { border-color: #00fff0; }
     }
   </style>
 </head>
 <body>
   <div class="scroll-indicator" id="scrollIndicator"></div>
-  <div class="scroll-hint">
-    <i class="fas fa-chevron-down fa-2x"></i>
-    <span>Scroll to explore</span>
-  </div>
-  
   <div id="particles-js"></div>
   <header class="navbar">
     <div style="font-weight: 700; font-size: 1.2rem; color: #fff">JimmyAI</div>
@@ -241,75 +157,100 @@
       <a href="#contact">Contact</a>
     </nav>
   </header>
-
   <main>
     <section class="hero-section" id="home" data-aos="fade-up">
-      <div class="width-container">
-        <div class="hero-content">
-          <h1 class="main-title">Jimmy's Data & Machine Learning Solutions</h1>
-          <p style="font-size: 1.1rem; opacity: 0.9; text-align: center;">
-            Transform your business with cutting-edge AI powered by deep learning and advanced analytics.
-          </p>
-          <div class="cta-buttons">
-            <a href="https://ai.jimmyai.uk/" class="glow-btn">
-              <i class="fas fa-rocket"></i> Try JimmyAI Now
-            </a>
-            <a href="#about" class="glow-btn">
-              <i class="fas fa-scroll"></i> About Me
-            </a>
-          </div>
+      <div>
+        <h1 class="main-title">Jimmy provided Data & Machine Learning Solutions</h1>
+        <p style="font-size: 1.1rem; opacity: 0.9; max-width: 800px; margin: 0 auto;">
+          Transform your business with cutting-edge artificial intelligence powered by deep learning and advanced analytics.
+        </p>
+        <div class="cta-buttons">
+          <a href="https://ai.jimmyai.uk/" class="glow-btn"><i class="fas fa-rocket"></i> Try JimmyAI Now</a>
+          <a href="#about" class="glow-btn"><i class="fas fa-scroll"></i> About Me</a>
         </div>
+        <div class="scroll-down-hint">⬇ Scroll down for more</div>
       </div>
     </section>
-
     <div class="section-divider"></div>
-
-    <!-- Demo Section -->
-    <section id="demo" data-aos="fade-up" style="padding: 5rem 0;">
-      <div class="width-container">
-        <h2 class="feature-section-title" style="font-size: 2.8rem; margin-bottom: 2rem; text-align: center;">
-          Machine Learning Demonstration
-        </h2>
-        
-        <div class="demo-item">
-          <div>
-            <h3><i class="fas fa-brain"></i> LSTM Weather Forecast</h3>
-            <p>Real-time temperature prediction using LSTM models...</p>
-            <a href="#" class="glow-btn">Try Demo</a>
-          </div>
-          <div>
-            <img src="your-image.jpg" alt="Demo Screenshot">
-          </div>
-        </div>
-
-        <!-- 其他演示区块 -->
+    <section id="demo" data-aos="fade-up" style="padding: 5rem 2rem; background: rgba(255,255,255,0.01);">
+  <div style="max-width: 960px; margin: 0 auto; text-align: center;">
+    <h2 class="feature-section-title" style="font-size: 2.8rem; margin-bottom: 2rem;">Machine Learning Demonstration</h2>
+    <p style="max-width: 800px; margin: 0 auto 3rem; font-size: 1.15rem; opacity: 0.85; line-height: 1.8;">
+      Discover how machine learning models power data-driven decisions. Below are interactive demos and use cases that showcase JimmyAI's predictive power and security design in real-time environments.
+    </p>
+  </div>
+  <div style="max-width: 960px; margin: 0 auto; display: flex; flex-direction: column; gap: 3rem;">
+    <div style="display: flex; flex-direction: row; flex-wrap: wrap; align-items: center; gap: 2rem;">
+      <div style="flex: 1; min-width: 300px;">
+        <h3 style="font-size: 1.5rem; margin-bottom: 0.5rem; display: flex; align-items: center;"><i class="fas fa-brain" style="margin-right: 0.6rem;"></i> LSTM - Weather Forecast</h3>
+        <p style="line-height: 1.8;">
+          A live demo showcasing temperature prediction using LSTM deep learning models trained on real-world weather time-series data.
+          Users can interactively explore short-term forecasts across selected cities.
+        </p>
+        <a href="https://huggingface.co/spaces/jimmysc171/lstm_weather" target="_blank" class="glow-btn" style="margin-top: 1rem; display: inline-block;">Try Demo</a>
       </div>
-    </section>
-
-    <!-- About Section -->
-    <section class="about-section" id="about">
-      <div class="width-container">
-        <div class="feature-grid">
-          <!-- 原有about卡片内容 -->
-        </div>
+      <div style="flex: 1; min-width: 300px;">
+        <img src="https://user-images.githubusercontent.com/6756943/215312902-8f918753-25b7-4343-8e57-5a05e827d6c2.png" alt="LSTM Forecast Screenshot" style="width: 100%; border-radius: 16px; box-shadow: 0 0 20px rgba(255,255,255,0.1);">
       </div>
-    </section>
-  </main>
-
+    </div>
+    <div style="display: flex; flex-direction: row; flex-wrap: wrap; align-items: center; gap: 2rem;">
+      <div style="flex: 1; min-width: 300px;">
+        <img src="https://user-images.githubusercontent.com/6756943/215313347-62af2237-5e11-45ad-a3ea-92a99ec1963d.png" alt="Predictive Analytics" style="width: 100%; border-radius: 16px; box-shadow: 0 0 20px rgba(255,255,255,0.1);">
+      </div>
+      <div style="flex: 1; min-width: 300px;">
+        <h3 style="font-size: 1.5rem; margin-bottom: 0.5rem; display: flex; align-items: center;"><i class="fas fa-chart-line" style="margin-right: 0.6rem;"></i> Predictive Analytics</h3>
+        <p style="line-height: 1.8;">
+          Explore real-time data analytics pipelines that integrate business datasets, clean them automatically, and apply statistical models to forecast sales, performance, or risk with 98%+ accuracy.
+        </p>
+      </div>
+    </div>
+    <div style="display: flex; flex-direction: row; flex-wrap: wrap; align-items: center; gap: 2rem;">
+      <div style="flex: 1; min-width: 300px;">
+        <h3 style="font-size: 1.5rem; margin-bottom: 0.5rem; display: flex; align-items: center;"><i class="fas fa-shield-alt" style="margin-right: 0.6rem;"></i> Enterprise Security</h3>
+        <p style="line-height: 1.8;">
+          Learn how secure model deployment works. From API access tokens to audit logging, this module shows how your predictions are not only accurate—but safe for enterprise use.
+        </p>
+      </div>
+      <div style="flex: 1; min-width: 300px;">
+        <img src="https://user-images.githubusercontent.com/6756943/215313763-3305c7d9-2fbc-4a4d-b0c1-bde7ad556d06.png" alt="Security Module" style="width: 100%; border-radius: 16px; box-shadow: 0 0 20px rgba(255,255,255,0.1);">
+      </div>
+    </div>
+  </div>
+</section>
+<div class="section-divider"></div>
+<section class="about-section" id="about" data-aos="fade-up">
+  <div class="about-container">
+    <div class="about-card">
+      <h3><i class="fas fa-user-astronaut"></i> About Jimmy</h3>
+      <p>I'm a data analyst and machine learning engineer passionate about building intelligent systems that solve real-world problems.</p>
+    </div>
+    <div class="about-card">
+      <h3><i class="fas fa-briefcase"></i> What I Offer</h3>
+      <ul>
+        <li>📊 Data preprocessing, cleaning & visualization</li>
+        <li>🤖 Deep learning model development (LSTM, CNN, transformers)</li>
+        <li>🧠 Model training & evaluation on real-world data</li>
+        <li>🧰 App integration with Flask, Streamlit or Gradio</li>
+        <li>☁️ Deployment using Docker, Cloudflare, AWS</li>
+        <li>📈 Custom dashboards for clients & stakeholders</li>
+      </ul>
+    </div>
+    <div class="about-card" id="contact">
+      <h3><i class="fas fa-envelope-open-text"></i> Contact</h3>
+      <p>Email me at <a href="mailto:jimmy@example.com">jimmy@example.com</a><br>
+         Or <a href="https://linkedin.com/in/yourprofile" target="_blank">connect via LinkedIn</a>.</p>
+    </div>
+  </div>
+</section>
+</main>
   <script>
-    // 粒子效果初始化
     particlesJS.load('particles-js', 'https://cdn.jsdelivr.net/gh/VincentGarreau/particles.js/particles.json');
-    
-    // AOS动画初始化
     AOS.init({ duration: 1000, once: true });
-
-    // 垂直进度条控制
     window.addEventListener("scroll", () => {
-      const scrollPercent = (window.scrollY / (document.body.scrollHeight - window.innerHeight)) * 100;
-      document.getElementById('scrollIndicator').style.height = `${scrollPercent}%`;
-      
-      // 隐藏下拉提示
-      document.querySelector('.scroll-hint').style.opacity = window.scrollY > 100 ? '0' : '0.8';
+      const scrollTop = window.scrollY;
+      const docHeight = document.body.scrollHeight - window.innerHeight;
+      const scrollPercent = (scrollTop / docHeight) * 100;
+      document.getElementById("scrollIndicator").style.width = scrollPercent + "%";
     });
   </script>
 </body>

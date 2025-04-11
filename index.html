@@ -247,6 +247,37 @@
       0% { transform: translateX(-50%) scaleY(0.6); opacity: 0.1; }
       100% { transform: translateX(-50%) scaleY(1); opacity: 0.6; }
     }
+    @keyframes pulse-shadow {
+      from {
+        box-shadow: 0 0 30px rgba(99,102,241,0.4), inset 0 0 10px rgba(255,255,255,0.05);
+      }
+      to {
+        box-shadow: 0 0 45px rgba(99,102,241,0.6), inset 0 0 14px rgba(255,255,255,0.08);
+      }
+    }
+    @keyframes fadeInSlideDown {
+      0% { opacity: 0; transform: translateY(-10px); }
+      100% { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes bounceGlow {
+      0%, 100% { transform: translateY(0); text-shadow: 0 0 6px #5b7bff; }
+      50% { transform: translateY(8px); text-shadow: 0 0 16px #93c5fd; }
+    }
+
+    @keyframes fadeInSlideDown {
+      0% { opacity: 0; transform: translateY(-10px); }
+      100% { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes bounceGlow {
+      0%, 100% {
+        transform: translateY(0);
+        text-shadow: 0 0 10px #93c5fd, 0 0 20px #6366f1;
+      }
+      50% {
+        transform: translateY(8px);
+        text-shadow: 0 0 16px #93c5fd, 0 0 28px #6366f1;
+      }
+    }
 </style>
 </head>
 <body>
@@ -273,30 +304,32 @@
           Transform your business with cutting-edge artificial intelligence powered by deep learning and advanced analytics.
         </p>
         <div class="cta-buttons">
-          <a href="https://ai.jimmyai.uk/" class="glow-btn"><i class="fas fa-rocket"></i> Try JimmyAI Now</a>
-          <a href="#about" class="glow-btn"><i class="fas fa-scroll"></i> About Me</a>
-        </div>
-        <div class="scroll-down-hint" style="display: flex; flex-direction: column; align-items: center; margin-top: 3rem; font-size: 1rem; color: #93c5fd;">
-  <span style="margin-bottom: 0.3rem;">Scroll</span>
-  <i class="fas fa-angle-down" style="font-size: 2rem; animation: bounce 2s infinite;"></i>
+  <a href="https://ai.jimmyai.uk/" class="glow-btn" style="background: none; border: 2px solid #818cf8; color: #c7d2fe; font-weight: 500; padding: 1rem 2.2rem; font-size: 1.05rem; box-shadow: none; transition: all 0.3s ease;">
+    <i class="fas fa-rocket"></i> Try JimmyAI
+  </a>
+  <a href="#about" class="glow-btn" style="background: none; border: 2px solid #818cf8; color: #c7d2fe; font-weight: 500; padding: 1rem 2.2rem; font-size: 1.05rem; box-shadow: none; transition: all 0.3s ease;">
+    <i class="fas fa-scroll"></i> About Me
+  </a>
+</div>
+        <div class="scroll-down-hint" style="position: absolute; bottom: 2rem; left: 50%; transform: translateX(-50%); display: flex; flex-direction: column; align-items: center; font-size: 1.1rem; color: #ffffff; animation: fadeInSlideDown 1.5s ease-out 0.5s both; opacity: 1; transition: opacity 0.5s ease; pointer-events: none;">
+  <span style="margin-bottom: 0.4rem; letter-spacing: 0.8px; font-weight: 600; font-size: 1.05rem; opacity: 0.95;">Scroll to Explore</span>
+  <i class="fas fa-angles-down" style="font-size: 3.2rem; color: #93c5fd; text-shadow: 0 0 18px rgba(147, 197, 253, 0.8); animation: bounceGlow 1.6s infinite;"></i>
 </div>
       </div>
     </section>
-    <div class="section-divider" style="height: 40px; position: relative; overflow: visible; margin-top: 2rem;">
-  <div style="position: absolute; top: -20px; left: 50%; width: 2px; height: 60px; background: linear-gradient(to bottom, #93c5fd, transparent); transform: translateX(-50%); animation: fade-slide 2s ease-in-out infinite alternate;"></div>
+    
 </div>
 </div>
-    <section id="demo" data-aos="fade-up" style="padding: 5rem 2rem; background: rgba(255,255,255,0.01);">
-      <div style="max-width: var(--content-width); margin: 0 auto; text-align: center;">
-        <h2 class="feature-section-title" style="font-size: 2.4rem; margin-bottom: 2rem;">Machine Learning Demonstration</h2>
-        <p style="max-width: 800px; margin: 0 auto 3rem; font-size: 1.1rem; opacity: 0.85; line-height: 1.8;">
-          Discover how machine learning models power data-driven decisions. Below are interactive demos and use cases that showcase JimmyAI's predictive power and security design in real-time environments.
-        </p>
-      </div>
+    
+<div class="scroll-down-hint" style="margin: 1rem auto 3rem; text-align: center; animation: fadeInSlideDown 1.5s ease-out 0.5s both; opacity: 1; transition: opacity 0.5s ease;">
+  <span style="display: block; font-size: 1rem; font-weight: 500; color: #cbd5e1; margin-bottom: 0.5rem;">Scroll for More</span>
+  <i class="fas fa-angles-down" style="font-size: 3.8rem; color: #93c5fd; text-shadow: 0 0 22px rgba(147, 197, 253, 0.9); animation: bounceGlow 1.6s infinite;"></i>
+</div>
       <div style="max-width: var(--content-width); margin: 0 auto; display: flex; flex-direction: column; gap: 3rem;">
         <div style="display: flex; flex-wrap: wrap; align-items: center; gap: 2rem;">
           <div style="flex: 1; min-width: 300px;">
-            <h3><i class="fas fa-brain"></i> LSTM - Weather Forecast</h3>
+  <h2 class="feature-section-title" style="font-size: 3rem; font-weight: 700; text-align: center; margin: 2rem auto 2.5rem; background: linear-gradient(to right, #4f46e5, #6366f1); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">Machine Learning Demonstration</h2>
+  <h3><i class="fas fa-brain"></i> LSTM - Weather Forecast</h3>
             <p>A live demo showcasing temperature prediction using LSTM models trained on real-world time-series data.</p>
             <a href="https://huggingface.co/spaces/jimmysc171/lstm_weather" target="_blank" class="glow-btn">Try Demo</a>
           </div>
@@ -363,6 +396,9 @@
     particlesJS.load('particles-js', 'https://cdn.jsdelivr.net/gh/VincentGarreau/particles.js/particles.json');
     AOS.init({ duration: 1000, once: true });
     window.addEventListener("scroll", () => {
+  const hint = document.querySelector('.scroll-down-hint');
+  if (window.scrollY > 150 && hint) hint.style.opacity = '0';
+  else if (hint) hint.style.opacity = '1';
       const scrollTop = window.scrollY;
       const docHeight = document.body.scrollHeight - window.innerHeight;
       const scrollPercent = (scrollTop / docHeight) * 100;

@@ -423,10 +423,10 @@
     <i class="fas fa-bars" style="font-size: 1.5rem; color:white;"></i>
   </label>
   <nav class="nav-menu">
-    <a href="#">Home</a>
+    <a href="#home">Home</a>
     <a href="#demo">Demo</a>
-    <a href="about.html">About</a>
-    <a href="#contact">Contact</a>
+    <a href="#about">What I Offer</a>
+    <a href="#contact" style="scroll-behavior: smooth;">Contact</a>
   </nav>
 </header>
   <main>
@@ -444,9 +444,7 @@
   <a href="https://ai.jimmyai.uk/" class="glow-btn" style="background: none; border: 2px solid #818cf8; color: #c7d2fe; font-weight: 500; padding: 1rem 2.2rem; font-size: 1.05rem; box-shadow: none; transition: all 0.3s ease;">
     <i class="fas fa-rocket"></i> Try JimmyAI
   </a>
-  <a href="about.html" class="glow-btn" style="background: none; border: 2px solid #818cf8; color: #c7d2fe; font-weight: 500; padding: 1rem 2.2rem; font-size: 1.05rem; box-shadow: none; transition: all 0.3s ease;">
-    <i class="fas fa-scroll"></i> About Me
-  </a>
+  <a href="#about" class="glow-btn" style="background: none; border: 2px solid #818cf8; color: #c7d2fe; font-weight: 500; padding: 1rem 2.2rem; font-size: 1.05rem; box-shadow: none; transition: all 0.3s ease;"><i class="fas fa-layer-group"></i> What I Offer</a>
 </div>
         
       </div>
@@ -519,14 +517,29 @@
       <section class="about-section" id="about" data-aos="fade-up" style="padding: 5rem 2rem;">
   <div style="max-width: var(--content-width); margin: 0 auto; text-align: center;">
     <h2 class="feature-section-title" style="font-size: 2.4rem; margin-bottom: 2rem;">What I Offer</h2>
-    <ul style="list-style: none; padding: 0; font-size: 1.1rem; line-height: 2;">
-      <li>📊 Data preprocessing, cleaning & visualization</li>
-      <li>🤖 Deep learning model development (LSTM, CNN, transformers)</li>
-      <li>🧠 Model training & evaluation on real-world data</li>
-      <li>🧰 App integration with Flask, Streamlit or Gradio</li>
-      <li>☁️ Deployment using Docker, Cloudflare, AWS</li>
-      <li>📈 Custom dashboards for clients & stakeholders</li>
-    </ul>
+    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 2rem; text-align: left;">
+      <div style="background: rgba(255,255,255,0.02); border-radius: 16px; padding: 1.8rem; box-shadow: 0 6px 16px rgba(0,0,0,0.2);">
+        <h3 style="color: #93c5fd; margin-bottom: 0.8rem;"><i class="fas fa-chart-line"></i> Sales & Finance Forecasting</h3>
+        <p>• Built sales prediction models for Associated Wholesale Grocers using Python & time series</p>
+        <p>• Conducted retirement & tax analytics in Power BI for 50+ clients at Equitable Advisors</p>
+      </div>
+      <div style="background: rgba(255,255,255,0.02); border-radius: 16px; padding: 1.8rem; box-shadow: 0 6px 16px rgba(0,0,0,0.2);">
+        <h3 style="color: #93c5fd; margin-bottom: 0.8rem;"><i class="fas fa-database"></i> Business Intelligence & Visualization</h3>
+        <p>• Built dashboards with Streamlit, Plotly & Power BI to present KPI insights and predictions</p>
+        <p>• Communicated insights from 5000+ SKUs & customer datasets across product channels</p>
+      </div>
+      <div style="background: rgba(255,255,255,0.02); border-radius: 16px; padding: 1.8rem; box-shadow: 0 6px 16px rgba(0,0,0,0.2);">
+        <h3 style="color: #93c5fd; margin-bottom: 0.8rem;"><i class="fas fa-robot"></i> Machine Learning Applications</h3>
+        <p>• Trained models for classification, regression, clustering tailored to retail & financial domains</p>
+        <p>• Developed A/B testing & uplift simulation frameworks to evaluate pricing & policy changes</p>
+      </div>
+      <div style="background: rgba(255,255,255,0.02); border-radius: 16px; padding: 1.8rem; box-shadow: 0 6px 16px rgba(0,0,0,0.2);">
+        <h3 style="color: #93c5fd; margin-bottom: 0.8rem;"><i class="fas fa-cloud"></i> ML System Deployment</h3>
+        <p>• Deployed ML tools using Flask, Docker & AWS EC2/RDS/S3 for web-based access</p>
+        <p>• Built local AI apps to parse PDF/CSV documents and extract actionable financial summaries</p>
+      </div>
+    </div>
+  </div>
   </div>
   <div style="max-width: var(--content-width); margin: 4rem auto 0; text-align: center;">
     <h2 class="feature-section-title" style="font-size: 2.4rem; margin-bottom: 1rem;">About Jimmy</h2>
@@ -576,4 +589,5 @@
   </script>
 </body>
 </html>
+
 

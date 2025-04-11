@@ -62,21 +62,23 @@
       transition: width 0.2s ease-out;
     }
     header.navbar {
-      position: fixed;
-      top: 0;
-      left: 0;
-      right: 0;
-      width: 100%;
-      padding: 1rem 2rem;
-      background: rgba(15, 23, 42, 0.7);
-      backdrop-filter: blur(10px);
-      z-index: 1000;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      flex-wrap: nowrap;
-      border-bottom: 1px solid rgba(255,255,255,0.1);
-    }
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  max-width: var(--container-width);
+  margin: 0 auto;
+  padding: 1rem 2rem;
+  background: rgba(15, 23, 42, 0.7);
+  backdrop-filter: blur(10px);
+  z-index: 1000;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid rgba(255,255,255,0.1);
+  width: 100%;
+  box-sizing: border-box;
+}
     .navbar a {
       color: #fff;
       text-decoration: none;
@@ -262,7 +264,7 @@
   <main>
     <section class="hero-section" id="home" data-aos="fade-up">
       <div>
-        <h1 class="main-title">Jimmy provided Data & ML</h1>
+        <h1 class="main-title">Jimmy provided Data & ML Solutions</h1>
         <p style="font-size: 1.1rem; opacity: 0.9; max-width: 800px; margin: 0 auto;">
           Transform your business with cutting-edge artificial intelligence powered by deep learning and advanced analytics.
         </p>

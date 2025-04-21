@@ -3,28 +3,34 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Javelin | ML & DB Solutions (Light Theme)</title> <link rel="icon" type="image/x-icon" href="mlog.ico" />
+  <title>Javelin | ML & DB Solutions (Light & Dynamic)</title> <link rel="icon" type="image/x-icon" href="mlog.ico" />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Poppins:wght@500;700&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
   <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet" />
   <style>
     :root {
-      /* IMPROVEMENT: Light Theme Color Palette */
-      --primary-accent: #6366f1; /* Indigo - Kept for primary action */
-      --secondary-accent: #5eead4; /* Soft Teal - New secondary */
-      --background: #f8fafc; /* Slate-50 - Light Background */
-      --surface: #ffffff; /* White - Card Background */
-      --text-primary: #1e293b; /* Slate-800 - Dark Primary Text */
-      --text-secondary: #64748b; /* Slate-500 - Medium Grey Secondary Text */
-      --text-highlight: var(--primary-accent); /* Use primary accent for highlights */
-      --border-color: #e2e8f0; /* Slate-200 - Light Border */
-      --shadow-color: rgba(100, 116, 139, 0.12); /* Softer shadow base color (Slate-400 @ 12%) */
+      /* Light Theme Color Palette */
+      --primary-accent: #6366f1; /* Indigo */
+      --secondary-accent: #5eead4; /* Soft Teal */
+      --background: #f8fafc; /* Slate-50 */
+      --surface: #ffffff; /* White */
+      --text-primary: #1e293b; /* Slate-800 */
+      --text-secondary: #64748b; /* Slate-500 */
+      --text-highlight: var(--primary-accent);
+      --border-color: #e2e8f0; /* Slate-200 */
+      --shadow-color: rgba(100, 116, 139, 0.12);
+
+      /* IMPROVEMENT: Added RGB versions for rgba() usage */
+      --primary-accent-rgb: 99, 102, 241;
+      --secondary-accent-rgb: 94, 234, 212;
+      --soft-pink-rgb: 244, 194, 194; /* Example extra soft color */
+      --soft-yellow-rgb: 253, 230, 138; /* Example extra soft color */
 
       --container-width: 1240px;
       --content-width: 1200px;
-      --navbar-height: 70px; /* Slightly taller navbar */
-      --section-padding-y: 4rem; /* Slightly more vertical padding */
-      --border-radius-soft: 16px; /* Increased border radius */
+      --navbar-height: 70px;
+      --section-padding-y: 4rem;
+      --border-radius-soft: 16px;
       --border-radius-btn: 12px;
     }
 
@@ -33,18 +39,18 @@
     html { scroll-behavior: smooth; font-size: 16px; }
     body {
       background: var(--background);
-      color: var(--text-primary); /* Default text color */
+      color: var(--text-primary);
       font-family: 'Inter', sans-serif;
       overflow-x: hidden;
       line-height: 1.7;
-      position: relative; /* Needed for pseudo-element */
+      position: relative;
       z-index: 1;
     }
 
     /* Accessibility */
     :focus-visible { outline: 3px solid var(--primary-accent); outline-offset: 2px; border-radius: 4px; }
 
-    /* IMPROVEMENT: Subtle Animated Gradient Background */
+    /* Subtle Animated Gradient Background */
     body::before {
       content: "";
       position: fixed;
@@ -55,9 +61,10 @@
         rgba(240, 253, 250, 0.6), /* Light Teal-50 */
         rgba(238, 242, 255, 0.6)  /* Light Indigo-50 */
       );
-      background-size: 400% 400%; /* Make gradient larger for smooth animation */
+      background-size: 400% 400%;
       animation: subtleGradientShift 25s ease infinite;
-      z-index: -1; /* Behind content */
+      /* IMPROVEMENT: Put gradient behind shapes */
+      z-index: -2;
       pointer-events: none;
     }
 
@@ -67,272 +74,217 @@
         100% { background-position: 0% 50%; }
     }
 
-    /* Scroll Indicator - Updated colors */
+    /* --- START: Background Shapes Enhancement --- */
+    .background-shapes {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: -1; /* Between gradient and content */
+      overflow: hidden;
+      pointer-events: none; /* Non-interactive */
+    }
+
+    .shape {
+      position: absolute;
+      border-radius: 50%;
+      opacity: 0.7;
+      /* Optional: Add blur - uncomment cautiously due to performance */
+      /* filter: blur(60px); */
+    }
+
+    /* Shape definitions and animations */
+    .shape-1 {
+      width: 35vw;
+      height: 35vw;
+      max-width: 400px; max-height: 400px; /* Max size */
+      background: rgba(var(--primary-accent-rgb), 0.05);
+      top: -10vw;
+      left: -10vw;
+      animation: moveShape 35s infinite linear alternate;
+    }
+
+    .shape-2 {
+      width: 45vw;
+      height: 45vw;
+      max-width: 500px; max-height: 500px;
+      background: rgba(var(--secondary-accent-rgb), 0.04);
+      bottom: -15vw;
+      right: -15vw;
+      animation: moveShape 45s infinite linear alternate-reverse;
+    }
+
+    .shape-3 {
+      width: 25vw;
+      height: 25vw;
+       max-width: 300px; max-height: 300px;
+      background: rgba(var(--soft-pink-rgb), 0.06);
+      bottom: 20vh;
+      left: 5vw;
+      animation: moveShape 40s infinite linear alternate;
+    }
+
+    .shape-4 {
+       width: 20vw;
+       height: 20vw;
+       max-width: 250px; max-height: 250px;
+       background: rgba(var(--soft-yellow-rgb), 0.05);
+       top: 15vh;
+       right: 10vw;
+       border-radius: 40% 60% 70% 30% / 40% 50% 60% 50%; /* Blob shape */
+       animation: moveShapeRotate 50s infinite linear alternate;
+    }
+
+    @keyframes moveShape {
+      from {
+        transform: translate(0, 0) scale(1);
+        opacity: 0.5;
+      }
+      to {
+        transform: translate(calc(var(--move-x, 40) * 1px), calc(var(--move-y, 60) * 1px)) scale(1.1); /* Slight scale */
+        opacity: 0.8;
+      }
+    }
+    /* Adjust movement per shape if desired */
+    .shape-1 { --move-x: 30; --move-y: 50; }
+    .shape-2 { --move-x: -40; --move-y: -70; }
+    .shape-3 { --move-x: 50; --move-y: -30; }
+
+
+    @keyframes moveShapeRotate {
+       from {
+         transform: translate(0, 0) rotate(0deg) scale(1);
+         opacity: 0.4;
+         border-radius: 40% 60% 70% 30% / 40% 50% 60% 50%;
+       }
+       to {
+         transform: translate(-30px, 50px) rotate(180deg) scale(1.05);
+         opacity: 0.7;
+         border-radius: 60% 40% 30% 70% / 50% 60% 40% 50%; /* Morphing effect */
+       }
+    }
+    /* --- END: Background Shapes Enhancement --- */
+
+
+    /* Scroll Indicator */
     .scroll-indicator { position: fixed; top: 0; left: 0; height: 4px; width: 0; background: linear-gradient(to right, var(--primary-accent), var(--secondary-accent)); z-index: 2000; transition: width 0.2s ease-out; }
 
-    /* Navbar - Light theme */
+    /* Navbar */
     header.navbar {
-        position: fixed; top: 0; left: 0; right: 0; max-width: 100%; z-index: 1000;
-        transition: transform 0.4s ease-in-out, background-color 0.3s ease, box-shadow 0.3s ease;
-        background: rgba(255, 255, 255, 0.8); /* Semi-transparent white */
+        position: fixed; top: 0; left: 0; right: 0; max-width: 100%; z-index: 1000; /* Above content, below BackToTop */
+        transition: transform 0.4s ease-in-out, background-color 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+        background: rgba(255, 255, 255, 0.8);
         backdrop-filter: blur(10px);
-        /* Subtle border instead of shadow initially */
         border-bottom: 1px solid transparent;
     }
-    /* Add shadow/border when scrolled */
     header.navbar.scrolled {
         background: rgba(255, 255, 255, 0.95);
         border-bottom: 1px solid var(--border-color);
         box-shadow: 0 2px 4px rgba(0, 0, 0, 0.04);
     }
-
     .navbar-container { max-width: var(--container-width); margin: 0 auto; padding: 0 2rem; height: var(--navbar-height); display: flex; justify-content: space-between; align-items: center; }
-    /* IMPROVEMENT: Changed font, color */
     .navbar-left { font-weight: 700; font-size: 1.3rem; font-family: 'Poppins', sans-serif; color: var(--text-primary); white-space: nowrap; transition: color 0.3s ease; cursor: pointer; text-decoration: none; }
     .navbar-left:hover { color: var(--primary-accent); }
-    .nav-menu { display: flex; gap: 1.8rem; } /* Increased gap slightly */
+    .nav-menu { display: flex; gap: 1.8rem; }
     .nav-menu a { color: var(--text-primary); text-decoration: none; font-weight: 500; white-space: nowrap; padding: 0.5rem 0.2rem; position: relative; border-bottom: 2px solid transparent; transition: color 0.3s ease, border-color 0.3s ease; }
     .nav-menu a:hover { color: var(--primary-accent); border-bottom-color: var(--primary-accent); }
-    .nav-toggle-label { display: none; cursor: pointer; z-index: 1001; color: var(--text-primary); } /* Dark icon */
+    .nav-toggle-label { display: none; cursor: pointer; z-index: 1001; color: var(--text-primary); }
     #nav-toggle { display: none; }
 
     /* Main Content Area */
-    main { max-width: var(--container-width); margin: 0 auto; padding: calc(var(--navbar-height) + var(--section-padding-y)) 1rem var(--section-padding-y); position: relative; z-index: 10; }
-
-    /* Hero Section - Light theme */
-    .hero-section { display: flex; flex-direction: column; justify-content: center; align-items: center; min-height: 70vh; /* Slightly reduced height */ text-align: center; padding-top: 0 !important; padding-bottom: 2rem !important; }
-    .hero-logo-container { display: flex; flex-direction: column; align-items: center; margin-bottom: 1.5rem; }
-    .hero-logo { width: 150px; height: 150px; margin-bottom: 1rem; } /* Slightly smaller logo */
-    /* IMPROVEMENT: Changed font, removed gradient, set solid color */
-    .hero-brand-title { font-size: 2.4rem; font-weight: 700; font-family: 'Poppins', sans-serif; color: var(--primary-accent); /* Use accent color */ letter-spacing: 1px; text-shadow: none; text-transform: uppercase; margin-bottom: 0.5rem; }
-    .hero-brand-title .fa-bolt { color: #f59e0b; /* Amber color for bolt */ margin-left: 0.8rem; vertical-align: middle; }
-
-    /* Main Title - Dark text */
-     .main-title {
-      font-family: 'Inter', sans-serif;
-      font-size: 2rem; /* Slightly larger */
-      font-weight: 600;
-      color: var(--text-primary); /* Dark text */
-      margin: 0 auto 1.5rem;
-      max-width: 700px;
-      line-height: 1.4;
+    main {
+       max-width: var(--container-width);
+       margin: 0 auto;
+       padding: calc(var(--navbar-height) + var(--section-padding-y)) 1rem var(--section-padding-y);
+       position: relative; /* Ensure main content establishes stacking context */
+       z-index: 10; /* Above background elements */
     }
 
-    /* Hero Description - Dark secondary text */
+    /* Hero Section */
+    .hero-section { display: flex; flex-direction: column; justify-content: center; align-items: center; min-height: 70vh; text-align: center; padding-top: 0 !important; padding-bottom: 2rem !important; }
+    .hero-logo-container { display: flex; flex-direction: column; align-items: center; margin-bottom: 1.5rem; }
+    .hero-logo { width: 150px; height: 150px; margin-bottom: 1rem; }
+    .hero-brand-title { font-size: 2.4rem; font-weight: 700; font-family: 'Poppins', sans-serif; color: var(--primary-accent); letter-spacing: 1px; text-shadow: none; text-transform: uppercase; margin-bottom: 0.5rem; }
+    .hero-brand-title .fa-bolt { color: #f59e0b; margin-left: 0.8rem; vertical-align: middle; }
+    .main-title { font-family: 'Inter', sans-serif; font-size: 2rem; font-weight: 600; color: var(--text-primary); margin: 0 auto 1.5rem; max-width: 700px; line-height: 1.4; }
     .hero-description { font-size: 1.1rem; max-width: 750px; margin: 0 auto 2.5rem; color: var(--text-secondary); line-height: 1.8; }
     .cta-buttons { display: flex; flex-wrap: wrap; gap: 1.5rem; justify-content: center; margin-bottom: 3rem; }
-    /* Buttons - Light theme adjustments */
-    .glow-btn {
-      display: inline-flex; align-items: center; justify-content: center; padding: 0.9rem 2rem;
-      background: var(--primary-accent); /* Solid primary accent */
-      border-radius: var(--border-radius-btn);
-      color: white;
-      font-weight: 600; font-size: 1.05rem; text-decoration: none;
-      transition: all 0.3s ease; gap: 0.8rem;
-      box-shadow: 0 4px 6px var(--shadow-color), 0 1px 3px var(--shadow-color); /* Softer shadow */
-      border: 2px solid transparent; cursor: pointer;
-    }
-    .glow-btn:hover {
-        transform: translateY(-3px);
-        background: #4f46e5; /* Darker Indigo on hover */
-        box-shadow: 0 7px 14px var(--shadow-color), 0 3px 6px var(--shadow-color);
-    }
+    .glow-btn { display: inline-flex; align-items: center; justify-content: center; padding: 0.9rem 2rem; background: var(--primary-accent); border-radius: var(--border-radius-btn); color: white; font-weight: 600; font-size: 1.05rem; text-decoration: none; transition: all 0.3s ease; gap: 0.8rem; box-shadow: 0 4px 6px var(--shadow-color), 0 1px 3px var(--shadow-color); border: 2px solid transparent; cursor: pointer; }
+    .glow-btn:hover { transform: translateY(-3px); background: #4f46e5; box-shadow: 0 7px 14px var(--shadow-color), 0 3px 6px var(--shadow-color); }
     .glow-btn:active { transform: translateY(0); background: #4338ca; box-shadow: 0 4px 6px var(--shadow-color), 0 1px 3px var(--shadow-color); }
-
-    /* Outlined Button - Light theme */
-    .glow-btn--outlined {
-        background: none;
-        border: 2px solid var(--border-color); /* Light border */
-        color: var(--primary-accent); /* Accent text color */
-        font-weight: 500;
-        box-shadow: none;
-    }
-    .glow-btn--outlined:hover {
-        border-color: var(--primary-accent);
-        color: var(--primary-accent);
-        background-color: rgba(99, 102, 241, 0.08); /* Very light accent background */
-        box-shadow: none;
-        transform: translateY(-3px);
-    }
-    .glow-btn--outlined:active { transform: translateY(0); background-color: rgba(99, 102, 241, 0.12); }
-
-    /* Ensure specificity for hero buttons */
+    .glow-btn--outlined { background: none; border: 2px solid var(--border-color); color: var(--primary-accent); font-weight: 500; box-shadow: none; }
+    .glow-btn--outlined:hover { border-color: var(--primary-accent); color: var(--primary-accent); background-color: rgba(var(--primary-accent-rgb), 0.08); box-shadow: none; transform: translateY(-3px); }
+    .glow-btn--outlined:active { transform: translateY(0); background-color: rgba(var(--primary-accent-rgb), 0.12); }
     .cta-buttons .glow-btn:first-child { background: var(--primary-accent); border-color: transparent; color: white; }
     .cta-buttons .glow-btn:nth-child(2) { background: none; border: 2px solid var(--border-color); color: var(--primary-accent); }
-    .cta-buttons .glow-btn:nth-child(2):hover { border-color: var(--primary-accent); background-color: rgba(99, 102, 241, 0.08); }
-
-
-    /* Scroll Down Banner - Adjusted colors */
+    .cta-buttons .glow-btn:nth-child(2):hover { border-color: var(--primary-accent); background-color: rgba(var(--primary-accent-rgb), 0.08); }
     .scroll-down-banner { margin-top: 2.5rem; display: flex; justify-content: center; z-index: 20; animation: scrollPulse 1.8s ease-in-out infinite; pointer-events: none; transition: opacity 0.5s ease, visibility 0.5s ease; }
     .scroll-down-content { display: flex; flex-direction: column; align-items: center; gap: 0.4rem; }
     .scroll-down-text { color: var(--text-secondary); font-size: 0.9rem; font-weight: 500; letter-spacing: 0.8px; animation: scrollTextFade 3s ease-in-out infinite alternate; text-transform: uppercase; }
-    .scroll-down-icon { font-size: 1.8rem; color: var(--primary-accent); animation: bounceGlowLight 1.8s ease-in-out infinite; } /* Changed animation */
+    .scroll-down-icon { font-size: 1.8rem; color: var(--primary-accent); animation: bounceGlowLight 1.8s ease-in-out infinite; }
 
-    @keyframes bounceGlowLight { /* Removed text shadow */
-        0%, 100% { transform: translateY(0); }
-        50% { transform: translateY(6px); }
-    }
+    @keyframes bounceGlowLight { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(6px); } }
 
-    /* IMPROVEMENT: Section Divider - Subtle dotted border */
-    .section-divider {
-        width: 80%; /* Limit width */
-        max-width: 400px;
-        height: 1px;
-        margin: 4rem auto; /* Increased margin */
-        border: none;
-        border-top: 2px dashed var(--border-color); /* Dashed light border */
-        overflow: visible; /* Remove overflow hidden */
-    }
-    /* Remove the animated line */
-    /* .divider-line { display: none; } */
+    /* Section Divider */
+    .section-divider { width: 80%; max-width: 400px; height: 1px; margin: 4rem auto; border: none; border-top: 2px dashed var(--border-color); overflow: visible; }
 
     /* Shared Section Styles */
     section { padding: var(--section-padding-y) 1rem; }
     #hero { padding-top: 0 !important; padding-bottom: 2rem !important; }
-
-    /* Section Title - Light theme */
-     .section-title {
-         text-align: center;
-         margin-bottom: 3.8rem;
-     }
-     /* IMPROVEMENT: Removed gradient, using primary text color */
-     .section-title h2 {
-         font-size: 2.6rem; font-weight: 700;
-         color: var(--text-primary); /* Dark text */
-         font-family: 'Poppins', sans-serif; /* Consistent title font */
-         letter-spacing: 0.6px; line-height: 1.4; margin-bottom: 1.2rem;
-         background: none; -webkit-background-clip: unset; -webkit-text-fill-color: unset; /* Reset gradient styles */
-     }
+     .section-title { text-align: center; margin-bottom: 3.8rem; }
+     .section-title h2 { font-size: 2.6rem; font-weight: 700; color: var(--text-primary); font-family: 'Poppins', sans-serif; letter-spacing: 0.6px; line-height: 1.4; margin-bottom: 1.2rem; background: none; -webkit-background-clip: unset; -webkit-text-fill-color: unset; }
      .section-title p { font-size: 1.1rem; max-width: 750px; margin: 0 auto; line-height: 1.8; color: var(--text-secondary); }
 
-    /* Demo Section - Light theme */
+    /* Demo Section */
     .demo-card-container { max-width: var(--content-width); margin: 0 auto; display: flex; flex-direction: column; gap: 3rem; }
-    /* Card Styling - Light theme */
-    .demo-card {
-        display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 3rem;
-        background: var(--surface); /* White background */
-        padding: 2.5rem;
-        border-radius: var(--border-radius-soft); /* Softer radius */
-        box-shadow: 0 4px 10px var(--shadow-color); /* Softer shadow */
-        border: 1px solid var(--border-color); /* Light border */
-        transition: transform 0.4s ease, box-shadow 0.4s ease, border-color 0.4s ease;
-        overflow: hidden;
-    }
-    .demo-card:hover {
-        transform: translateY(-6px);
-        box-shadow: 0 10px 20px var(--shadow-color); /* Slightly larger shadow on hover */
-        border-color: #d1d5db; /* Slightly darker border on hover */
-    }
+    .demo-card { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 3rem; background: var(--surface); padding: 2.5rem; border-radius: var(--border-radius-soft); box-shadow: 0 4px 10px var(--shadow-color); border: 1px solid var(--border-color); transition: transform 0.4s ease, box-shadow 0.4s ease, border-color 0.4s ease; overflow: hidden; }
+    .demo-card:hover { transform: translateY(-6px); box-shadow: 0 10px 20px var(--shadow-color); border-color: #d1d5db; }
     .demo-card-text { flex: 1.1 1 45%; min-width: 300px; display: flex; flex-direction: column; justify-content: center; gap: 1.2rem; }
-    .demo-card-text h3 { font-size: 1.6rem; color: var(--text-primary); display: flex; align-items: center; gap: 0.8rem; font-family: 'Poppins', sans-serif; font-weight: 600; } /* Use Poppins */
+    .demo-card-text h3 { font-size: 1.6rem; color: var(--text-primary); display: flex; align-items: center; gap: 0.8rem; font-family: 'Poppins', sans-serif; font-weight: 600; }
     .demo-card-text h3 i { color: var(--primary-accent); }
     .demo-card-text p { line-height: 1.8; font-size: 1.1rem; flex-grow: 1; color: var(--text-secondary); }
     .demo-card-text .glow-btn { margin-top: 1.5rem; align-self: flex-start; }
     .demo-card-image { flex: 0.9 1 45%; min-width: 300px; display: flex; justify-content: center; align-items: center; padding: 1rem; }
-    .demo-card-image img { width: 100%; max-width: 450px; border-radius: calc(var(--border-radius-soft) - 4px); display: block; box-shadow: 0 5px 15px rgba(0,0,0,0.08); } /* Slightly smaller radius, lighter shadow */
-
-    /* Alternating Demo Card Layout */
+    .demo-card-image img { width: 100%; max-width: 450px; border-radius: calc(var(--border-radius-soft) - 4px); display: block; box-shadow: 0 5px 15px rgba(0,0,0,0.08); }
     .demo-card:nth-child(even) { flex-direction: row-reverse; }
     .demo-card:nth-child(even) .demo-card-text { text-align: left; }
-
-    /* Coming Soon Button - Light theme */
-    .btn-coming-soon {
-      background: none !important;
-      border-color: var(--border-color) !important;
-      color: var(--text-secondary) !important; /* Muted text */
-      cursor: default !important;
-      opacity: 0.7;
-      pointer-events: none;
-      box-shadow: none !important;
-    }
+    .btn-coming-soon { background: none !important; border-color: var(--border-color) !important; color: var(--text-secondary) !important; cursor: default !important; opacity: 0.7; pointer-events: none; box-shadow: none !important; }
     .btn-coming-soon:hover { transform: none; background-color: transparent !important; border-color: var(--border-color) !important; color: var(--text-secondary) !important; }
 
-
-    /* "What I Offer" Section - Light theme */
+    /* "What I Offer" Section */
     .offer-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem; text-align: left; max-width: var(--content-width); margin: 0 auto; }
-    .offer-item {
-        background: var(--surface); /* White background */
-        border-radius: var(--border-radius-soft);
-        padding: 2.5rem;
-        box-shadow: 0 4px 10px var(--shadow-color); /* Softer shadow */
-        border: 1px solid var(--border-color); /* Light border */
-        transition: transform 0.3s ease, box-shadow 0.3s ease;
-    }
+    .offer-item { background: var(--surface); border-radius: var(--border-radius-soft); padding: 2.5rem; box-shadow: 0 4px 10px var(--shadow-color); border: 1px solid var(--border-color); transition: transform 0.3s ease, box-shadow 0.3s ease; }
     .offer-item:hover { transform: translateY(-5px); box-shadow: 0 8px 16px var(--shadow-color); }
-    .offer-item h3 { color: var(--text-primary); margin-bottom: 1rem; font-size: 1.3rem; display: flex; align-items: center; gap: 0.7rem; font-family: 'Poppins', sans-serif; font-weight: 600; } /* Use Poppins */
-    .offer-item h3 i { color: var(--secondary-accent); /* Soft Teal icon */ }
-
-    /* Custom bullet points - Light theme */
-    .offer-item p {
-      font-size: 1.05rem;
-      color: var(--text-secondary); /* Darker secondary text */
-      line-height: 1.7;
-      margin-bottom: 0.8rem;
-      position: relative;
-      padding-left: 1.6em;
-    }
-    .offer-item p::before {
-      content: '';
-      position: absolute;
-      left: 0.5em;
-      top: 0.65em;
-      width: 6px;
-      height: 6px;
-      background-color: var(--secondary-accent); /* Soft Teal bullet */
-      border-radius: 50%; /* Circle bullet */
-      display: inline-block;
-    }
+    .offer-item h3 { color: var(--text-primary); margin-bottom: 1rem; font-size: 1.3rem; display: flex; align-items: center; gap: 0.7rem; font-family: 'Poppins', sans-serif; font-weight: 600; }
+    .offer-item h3 i { color: var(--secondary-accent); }
+    .offer-item p { font-size: 1.05rem; color: var(--text-secondary); line-height: 1.7; margin-bottom: 0.8rem; position: relative; padding-left: 1.6em; }
+    .offer-item p::before { content: ''; position: absolute; left: 0.5em; top: 0.65em; width: 6px; height: 6px; background-color: var(--secondary-accent); border-radius: 50%; display: inline-block; }
     .offer-item p:last-child { margin-bottom: 0; }
 
-
-    /* Contact Section - Light theme */
+    /* Contact Section */
     .contact-container { max-width: var(--content-width); margin: 0 auto; text-align: center; }
     .contact-buttons { display: flex; justify-content: center; gap: 1.5rem; flex-wrap: wrap; margin-top: 2.5rem; }
     .contact-buttons .glow-btn { padding: 0.9rem 1.8rem; font-size: 1.05rem; }
 
-    /* Footer Styles - Light theme */
-    .site-footer {
-      padding: 2.5rem 1rem; /* Increased padding */
-      margin-top: 4rem;
-      border-top: 1px solid var(--border-color); /* Light border */
-      text-align: center;
-      background-color: #f1f5f9; /* Slate 100 background */
-    }
+    /* Footer Styles */
+    .site-footer { padding: 2.5rem 1rem; margin-top: 4rem; border-top: 1px solid var(--border-color); text-align: center; background-color: #f1f5f9; }
     .footer-container { max-width: var(--content-width); margin: 0 auto; }
     .site-footer p { color: var(--text-secondary); font-size: 0.9rem; margin: 0; }
 
-
-    /* Back to top button - Adjusted for light theme */
-    #backToTop {
-        position: fixed; bottom: 30px; right: 30px; z-index: 9999;
-        background: var(--primary-accent); /* Accent background */
-        color: white; border: none; border-radius: 50%;
-        width: 48px; height: 48px; font-size: 18px; cursor: pointer;
-        display: none; justify-content: center; align-items: center;
-        box-shadow: 0 4px 10px rgba(0,0,0,0.15); /* Slightly darker shadow */
-        transition: opacity 0.3s ease, transform 0.3s ease, background-color 0.3s ease;
-    }
+    /* Back to top button */
+    #backToTop { position: fixed; bottom: 30px; right: 30px; z-index: 9999; background: var(--primary-accent); color: white; border: none; border-radius: 50%; width: 48px; height: 48px; font-size: 18px; cursor: pointer; display: none; justify-content: center; align-items: center; box-shadow: 0 4px 10px rgba(0,0,0,0.15); transition: opacity 0.3s ease, transform 0.3s ease, background-color 0.3s ease; }
     #backToTop:hover { opacity: 0.9; transform: scale(1.1); background-color: #4f46e5; }
 
-    /* Remove old animations if not needed */
-    /* @keyframes typing { ... } */
-    /* @keyframes blink-caret { ... } */
-    /* @keyframes bounce { ... } */
-    /* @keyframes fade-slide { ... } */
-    /* @keyframes pulse-shadow { ... } */
-    /* @keyframes fadeInSlideDown { ... } */
-    /* @keyframes bounceGlow { ... } */
-    /* @keyframes bg-shift { ... } */
-    /* @keyframes glowBackground { ... } */
-    @keyframes scrollPulse { 0%, 100% { opacity: 0.6; transform: translateY(0); } 50% { opacity: 1; transform: translateY(4px); } } /* Adjusted opacity */
-    @keyframes scrollTextFade { 0% { opacity: 0.5; transform: scale(0.98); } 100% { opacity: 1; transform: scale(1); } } /* Adjusted opacity/scale */
+    /* Animations */
+    @keyframes scrollPulse { 0%, 100% { opacity: 0.6; transform: translateY(0); } 50% { opacity: 1; transform: translateY(4px); } }
+    @keyframes scrollTextFade { 0% { opacity: 0.5; transform: scale(0.98); } 100% { opacity: 1; transform: scale(1); } }
 
     /* AOS Animation defaults */
     [data-aos] { opacity: 0; transition-property: transform, opacity; }
     [data-aos].aos-animate { opacity: 1; }
 
-    /* --- Media Queries --- Adjustments for light theme responsiveness */
-
+    /* --- Media Queries --- */
     @media screen and (max-width: 1024px) {
         html { font-size: 15px; }
         .navbar-container { padding: 0 1.5rem; }
@@ -340,77 +292,80 @@
         section { padding: var(--section-padding-y) 1.5rem; }
         .section-title h2 { font-size: 2.3rem; }
         .hero-brand-title { font-size: 2rem; }
-        .main-title { font-size: 1.8rem; max-width: 90%; } /* Adjusted */
-        .hero-description { max-width: 90%; font-size: 1.05rem; } /* Adjusted */
+        .main-title { font-size: 1.8rem; max-width: 90%; }
+        .hero-description { max-width: 90%; font-size: 1.05rem; }
         .demo-card { padding: 2rem; gap: 2rem; }
         .offer-grid { gap: 1.5rem; }
         .offer-item { padding: 2rem; }
         .site-footer { margin-top: 3rem; padding: 2rem 1rem;}
+        /* Adjust shape sizes/positions for tablet? Optional */
+        /* .shape-1 { width: 45vw; height: 45vw; } */
     }
 
     @media (max-width: 768px) {
-       /* Navbar mobile - Adjust background/colors */
        .navbar-container { height: calc(var(--navbar-height) - 10px); padding: 0 1rem; }
        .navbar-left { font-size: 1.1rem; }
-       .nav-menu {
-           position: absolute; top: calc(var(--navbar-height) - 10px); left: 0; right: 0;
-           background-color: rgba(255, 255, 255, 0.98); /* Light background for dropdown */
-           flex-direction: column; width: 100%; display: none; padding: 0.5rem 0;
-           border-top: 1px solid var(--border-color);
-           box-shadow: 0 4px 10px rgba(0,0,0,0.08); gap: 0;
-        }
-       .nav-menu a { padding: 0.9rem 1.5rem; text-align: left; border-bottom: 1px solid var(--border-color); color: var(--text-primary); } /* Dark text in menu */
+       .nav-menu { position: absolute; top: calc(var(--navbar-height) - 10px); left: 0; right: 0; background-color: rgba(255, 255, 255, 0.98); flex-direction: column; width: 100%; display: none; padding: 0.5rem 0; border-top: 1px solid var(--border-color); box-shadow: 0 4px 10px rgba(0,0,0,0.08); gap: 0; }
+       .nav-menu a { padding: 0.9rem 1.5rem; text-align: left; border-bottom: 1px solid var(--border-color); color: var(--text-primary); }
        .nav-menu a:last-child { border-bottom: none; }
-       .nav-menu a:hover { color: var(--primary-accent); background-color: rgba(99, 102, 241, 0.05); }
+       .nav-menu a:hover { color: var(--primary-accent); background-color: rgba(var(--primary-accent-rgb), 0.05); }
        #nav-toggle:checked ~ .nav-menu { display: flex; }
        .nav-toggle-label { display: flex; align-items: center; justify-content: center; font-size: 1.6rem; color: var(--text-primary); padding: 0.5rem; }
-
        main { padding: calc(var(--navbar-height) - 10px + 1.5rem) 1rem 1.5rem; }
        section { padding: 2rem 1rem; }
-
        .hero-section { padding: 0 1rem !important; min-height: auto; }
-       .hero-logo { width: 110px; height: 110px;} /* Adjusted */
+       .hero-logo { width: 110px; height: 110px;}
        .hero-brand-title { font-size: 1.6rem; }
-       .main-title { font-size: 1.6rem; line-height: 1.4; margin-bottom: 1.2rem; } /* Adjusted */
+       .main-title { font-size: 1.6rem; line-height: 1.4; margin-bottom: 1.2rem; }
        .hero-description { font-size: 1rem; margin-bottom: 2rem;}
        .cta-buttons { flex-direction: column; gap: 1rem; margin-bottom: 2rem;}
        .glow-btn { width: 100%; font-size: 1rem; padding: 1rem 1.5rem; }
        .scroll-down-banner { margin-top: 1.5rem; }
-
-       .section-title { margin-bottom: 2.5rem; } /* Adjusted */
+       .section-title { margin-bottom: 2.5rem; }
        .section-title h2 { font-size: 1.8rem; }
        .section-title p { font-size: 0.95rem; }
-       .section-divider { margin: 2.5rem auto; width: 60%; } /* Adjusted */
-
+       .section-divider { margin: 2.5rem auto; width: 60%; }
        .demo-card-container { gap: 1.5rem; }
-       .demo-card { padding: 1.5rem; gap: 1.5rem; flex-direction: column !important; /* Ensure column stack */ }
+       .demo-card { padding: 1.5rem; gap: 1.5rem; flex-direction: column !important; }
        .demo-card-text, .demo-card-image { flex-basis: auto; min-width: unset; width: 100%; }
        .demo-card-text h3 { font-size: 1.3rem; }
        .demo-card-text p { font-size: 0.95rem; }
        .demo-card-text .glow-btn { align-self: stretch; }
        .demo-card-image { padding: 0.5rem; }
        .demo-card-image img { max-width: 90%; }
-
        .offer-grid { grid-template-columns: 1fr; gap: 1rem; }
        .offer-item { padding: 1.5rem; }
        .offer-item h3 { font-size: 1.1rem; }
        .offer-item p { font-size: 0.95rem; padding-left: 1.5em; }
        .offer-item p::before { top: 0.7em; }
-
        .contact-buttons { gap: 1rem; margin-top: 1.5rem;}
        .contact-container p { font-size: 0.95rem; }
-
        .site-footer { margin-top: 2rem; padding: 1.5rem 1rem;}
        .site-footer p { font-size: 0.85rem; }
+       /* Hide background shapes on mobile? Optional, for performance */
+       /*
+       .background-shapes {
+           display: none;
+       }
+       */
     }
 
   </style>
 </head>
 <body>
+  <div class="background-shapes">
+    <div class="shape shape-1"></div>
+    <div class="shape shape-2"></div>
+    <div class="shape shape-3"></div>
+    <div class="shape shape-4"></div>
+  </div>
+
   <div class="scroll-indicator" id="scrollIndicator"></div>
 
-  <header class="navbar" id="navbar"> <div class="navbar-container">
-        <a href="#home" class="navbar-left">Javelin</a> <input type="checkbox" id="nav-toggle">
+  <header class="navbar" id="navbar">
+    <div class="navbar-container">
+        <a href="#home" class="navbar-left">Javelin</a>
+        <input type="checkbox" id="nav-toggle">
         <label for="nav-toggle" class="nav-toggle-label">
           <i class="fas fa-bars"></i>
         </label>
@@ -426,12 +381,12 @@
   <main>
     <section class="hero-section" id="home" data-aos="fade-up">
         <div class="hero-logo-container">
-          <img src="bus_logo_22.png" alt="Javelin Logo" class="hero-logo">
+          <img src="bus_logo_11.png" alt="Javelin Logo" class="hero-logo">
           <div class="hero-brand-title">Javelin Business Solution <i class='fas fa-bolt'></i></div>
         </div>
         <h1 class="main-title">
             Unlock Business Insights with AI & Advanced Analytics
-            </h1>
+        </h1>
         <p class="hero-description">
           Transform your business with cutting-edge artificial intelligence powered by deep learning and advanced analytics, presented clearly and approachably.
         </p>
@@ -445,12 +400,12 @@
        <div class="scroll-down-banner">
          <div class="scroll-down-content">
            <span class="scroll-down-text">Scroll to explore</span>
-           <i class="fas fa-angle-down scroll-down-icon"></i> </div>
+           <i class="fas fa-angle-down scroll-down-icon"></i>
+         </div>
        </div>
     </section>
 
     <hr class="section-divider" />
-
 
     <section id="demo">
        <div class="section-title" data-aos="fade-up">
@@ -497,7 +452,6 @@
     </section>
 
     <hr class="section-divider" />
-
 
     <section id="about" data-aos="fade-up">
        <div class="section-title">
@@ -563,11 +517,10 @@
   <button id="backToTop" title="Back to top" aria-label="Back to top">↑</button>
 
   <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-
   <script>
     // --- Cache DOM Elements ---
     const scrollIndicator = document.getElementById("scrollIndicator");
-    const navbar = document.getElementById("navbar"); // Use ID
+    const navbar = document.getElementById("navbar");
     const backToTopButton = document.getElementById("backToTop");
     const scrollDownBanner = document.querySelector('.scroll-down-banner');
     const navToggleCheckbox = document.getElementById('nav-toggle');
@@ -579,7 +532,7 @@
     }
 
     // --- Initialize Libraries ---
-    AOS.init({ duration: 800, once: true }); // Enable on mobile for light theme? Test performance.
+    AOS.init({ duration: 800, once: true });
 
     // --- Event Listeners ---
     let lastScrollY = window.pageYOffset;
@@ -597,22 +550,14 @@
                 // Scroll Indicator
                 if (scrollIndicator) scrollIndicator.style.width = scrollPercent + "%";
 
-                // Navbar appearance on scroll (for light theme)
+                // Navbar appearance on scroll
                 if (navbar) {
-                    if (currentScrollY > 50) { // Add scrolled class after scrolling 50px
+                    if (currentScrollY > 50) {
                         navbar.classList.add('scrolled');
                     } else {
                         navbar.classList.remove('scrolled');
                     }
-
-                    // Optional: Hide/show navbar (can be added back if desired)
-                    /*
-                    if (scrollDirection === 'down' && currentScrollY > (navbar.offsetHeight + 50)) {
-                        navbar.style.transform = 'translateY(-100%)';
-                    } else if (scrollDirection === 'up' || currentScrollY <= navbar.offsetHeight) {
-                        navbar.style.transform = 'translateY(0)';
-                    }
-                    */
+                    // Optional: Hide/show navbar logic can be added here if desired
                 }
 
                 // Back to Top button display
@@ -654,7 +599,7 @@
         });
      });
 
-     // Initial check in case page loads scrolled down
+     // Initial check
      handleScroll();
 
   </script>

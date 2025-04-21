@@ -18,10 +18,10 @@
       --text-secondary: #cbd5e1; /* Slate-300 */
       --text-highlight: #e0e7ff; /* Indigo-100 */
       --border-color: rgba(255, 255, 255, 0.1);
-      --container-width: 1240px;
-      --content-width: 1040px;
+      --container-width: 1240px; /* Navbar/Outer container max width */
+      --content-width: 1200px;   /* Increased Max content width for better large screen use */
       --navbar-height: 65px;
-      --section-padding-y: 4rem; /* Standard vertical padding */
+      --section-padding-y: 3rem; /* Reduced standard vertical padding */
     }
 
     /* Global Reset & Base Styles */
@@ -33,23 +33,19 @@
       font-family: 'Inter', sans-serif;
       overflow-x: hidden;
       animation: bg-shift 20s ease infinite alternate;
-      line-height: 1.7; /* Slightly increased line height */
+      line-height: 1.7;
     }
 
     /* Accessibility */
-    :focus-visible {
-      outline: 3px solid var(--secondary-accent); /* Brighter focus */
-      outline-offset: 2px;
-      border-radius: 4px;
-    }
+    :focus-visible { outline: 3px solid var(--secondary-accent); outline-offset: 2px; border-radius: 4px; }
 
     /* Background Effects */
     #particles-js { position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -1; }
     body::before {
       content: ""; position: fixed; top: 0; left: 0; width: 100%; height: 100%;
       background: radial-gradient(circle at 20% 20%, rgba(99, 102, 241, 0.1), transparent 60%),
-                  radial-gradient(circle at 80% 40%, rgba(0, 255, 240, 0.08), transparent 70%), /* Changed second gradient color */
-                  repeating-linear-gradient(45deg, rgba(255,255,255,0.01), rgba(255,255,255,0.01) 1px, transparent 1px, transparent 5px); /* Subtle lines */
+                  radial-gradient(circle at 80% 40%, rgba(0, 255, 240, 0.08), transparent 70%),
+                  repeating-linear-gradient(45deg, rgba(255,255,255,0.01), rgba(255,255,255,0.01) 1px, transparent 1px, transparent 5px);
       z-index: -2; pointer-events: none; animation: glowBackground 30s linear infinite;
     }
 
@@ -68,68 +64,40 @@
     #nav-toggle { display: none; }
 
     /* Main Content Area */
-    main { max-width: var(--container-width); margin: 0 auto; padding: calc(var(--navbar-height) + var(--section-padding-y)) 1rem var(--section-padding-y); } /* Added standard padding */
+    /* Adjusted top padding slightly to account for reduced section padding */
+    main { max-width: var(--container-width); margin: 0 auto; padding: calc(var(--navbar-height) + var(--section-padding-y) + 1rem) 1rem var(--section-padding-y); }
 
     /* Hero Section */
-    .hero-section { display: flex; flex-direction: column; justify-content: center; align-items: center; min-height: 80vh; text-align: center; padding: 0 1rem; } /* Padding managed by main */
+    /* Reduced min-height slightly, padding handled by main/section */
+    .hero-section { display: flex; flex-direction: column; justify-content: center; align-items: center; min-height: 75vh; text-align: center; padding-top: 0 !important; padding-bottom: 2rem !important; } /* Use !important carefully if needed, or adjust main padding */
     .hero-logo-container { display: flex; flex-direction: column; align-items: center; margin-bottom: 1.5rem; }
     .hero-logo { width: 170px; height: 170px; margin-bottom: 1rem; }
-    .hero-brand-title { font-size: 2.4rem; font-weight: 700; /* Adjusted weight */ font-family: 'Orbitron', sans-serif; background: linear-gradient(to right, #ddd6fe, #a5b4fc); -webkit-background-clip: text; -webkit-text-fill-color: transparent; letter-spacing: 1.5px; /* Adjusted spacing */ text-shadow: 0 0 20px rgba(129,140,248,0.5); text-transform: uppercase; animation: pulse-shadow 2.5s ease-in-out infinite alternate; }
+    .hero-brand-title { font-size: 2.4rem; font-weight: 700; font-family: 'Orbitron', sans-serif; background: linear-gradient(to right, #ddd6fe, #a5b4fc); -webkit-background-clip: text; -webkit-text-fill-color: transparent; letter-spacing: 1.5px; text-shadow: 0 0 20px rgba(129,140,248,0.5); text-transform: uppercase; animation: pulse-shadow 2.5s ease-in-out infinite alternate; }
     .hero-brand-title .fa-bolt { color: #facc15; margin-left: 0.8rem; vertical-align: middle; }
 
-    /* --- .main-title: Clarity Fixes --- */
-    .main-title {
-      font-family: 'Inter', sans-serif; /* Changed font */
-      font-size: 1.8rem; /* Adjusted size */
-      font-weight: 500; /* Normal weight */
-      color: var(--text-highlight); /* Changed to solid color */
-      margin: 0 auto 1.8rem; /* Adjusted margin */
-      max-width: 650px;
-      line-height: 1.5; /* Adjusted line height */
-      /* Removed animation, gradient, border, overflow, white-space */
+    /* Main Title */
+     .main-title {
+      font-family: 'Inter', sans-serif;
+      font-size: 1.8rem;
+      font-weight: 500;
+      color: var(--text-highlight);
+      margin: 0 auto 1.8rem;
+      max-width: 650px; /* Keeping text width constrained for readability */
+      line-height: 1.5;
     }
-    /* --- End .main-title Fixes --- */
 
-    .hero-description { font-size: 1.1rem; opacity: 0.9; max-width: 700px; margin: 0 auto 2.5rem; color: var(--text-secondary); line-height: 1.8; }
+    .hero-description { font-size: 1.1rem; opacity: 0.9; max-width: 750px; /* Slightly wider text */ margin: 0 auto 2.5rem; color: var(--text-secondary); line-height: 1.8; }
     .cta-buttons { display: flex; flex-wrap: wrap; gap: 1.5rem; justify-content: center; margin-bottom: 3rem; }
     .glow-btn { display: inline-flex; align-items: center; justify-content: center; padding: 0.9rem 2rem; background: linear-gradient(135deg, var(--primary-accent), #818cf8); border-radius: 12px; color: white; font-weight: 600; font-size: 1.05rem; text-decoration: none; transition: all 0.3s ease; gap: 0.8rem; box-shadow: 0 4px 15px rgba(99, 102, 241, 0.2); border: 2px solid transparent; }
     .glow-btn:hover { transform: translateY(-3px) scale(1.03); box-shadow: 0 8px 25px rgba(99, 102, 241, 0.3); }
     .glow-btn:active { transform: translateY(0) scale(1); background: var(--primary-accent); box-shadow: 0 2px 10px rgba(99, 102, 241, 0.2); }
-    .glow-btn--outlined { background: none; border: 2px solid #6b7280; /* Adjusted border color */ color: var(--text-secondary); font-weight: 500; box-shadow: none; }
+    .glow-btn--outlined { background: none; border: 2px solid #6b7280; color: var(--text-secondary); font-weight: 500; box-shadow: none; }
     .glow-btn--outlined:hover { border-color: var(--primary-accent); color: var(--text-highlight); background-color: rgba(99, 102, 241, 0.08); box-shadow: none; transform: translateY(-3px) scale(1.03); }
     .glow-btn--outlined:active { transform: translateY(0) scale(1); background-color: rgba(99, 102, 241, 0.15); }
-
-    /* --- Button Hierarchy: Apply solid bg to primary CTA --- */
-    .cta-buttons .glow-btn:first-child { /* Target "Try JimmyAI" */
-        /* Use default solid .glow-btn style */
-        /* Override potential outline style if classes are mixed */
-        background: linear-gradient(135deg, var(--primary-accent), #818cf8);
-        border-color: transparent;
-        color: white;
-        font-weight: 600;
-        box-shadow: 0 4px 15px rgba(99, 102, 241, 0.2);
-    }
-    .cta-buttons .glow-btn:first-child:hover {
-         transform: translateY(-3px) scale(1.03);
-         box-shadow: 0 8px 25px rgba(99, 102, 241, 0.3);
-    }
-     .cta-buttons .glow-btn:nth-child(2) { /* Target "What I Offer" */
-        /* Explicitly use outlined styles */
-        background: none;
-        border: 2px solid #6b7280;
-        color: var(--text-secondary);
-        font-weight: 500;
-        box-shadow: none;
-    }
-     .cta-buttons .glow-btn:nth-child(2):hover {
-        border-color: var(--primary-accent);
-        color: var(--text-highlight);
-        background-color: rgba(99, 102, 241, 0.08);
-        box-shadow: none;
-        transform: translateY(-3px) scale(1.03);
-    }
-    /* --- End Button Hierarchy --- */
-
+    .cta-buttons .glow-btn:first-child { background: linear-gradient(135deg, var(--primary-accent), #818cf8); border-color: transparent; color: white; font-weight: 600; box-shadow: 0 4px 15px rgba(99, 102, 241, 0.2); }
+    .cta-buttons .glow-btn:first-child:hover { transform: translateY(-3px) scale(1.03); box-shadow: 0 8px 25px rgba(99, 102, 241, 0.3); }
+    .cta-buttons .glow-btn:nth-child(2) { background: none; border: 2px solid #6b7280; color: var(--text-secondary); font-weight: 500; box-shadow: none; }
+    .cta-buttons .glow-btn:nth-child(2):hover { border-color: var(--primary-accent); color: var(--text-highlight); background-color: rgba(99, 102, 241, 0.08); box-shadow: none; transform: translateY(-3px) scale(1.03); }
 
     /* Scroll Down Banner */
     .scroll-down-banner { margin-top: 2.5rem; display: flex; justify-content: center; z-index: 20; animation: scrollPulse 1.8s ease-in-out infinite; pointer-events: none; transition: opacity 0.5s ease; }
@@ -138,36 +106,36 @@
     .scroll-down-icon { font-size: 1.8rem; color: #93c5fd; animation: bounceGlow 1.8s ease-in-out infinite; text-shadow: 0 0 10px #93c5fd, 0 0 20px #6366f1; }
 
     /* Section Divider */
-    .section-divider { width: 100%; height: 60px; position: relative; overflow: hidden; margin: 3rem 0; } /* Increased margin */
+    .section-divider { width: 100%; height: 60px; position: relative; overflow: hidden; margin: 2rem 0; } /* Reduced margin */
     .divider-line { position: absolute; top: 50%; left: 50%; width: 2px; height: 100px; background: linear-gradient(to bottom, transparent, var(--secondary-accent), transparent); transform: translate(-50%, -50%); animation: fade-slide 2.5s ease-in-out infinite alternate; }
 
     /* Shared Section Styles */
     section { padding: var(--section-padding-y) 1rem; } /* Standardized padding */
-    #hero { padding-top: 0; padding-bottom: 2rem; } /* Adjust hero padding */
+    #hero { padding-top: 0 !important; padding-bottom: 2rem !important; } /* Adjust hero padding - use !important or restructure */
 
-     .section-title { text-align: center; margin-bottom: 3.5rem; }
+     .section-title { text-align: center; margin-bottom: 3rem; } /* Reduced margin */
      .section-title h2 { font-size: 2.6rem; font-weight: 700; background: linear-gradient(to right, #ddd6fe, #a5b4fc); -webkit-background-clip: text; -webkit-text-fill-color: transparent; letter-spacing: 0.6px; line-height: 1.4; margin-bottom: 1.2rem; }
-     .section-title p { font-size: 1.1rem; max-width: 680px; margin: 0 auto; opacity: 0.9; line-height: 1.8; color: var(--text-secondary); }
+     .section-title p { font-size: 1.1rem; max-width: 750px; /* Slightly wider text */ margin: 0 auto; opacity: 0.9; line-height: 1.8; color: var(--text-secondary); }
 
     /* Demo Section */
-    .demo-card-container { max-width: var(--content-width); margin: 0 auto; display: flex; flex-direction: column; gap: 3.5rem; }
-    .demo-card { display: flex; flex-wrap: wrap; align-items: center; /* Center items vertically */ justify-content: space-between; gap: 3rem; background: var(--surface); padding: 3rem; border-radius: 20px; box-shadow: 0 8px 25px rgba(0, 0, 0, 0.25); border: 1px solid var(--border-color); transition: transform 0.4s ease, box-shadow 0.4s ease, border-color 0.4s ease; overflow: hidden; }
+    .demo-card-container { max-width: var(--content-width); margin: 0 auto; display: flex; flex-direction: column; gap: 3rem; } /* Reduced gap */
+    .demo-card { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 3rem; background: var(--surface); padding: 2.5rem; /* Adjusted padding */ border-radius: 20px; box-shadow: 0 8px 25px rgba(0, 0, 0, 0.25); border: 1px solid var(--border-color); transition: transform 0.4s ease, box-shadow 0.4s ease, border-color 0.4s ease; overflow: hidden; }
     .demo-card:hover { transform: translateY(-6px); box-shadow: 0 12px 35px rgba(0, 0, 0, 0.35); border-color: rgba(99, 102, 241, 0.6); }
-    .demo-card-text { flex: 1.1 1 45%; /* Give text slightly more weight */ min-width: 300px; display: flex; flex-direction: column; justify-content: center; gap: 1.2rem; }
+    .demo-card-text { flex: 1.1 1 45%; min-width: 300px; display: flex; flex-direction: column; justify-content: center; gap: 1.2rem; }
     .demo-card-text h3 { font-size: 1.6rem; color: var(--text-highlight); display: flex; align-items: center; gap: 0.8rem; }
-    .demo-card-text h3 i { color: var(--primary-accent); } /* Color icon */
-    .demo-card-text p { line-height: 1.8; font-size: 1.1rem; /* Increased size */ opacity: 0.9; flex-grow: 1; color: var(--text-secondary); }
+    .demo-card-text h3 i { color: var(--primary-accent); }
+    .demo-card-text p { line-height: 1.8; font-size: 1.1rem; opacity: 0.9; flex-grow: 1; color: var(--text-secondary); }
     .demo-card-text .glow-btn { margin-top: 1.5rem; align-self: flex-start; }
     .demo-card-image { flex: 0.9 1 45%; min-width: 300px; display: flex; justify-content: center; align-items: center; padding: 1rem; }
     .demo-card-image img { width: 100%; max-width: 450px; border-radius: 16px; display: block; box-shadow: 0 5px 20px rgba(0,0,0,0.2); }
 
     /* "What I Offer" Section */
-    .offer-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); /* Slightly larger minmax */ gap: 2.5rem; text-align: left; max-width: var(--content-width); margin: 0 auto; }
+    .offer-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem; /* Reduced gap */ text-align: left; max-width: var(--content-width); margin: 0 auto; }
     .offer-item { background: var(--surface); border-radius: 16px; padding: 2.5rem; box-shadow: 0 6px 16px rgba(0,0,0,0.2); border: 1px solid var(--border-color); transition: transform 0.3s ease, box-shadow 0.3s ease; }
     .offer-item:hover { transform: translateY(-5px); box-shadow: 0 10px 25px rgba(0,0,0,0.3); }
-    .offer-item h3 { color: #a5b4fc; /* Lighter indigo */ margin-bottom: 1rem; font-size: 1.3rem; display: flex; align-items: center; gap: 0.7rem; }
-    .offer-item h3 i { color: var(--secondary-accent); } /* Use cyan for icons */
-    .offer-item p { font-size: 1.05rem; /* Increased size */ color: var(--text-secondary); line-height: 1.7; margin-bottom: 0.6rem; }
+    .offer-item h3 { color: #a5b4fc; margin-bottom: 1rem; font-size: 1.3rem; display: flex; align-items: center; gap: 0.7rem; }
+    .offer-item h3 i { color: var(--secondary-accent); }
+    .offer-item p { font-size: 1.05rem; color: var(--text-secondary); line-height: 1.7; margin-bottom: 0.6rem; }
     .offer-item p:last-child { margin-bottom: 0; }
 
     /* Contact Section */
@@ -180,17 +148,16 @@
     #backToTop:hover { opacity: 0.9; transform: scale(1.1); }
 
     /* Animations */
-    /* Keep existing @keyframes */
     @keyframes typing { from { width: 0 } to { width: 100% } }
     @keyframes blink-caret { 0%, 100% { border-color: transparent; } 50% { border-color: var(--secondary-accent); } }
-    @keyframes bounce { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(6px); } } /* Less bounce */
+    @keyframes bounce { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(6px); } }
     @keyframes fade-slide { 0% { transform: translate(-50%, -50%) scaleY(0.6); opacity: 0.1; } 100% { transform: translate(-50%, -50%) scaleY(1); opacity: 0.6; } }
-    @keyframes pulse-shadow { from { text-shadow: 0 0 15px rgba(165, 180, 252, 0.5); } to { text-shadow: 0 0 25px rgba(165, 180, 252, 0.7); } } /* Simplified text shadow pulse */
+    @keyframes pulse-shadow { from { text-shadow: 0 0 15px rgba(165, 180, 252, 0.5); } to { text-shadow: 0 0 25px rgba(165, 180, 252, 0.7); } }
     @keyframes fadeInSlideDown { 0% { opacity: 0; transform: translateY(-10px); } 100% { opacity: 1; transform: translateY(0); } }
-    @keyframes bounceGlow { 0%, 100% { transform: translateY(0); text-shadow: 0 0 10px #93c5fd, 0 0 20px #6366f1; } 50% { transform: translateY(6px); text-shadow: 0 0 14px #93c5fd, 0 0 24px #6366f1; } } /* Adjusted glow */
+    @keyframes bounceGlow { 0%, 100% { transform: translateY(0); text-shadow: 0 0 10px #93c5fd, 0 0 20px #6366f1; } 50% { transform: translateY(6px); text-shadow: 0 0 14px #93c5fd, 0 0 24px #6366f1; } }
     @keyframes bg-shift { 0% { background-color: #0f172a; } 50% { background-color: #111827; } 100% { background-color: #0f172a; } }
     @keyframes glowBackground { 0% { background-position: 0 0, 0 0, 0 0; } 100% { background-position: 100px 100px, -100px 200px, 0 0; } }
-    @keyframes scrollPulse { 0%, 100% { opacity: 0.4; transform: translateY(0); } 50% { opacity: 1; transform: translateY(4px); } } /* Subtle pulse */
+    @keyframes scrollPulse { 0%, 100% { opacity: 0.4; transform: translateY(0); } 50% { opacity: 1; transform: translateY(4px); } }
     @keyframes scrollTextFade { 0% { opacity: 0.2; transform: scale(0.95); } 100% { opacity: 1; transform: scale(1); } }
 
     /* AOS Animation defaults */
@@ -201,13 +168,13 @@
 
     /* Tablet */
     @media screen and (max-width: 1024px) {
-        html { font-size: 15px; } /* Base size for tablet/mobile */
+        html { font-size: 15px; }
         .navbar-container { padding: 0 1.5rem; }
-        main { padding: calc(var(--navbar-height) + 3rem) 1.5rem 3rem; } /* Adjust padding */
-        section { padding: 3rem 1.5rem; }
+        main { padding: calc(var(--navbar-height) + 2rem) 1.5rem 2rem; } /* Adjust padding */
+        section { padding: var(--section-padding-y) 1.5rem; } /* Use variable */
         .section-title h2 { font-size: 2.3rem; }
         .hero-brand-title { font-size: 2rem; }
-        .main-title { font-size: 1.6rem; max-width: 90%; } /* Allow wider text */
+        .main-title { font-size: 1.6rem; max-width: 90%; }
         .hero-description { max-width: 90%; }
         .demo-card { padding: 2rem; gap: 2rem; }
         .offer-grid { gap: 1.5rem; }
@@ -219,42 +186,46 @@
        .navbar-container { height: calc(var(--navbar-height) - 10px); padding: 0 1rem; }
        .navbar-left { font-size: 1.1rem; }
 
-       .nav-menu { top: calc(var(--navbar-height) - 10px); background-color: rgba(15, 23, 42, 0.98); padding: 0.5rem 0; }
-       .nav-menu a { padding: 0.9rem 1.5rem; border-bottom: 1px solid rgba(255, 255, 255, 0.05); }
-       .nav-toggle-label { display: flex; font-size: 1.6rem; padding: 0.5rem; }
+       .nav-menu { position: absolute; top: calc(var(--navbar-height) - 10px); left: 0; right: 0; background-color: rgba(15, 23, 42, 0.98); flex-direction: column; width: 100%; display: none; padding: 0.5rem 0; border-top: 1px solid var(--border-color); box-shadow: 0 4px 10px rgba(0,0,0,0.3); gap: 0; }
+       .nav-menu a { padding: 0.9rem 1.5rem; text-align: left; border-bottom: 1px solid rgba(255, 255, 255, 0.05); }
+       .nav-menu a:last-child { border-bottom: none; }
+       #nav-toggle:checked ~ .nav-menu { display: flex; }
+       .nav-toggle-label { display: flex; align-items: center; justify-content: center; font-size: 1.6rem; color: white; padding: 0.5rem; }
 
-       main { padding: calc(var(--navbar-height) - 10px + 2rem) 1rem 2rem; }
-       section { padding: 2.5rem 1rem; } /* Reduced section padding */
+       /* Reduced main padding slightly more */
+       main { padding: calc(var(--navbar-height) - 10px + 1.5rem) 1rem 1.5rem; }
+       section { padding: 2rem 1rem; } /* Reduced section padding more */
 
-       .hero-section { padding: 0 1rem; min-height: 70vh; }
+       .hero-section { padding: 0 1rem !important; min-height: auto; } /* Let content define height */
        .hero-logo { width: 120px; height: 120px;}
        .hero-brand-title { font-size: 1.6rem; }
        .main-title { font-size: 1.4rem; line-height: 1.4; margin-bottom: 1.2rem; }
        .hero-description { font-size: 1rem; margin-bottom: 2rem;}
        .cta-buttons { flex-direction: column; gap: 1rem; margin-bottom: 2rem;}
-       .glow-btn { width: 100%; font-size: 1rem; padding: 1rem 1.5rem; } /* Larger padding for touch */
+       .glow-btn { width: 100%; font-size: 1rem; padding: 1rem 1.5rem; }
        .scroll-down-banner { margin-top: 1.5rem; }
 
-       .section-title { margin-bottom: 2.5rem; }
-       .section-title h2 { font-size: 2rem; }
-       .section-title p { font-size: 1rem; }
-       .section-divider { margin: 2rem 0; height: 40px;}
+       .section-title { margin-bottom: 2rem; }
+       .section-title h2 { font-size: 1.8rem; } /* Smaller title */
+       .section-title p { font-size: 0.95rem; } /* Smaller text */
+       .section-divider { margin: 1.5rem 0; height: 40px;} /* Reduced margin */
 
-       .demo-card-container { gap: 2rem; }
+       .demo-card-container { gap: 1.5rem; } /* Reduced gap */
        .demo-card { padding: 1.5rem; gap: 1.5rem; flex-direction: column; }
        .demo-card-text, .demo-card-image { flex-basis: auto; min-width: unset; width: 100%; }
-       .demo-card-text h3 { font-size: 1.4rem; }
-       .demo-card-text p { font-size: 1rem; }
-       .demo-card-text .glow-btn { align-self: stretch; } /* Full width button */
+       .demo-card-text h3 { font-size: 1.3rem; }
+       .demo-card-text p { font-size: 0.95rem; } /* Smaller text */
+       .demo-card-text .glow-btn { align-self: stretch; }
        .demo-card-image { padding: 0.5rem; }
        .demo-card-image img { max-width: 90%; }
 
-       .offer-grid { grid-template-columns: 1fr; gap: 1.5rem; } /* Force single column */
-       .offer-item { padding: 1.8rem; }
-       .offer-item h3 { font-size: 1.2rem; }
-       .offer-item p { font-size: 1rem; }
+       .offer-grid { grid-template-columns: 1fr; gap: 1rem; } /* Reduced gap */
+       .offer-item { padding: 1.5rem; } /* Reduced padding */
+       .offer-item h3 { font-size: 1.1rem; } /* Smaller title */
+       .offer-item p { font-size: 0.95rem; } /* Smaller text */
 
        .contact-buttons { gap: 1rem; margin-top: 1.5rem;}
+       .contact-container p { font-size: 0.95rem; } /* Smaller text */
     }
 
   </style>
@@ -345,12 +316,9 @@
 
             <div class="demo-card" data-aos="fade-up">
                <div class="demo-card-text">
-                 <h3><i class="fas fa-cloud-sun"></i> Deep Learning Analysis</h3>
-                 <p>Predict by Deep Learning Method.</p>
-                 <a href="about.html" target="_blank" rel="noopener noreferrer" class="glow-btn">Coming Soon</a>
-               </div>
+                 <h3><i class="fas fa-brain"></i> Deep Learning Analysis</h3> <p>Advanced predictive analysis using custom deep learning methodologies tailored to your business data.</p> <a href="about.html" target="_blank" rel="noopener noreferrer" class="glow-btn glow-btn--outlined">Coming Soon</a> </div>
                <div class="demo-card-image">
-                 <img src="bus_logo_22.png" alt="neural networks" loading="lazy">
+                 <img src="bus_logo_22.png" alt="Deep Learning Representation" loading="lazy">
                </div>
              </div>
         </div>
@@ -359,7 +327,7 @@
 
     <div class="section-divider">
          <div class="divider-line"></div>
-    </div>
+     </div>
 
 
     <section id="about" data-aos="fade-up">
@@ -403,7 +371,7 @@
 
     <div class="section-divider">
          <div class="divider-line"></div>
-    </div>
+     </div>
 
 
     <section id="contact" data-aos="fade-up">
@@ -414,7 +382,7 @@
         </p>
       </div>
       <div class="contact-buttons">
-          <a href="jimmysc171@outlook.com" class="glow-btn"><i class="fas fa-envelope"></i> Email</a>
+          <a href="mailto:jimmysc171@outlook.com" class="glow-btn"><i class="fas fa-envelope"></i> Email</a>
           <a href="https://www.linkedin.com/in/chen-shengjie" target="_blank" rel="noopener noreferrer" class="glow-btn"><i class="fab fa-linkedin"></i> LinkedIn</a>
         </div>
     </section>
@@ -435,78 +403,68 @@
     const navToggleCheckbox = document.getElementById('nav-toggle');
 
     // --- Initialize Libraries ---
-    AOS.init({ duration: 800, once: true, disable: 'mobile' }); // Disable AOS on mobile for performance
+    AOS.init({ duration: 800, once: true, disable: 'mobile' }); // Keep disabled on mobile
 
-    if (window.innerWidth > 768) { // Only init particles on non-mobile
-        particlesJS('particles-js', { /* Particles config from previous step */
+    if (window.innerWidth > 768) { // Keep disabled on mobile
+        particlesJS('particles-js', {
              particles: { number: { value: 60, density: { enable: true, value_area: 800 } }, color: { value: '#ffffff' }, shape: { type: 'circle' }, opacity: { value: 0.2, random: true, anim: { enable: true, speed: 0.5, opacity_min: 0.05 } }, size: { value: 2.5, random: true }, line_linked: { enable: true, distance: 160, color: '#ffffff', opacity: 0.15, width: 1 }, move: { enable: true, speed: 0.8, direction: 'none', random: true, straight: false, out_mode: 'out', bounce: false } }, interactivity: { detect_on: 'canvas', events: { onhover: { enable: true, mode: 'repulse' }, onclick: { enable: false }, resize: true }, modes: { repulse: { distance: 80, duration: 0.4 } } }, retina_detect: true
         });
     }
 
-
     // --- Event Listeners ---
-    let lastScroll = 0;
-    let isTicking = false; // For scroll throttling
+    let lastScrollY = window.pageYOffset;
+    let isTicking = false;
 
-    // Consolidated Scroll Handler Function
     function handleScroll() {
-        lastScroll = window.pageYOffset; // Update lastScroll first
+        const currentScrollY = window.pageYOffset; // Capture current scroll position
 
         if (!isTicking) {
             window.requestAnimationFrame(() => {
-                const currentScroll = lastScroll; // Use the captured value
+                const scrollDirection = currentScrollY > lastScrollY ? 'down' : 'up'; // Determine direction based on captured value vs last known
                 const docHeight = document.body.scrollHeight - window.innerHeight;
-                const scrollPercent = docHeight > 0 ? (currentScroll / docHeight) * 100 : 0;
+                const scrollPercent = docHeight > 0 ? (currentScrollY / docHeight) * 100 : 0;
 
                 // Scroll Indicator
                 if (scrollIndicator) scrollIndicator.style.width = scrollPercent + "%";
 
-                // Navbar hide/show (Simplified logic a bit)
+                // Navbar hide/show
                 if (navbar) {
-                     if (currentScroll > navbar.offsetHeight && currentScroll > lastScroll + 10) { // Hiding threshold
+                     if (scrollDirection === 'down' && currentScrollY > navbar.offsetHeight) {
                          navbar.style.transform = 'translateY(-100%)';
-                     } else if (currentScroll < lastScroll - 10 || currentScroll <= navbar.offsetHeight) { // Showing threshold
-                        navbar.style.transform = 'translateY(0)';
+                     } else if (scrollDirection === 'up' || currentScrollY <= navbar.offsetHeight) {
+                         // Show immediately on scroll up or if near top
+                         navbar.style.transform = 'translateY(0)';
                      }
                 }
 
                 // Back to Top button display
                 if (backToTopButton) {
-                    backToTopButton.style.display = (currentScroll > 300) ? "flex" : "none";
+                    backToTopButton.style.display = (currentScrollY > 300) ? "flex" : "none";
                 }
 
                // Scroll Down Banner Fade Out
                if (scrollDownBanner) {
-                   scrollDownBanner.style.opacity = (currentScroll > 100) ? '0' : '1'; // Fade out earlier
+                   scrollDownBanner.style.opacity = (currentScrollY > 100) ? '0' : '1';
                }
 
-               isTicking = false; // Allow next frame request
+               lastScrollY = currentScrollY <= 0 ? 0 : currentScrollY; // Update last known scroll position AFTER calculations
+               isTicking = false;
            });
-           isTicking = true; // Throttle subsequent calls
+           isTicking = true;
         }
     }
 
-    // Attach Scroll Listener
     window.addEventListener('scroll', handleScroll, { passive: true });
 
-
-    // Back to Top button click action
      if (backToTopButton) {
-         backToTopButton.addEventListener("click", () => {
-           window.scrollTo({ top: 0, behavior: "smooth" });
-         });
+         backToTopButton.addEventListener("click", () => { window.scrollTo({ top: 0, behavior: "smooth" }); });
      }
 
-     // Close mobile menu when a link is clicked
      document.querySelectorAll('.nav-menu a').forEach(link => {
-        link.addEventListener('click', () => {
-            if (navToggleCheckbox && navToggleCheckbox.checked) {
-                navToggleCheckbox.checked = false;
-            }
-        });
+        link.addEventListener('click', () => { if (navToggleCheckbox && navToggleCheckbox.checked) { navToggleCheckbox.checked = false; } });
      });
 
-     // Initial check in case page loads scrolled down
+     // Initial check
      handleScroll();
 
   </script>

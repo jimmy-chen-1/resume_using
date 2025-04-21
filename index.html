@@ -3,12 +3,9 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Javelin | Establish Machine Learning & Database</title>
-  <link rel="icon" type="image/x-icon" href="mlog.ico" />
+  <title>Javelin | ML & DB Solutions</title> <link rel="icon" type="image/x-icon" href="mlog.ico" />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Orbitron:wght@500;700&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
-  <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
-  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
   <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet" />
   <style>
     :root {
@@ -16,17 +13,42 @@
       --background: #0f172a;
       --surface: rgba(255, 255, 255, 0.04);
       --text-primary: #f8fafc;
+      --text-secondary: #cbd5e1; /* Added secondary text color */
+      --border-color: rgba(255, 255, 255, 0.1); /* Added border color variable */
       --container-width: 1240px;
       --content-width: 1040px;
+      --navbar-height: 65px; /* Example variable for navbar height */
     }
+
+    /* Global Reset & Base Styles */
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth; /* Global smooth scroll */
+      font-size: 16px; /* Base font size */
+    }
+
     body {
       background: var(--background);
       color: var(--text-primary);
       font-family: 'Inter', sans-serif;
-      margin: 0;
       overflow-x: hidden;
       animation: bg-shift 20s ease infinite alternate;
+      line-height: 1.6; /* Improved default line height */
     }
+
+    /* Accessibility */
+    :focus-visible {
+        outline: 2px solid var(--primary-accent);
+        outline-offset: 2px;
+        border-radius: 4px; /* Optional: add radius to outline */
+    }
+
+    /* Background Effects */
     #particles-js {
       position: fixed;
       top: 0;
@@ -35,6 +57,22 @@
       height: 100%;
       z-index: -1;
     }
+    body::before {
+      content: "";
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: radial-gradient(circle at 20% 20%, rgba(99, 102, 241, 0.15), transparent 60%),
+                  radial-gradient(circle at 80% 40%, rgba(236, 72, 153, 0.1), transparent 70%),
+                  repeating-linear-gradient(45deg, rgba(255,255,255,0.01), rgba(255,255,255,0.01) 2px, transparent 2px, transparent 6px);
+      z-index: -2;
+      pointer-events: none;
+      animation: glowBackground 30s linear infinite;
+    }
+
+    /* Scroll Indicator */
     .scroll-indicator {
       position: fixed;
       top: 0;
@@ -45,23 +83,28 @@
       z-index: 2000;
       transition: width 0.2s ease-out;
     }
+
+    /* Navbar */
     header.navbar {
       position: fixed;
       top: 0;
       left: 0;
       right: 0;
-      max-width: var(--container-width);
-      margin: 0 auto;
-      padding: 1rem 2rem;
+      max-width: 100%; /* Full width for background */
+      z-index: 1000;
+      transition: transform 0.3s ease-in-out; /* Added transition */
       background: rgba(15, 23, 42, 0.7);
       backdrop-filter: blur(10px);
-      z-index: 1000;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      border-bottom: 1px solid rgba(255,255,255,0.1);
-      width: 100%;
-      box-sizing: border-box; /* Added for better width control */
+      border-bottom: 1px solid var(--border-color);
+    }
+    .navbar-container { /* Inner container for content alignment */
+        max-width: var(--container-width);
+        margin: 0 auto;
+        padding: 0 2rem; /* Padding moved here */
+        height: var(--navbar-height);
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
     }
     .navbar-left {
       font-weight: 700;
@@ -70,6 +113,7 @@
       white-space: nowrap;
       transition: all 0.3s ease;
       cursor: pointer;
+      text-decoration: none; /* Assuming it might be a link */
     }
     .navbar-left:hover {
       color: #93c5fd;
@@ -78,130 +122,185 @@
     }
     .nav-menu {
       display: flex;
-      flex-wrap: wrap;
-      justify-content: flex-end;
       gap: 1.5rem;
     }
-    .navbar a {
+    .nav-menu a {
       color: #fff;
       text-decoration: none;
       font-weight: 500;
-      margin-left: 1.5rem;
       white-space: nowrap;
+      padding: 0.5rem 0; /* Add some vertical padding */
+      position: relative; /* For potential hover effects */
     }
-    .navbar a:hover {
+    .nav-menu a:hover {
       color: #93c5fd;
     }
+     /* Basic responsive nav toggle placeholder */
+    .nav-toggle-label { display: none; cursor: pointer; z-index: 1001;}
+    #nav-toggle { display: none; }
+
+
+    /* Main Content Area */
     main {
       max-width: var(--container-width);
       margin: 0 auto;
-      padding: 0 1rem;
+      padding: calc(var(--navbar-height) + 2rem) 1rem 2rem; /* Adjust top padding for fixed navbar */
     }
+
+    /* Hero Section */
     .hero-section {
       display: flex;
+      flex-direction: column; /* Stack elements vertically */
       justify-content: center;
       align-items: center;
-      min-height: 90vh;
-      padding: 7rem 2rem 4rem;
-      position: relative;
+      min-height: 85vh; /* Adjusted height */
       text-align: center;
-      margin-top: -2rem; /* Applied from inline style */
+      padding: 2rem 1rem; /* Base padding */
     }
-    .main-title {
+    .hero-logo-container {
+       display: flex;
+       flex-direction: column;
+       align-items: center;
+       margin-bottom: 1.5rem;
+    }
+    .hero-logo { /* Class for the logo image */
+        width: 180px; /* Slightly smaller */
+        height: 180px;
+        margin-bottom: 0.8rem;
+    }
+    .hero-brand-title {
+        font-size: 2.2rem; /* Base size */
+        font-weight: 900;
+        font-family: 'Orbitron', sans-serif;
+        background: linear-gradient(to right, #818cf8, #6366f1);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        letter-spacing: 1.8px;
+        text-shadow: 0 0 20px rgba(129,140,248,0.6);
+        text-transform: uppercase;
+        animation: pulse-shadow 2s ease-in-out infinite alternate;
+    }
+    .hero-brand-title .fa-bolt { /* Style icon specifically */
+        color: #facc15;
+        margin-left: 0.6rem;
+    }
+    .main-title { /* Hero Subtitle */
       font-family: 'Orbitron', sans-serif;
-      font-size: 1.6rem; /* Applied from inline style */
+      font-size: 1.6rem;
       font-weight: 700;
       background: linear-gradient(to right, #00fff0, #5b7bff, #a855f7);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
-      margin-bottom: 1.5rem;
+      margin: 0 auto 1.5rem; /* Center and add bottom margin */
+      max-width: 600px; /* Constrain width */
       animation: typing 3s steps(40, end), blink-caret 0.75s step-end infinite;
       white-space: nowrap;
       overflow: hidden;
       border-right: 3px solid #00fff0;
+    }
+    .hero-description {
+      font-size: 1.1rem;
+      opacity: 0.9;
+      max-width: 700px; /* Constrained width */
+      margin: 0 auto 2rem; /* Center and add bottom margin */
+      color: var(--text-secondary);
     }
     .cta-buttons {
       display: flex;
       flex-wrap: wrap;
       gap: 1.5rem;
       justify-content: center;
-      margin: 2rem 0 1.5rem;
+      margin-bottom: 3rem; /* Increased bottom margin */
     }
     .glow-btn {
       display: inline-flex;
       align-items: center;
-      padding: 1rem 2rem;
+      justify-content: center; /* Center content */
+      padding: 0.9rem 1.8rem; /* Base padding */
       background: linear-gradient(135deg, var(--primary-accent), #818cf8);
       border-radius: 12px;
       color: white;
       font-weight: 600;
+      font-size: 1.05rem; /* Base font size */
       text-decoration: none;
-      transition: 0.3s ease;
+      transition: all 0.3s ease; /* Smooth transition for all properties */
       gap: 0.8rem;
       box-shadow: 0 0 12px rgba(129, 140, 248, 0.3);
+      border: 2px solid transparent; /* Add border for consistent sizing with outlined */
     }
     .glow-btn:hover {
       transform: scale(1.05);
       box-shadow: 0 0 20px rgba(129, 140, 248, 0.6);
     }
-    .scroll-down-hint { /* Note: This class wasn't used in the HTML, but style exists */
-      position: relative;
-      top: 1.5rem;
-      color: #93c5fd;
-      animation: bounce 2s infinite;
-      font-size: 1.1rem;
+    /* Outlined Button Modifier */
+    .glow-btn--outlined {
+       background: none;
+       border: 2px solid #818cf8;
+       color: #c7d2fe;
+       font-weight: 500;
+       box-shadow: none;
     }
-    .scroll-down-banner { /* Style for the scrolling hint at the bottom */
-       position: absolute;
-       bottom: 3vh;
-       left: 0;
-       width: 100%;
+    .glow-btn--outlined:hover {
+        background-color: rgba(129, 140, 248, 0.1); /* Subtle background on hover */
+        box-shadow: none;
+    }
+
+    /* Scroll Down Banner */
+    .scroll-down-banner {
+       margin-top: 2rem; /* Add space above */
+       /* position: absolute; bottom: 3vh; left: 0; width: 100%; */ /* Removed absolute positioning */
        display: flex;
        justify-content: center;
        z-index: 20;
        animation: scrollPulse 1.5s ease-in-out infinite;
        pointer-events: none;
     }
-    .section-divider {
-      width: 100%;
-      height: 40px; /* Reduced height from 100px */
-      position: relative;
-      overflow: visible;
-      margin-top: 2rem; /* Applied from inline style */
+    .scroll-down-content { /* Inner container */
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 0.3rem;
     }
-    .about-container {
-      display: flex;
-      flex-direction: row;
-      flex-wrap: wrap;
-      gap: 2rem;
-      max-width: var(--content-width);
-      margin: 0 auto;
+    .scroll-down-text {
+        color: var(--text-secondary);
+        font-size: 1rem;
+        font-weight: 500;
+        letter-spacing: 0.5px;
+        animation: scrollTextFade 3s ease-in-out infinite alternate;
     }
-    .about-card { /* Style for the card in original about section (if restored) */
-      width: 100%;
-      max-width: 780px;
-      background: rgba(255, 255, 255, 0.03);
-      border: 1px solid rgba(255, 255, 255, 0.08);
-      padding: 2.5rem;
-      border-radius: 20px;
-      box-shadow: 0 10px 25px rgba(0,0,0,0.2);
-    }
-    .about-card h3 {
-      font-size: 1.3rem;
-      margin-bottom: 1rem;
-      color: #93c5fd;
-      display: flex;
-      align-items: center;
-      gap: 0.5rem;
-    }
-    .about-card ul {
-      padding-left: 1.2rem;
-      line-height: 1.8;
+    .scroll-down-icon {
+        font-size: 2rem;
+        color: #93c5fd;
+        animation: bounceGlow 1.5s ease-in-out infinite;
+        text-shadow: 0 0 12px #93c5fd, 0 0 24px #6366f1;
     }
 
-    /* --- START: Styles for Demo Cards --- */
-    .feature-section-title { /* Style for section titles */
-        font-size: 2.8rem;
+    /* Section Divider */
+    .section-divider {
+      width: 100%;
+      height: 80px; /* Increased height */
+      position: relative;
+      overflow: hidden; /* Hide overflow */
+      margin: 1rem 0; /* Adjusted margin */
+    }
+    .divider-line { /* Style for the animated line */
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        width: 2px;
+        height: 80px; /* Match parent */
+        background: linear-gradient(to bottom, transparent, #93c5fd, transparent);
+        transform: translate(-50%, -50%);
+        animation: fade-slide 2.5s ease-in-out infinite alternate; /* Slower animation */
+    }
+
+    /* Shared Section Title Style */
+     .section-title {
+        text-align: center;
+        margin-bottom: 3rem; /* Consistent bottom margin */
+     }
+     .section-title h2 {
+        font-size: 2.6rem; /* Base size */
         font-weight: 700;
         background: linear-gradient(to right, #818cf8, #6366f1);
         -webkit-background-clip: text;
@@ -209,55 +308,143 @@
         letter-spacing: 0.6px;
         line-height: 1.4;
         margin-bottom: 1rem;
-    }
+     }
+     .section-title p {
+        font-size: 1.1rem;
+        max-width: 680px;
+        margin: 0 auto;
+        opacity: 0.9;
+        line-height: 1.8;
+        color: var(--text-secondary);
+     }
 
+    /* Demo Section */
+    #demo { padding-top: 2rem; }
+    .demo-card-container {
+        max-width: var(--content-width);
+        margin: 0 auto;
+        display: flex;
+        flex-direction: column;
+        gap: 3rem; /* Gap between cards */
+    }
     .demo-card {
-      /* Styles moved from inline & unified */
       display: flex;
       flex-wrap: wrap;
-      align-items: stretch; /* Make inner divs fill height */
+      align-items: stretch;
       justify-content: space-between;
       gap: 2.5rem;
-      background: rgba(255, 255, 255, 0.03); /* Slightly increased opacity */
-      padding: 2rem;
-      margin: 0 auto 3rem; /* Keep margin */
+      background: rgba(255, 255, 255, 0.03);
+      padding: 2.5rem; /* Increased padding */
       border-radius: 20px;
-      box-shadow: 0 8px 25px rgba(0, 0, 0, 0.25); /* Adjusted shadow */
-      min-height: 380px; /* Keep min-height */
-      max-width: var(--content-width); /* Keep max-width */
-
-      /* Add a subtle border for consistency */
-      border: 1px solid rgba(255, 255, 255, 0.1); /* Unified border */
-
-      /* Keep existing transitions + add border-color */
+      box-shadow: 0 8px 25px rgba(0, 0, 0, 0.25);
+      border: 1px solid var(--border-color);
       transition: transform 0.4s ease, box-shadow 0.4s ease, border-color 0.4s ease;
+      overflow: hidden; /* Contain elements */
     }
-
     .demo-card:hover {
       transform: translateY(-6px);
-      box-shadow: 0 12px 30px rgba(0, 0, 0, 0.35); /* Stronger hover shadow */
-      border-color: rgba(129, 140, 248, 0.5); /* Optional: change border color on hover */
+      box-shadow: 0 12px 30px rgba(0, 0, 0, 0.35);
+      border-color: rgba(129, 140, 248, 0.5);
     }
-    /* --- END: Styles for Demo Cards --- */
+    .demo-card-text {
+        flex: 1 1 48%;
+        min-width: 280px; /* Min width before wrapping */
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        gap: 1rem; /* Adjusted gap */
+    }
+    .demo-card-text h3 {
+        font-size: 1.5rem;
+        color: var(--text-secondary);
+        display: flex;
+        align-items: center;
+        gap: 0.8rem; /* Gap for icon */
+    }
+    .demo-card-text p {
+        line-height: 1.8;
+        font-size: 1.05rem;
+        opacity: 0.9;
+        flex-grow: 1; /* Allow paragraph to take space */
+    }
+    .demo-card-text .glow-btn {
+        margin-top: 1rem;
+        align-self: flex-start; /* Align button left */
+    }
+    .demo-card-image {
+        flex: 1 1 48%;
+        min-width: 280px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 1rem;
+    }
+    .demo-card-image img {
+        width: 100%;
+        max-width: 450px; /* Max image width */
+        border-radius: 16px;
+        display: block; /* Remove extra space below image */
+    }
 
-    /* About Section Styles */
-    .about-section {
-      padding: 2.8rem 2rem;
+
+    /* "What I Offer" Section */
+    #about { padding: 3rem 1rem; } /* Base padding */
+    .offer-grid { /* Replaced [style*="grid"] */
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        gap: 2rem;
+        text-align: left;
+        max-width: var(--content-width);
+        margin: 0 auto; /* Center grid */
     }
-    .about-section h2 { /* Adjusted selector for specificity */
-        font-size: 2.4rem;
-        margin-bottom: 1.4rem;
-    }
-     .about-section [style*="grid"] > div { /* Targeting grid items in about section */
+    .offer-item { /* Replaced [style*="grid"] > div */
         background: rgba(255,255,255,0.02);
         border-radius: 16px;
-        padding: 1.8rem;
+        padding: 2rem; /* Increased padding */
         box-shadow: 0 6px 16px rgba(0,0,0,0.2);
-     }
-      .about-section [style*="grid"] h3 { /* Targeting grid item titles */
+        border: 1px solid var(--border-color); /* Added subtle border */
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    .offer-item:hover {
+        transform: translateY(-4px);
+        box-shadow: 0 10px 20px rgba(0,0,0,0.25);
+    }
+    .offer-item h3 {
         color: #93c5fd;
-        margin-bottom: 0.8rem;
-      }
+        margin-bottom: 1rem; /* Increased margin */
+        font-size: 1.2rem; /* Slightly larger */
+        display: flex;
+        align-items: center;
+        gap: 0.6rem;
+    }
+    .offer-item p {
+        font-size: 1rem;
+        color: var(--text-secondary);
+        line-height: 1.7;
+        margin-bottom: 0.5rem; /* Space between paragraphs */
+    }
+    .offer-item p:last-child {
+        margin-bottom: 0;
+    }
+
+    /* Contact Section */
+    #contact { padding: 3rem 1rem; }
+    .contact-container {
+        max-width: var(--content-width);
+        margin: 0 auto;
+        text-align: center;
+    }
+    .contact-buttons {
+        display: flex;
+        justify-content: center;
+        gap: 1.5rem; /* Adjusted gap */
+        flex-wrap: wrap;
+        margin-top: 2.5rem;
+    }
+    .contact-buttons .glow-btn { /* Style contact buttons */
+        padding: 0.8rem 1.6rem;
+        font-size: 1.05rem;
+    }
 
     /* Back to top button */
     #backToTop {
@@ -277,228 +464,128 @@
       justify-content: center;
       align-items: center;
       box-shadow: 0 4px 10px rgba(0,0,0,0.3);
-      transition: opacity 0.3s ease;
+      transition: opacity 0.3s ease, transform 0.3s ease; /* Added transform transition */
     }
     #backToTop:hover {
       opacity: 0.8;
-    }
-
-    /* Responsive Navbar */
-    .nav-toggle-label {
-      display: none; /* Hidden by default */
-      cursor: pointer;
-      z-index: 1001;
-    }
-    #nav-toggle {
-      display: none; /* Hide the actual checkbox */
+      transform: scale(1.1); /* Add hover effect */
     }
 
     /* Animations */
-    @keyframes typing {
-      from { width: 0 }
-      to { width: 100% }
-    }
-    @keyframes blink-caret {
-      0%, 100% { border-color: transparent; }
-      50% { border-color: #00fff0; }
-    }
-    @keyframes bounce {
-      0%, 100% { transform: translateY(0); }
-      50% { transform: translateY(8px); }
-    }
-    @keyframes fade-slide { /* For the section divider line */
-      0% { transform: translateX(-50%) scaleY(0.6); opacity: 0.1; }
-      100% { transform: translateX(-50%) scaleY(1); opacity: 0.6; }
-    }
-    @keyframes pulse-shadow { /* For Javelin title */
-      from {
-        box-shadow: 0 0 30px rgba(99,102,241,0.4), inset 0 0 10px rgba(255,255,255,0.05);
-      }
-      to {
-        box-shadow: 0 0 45px rgba(99,102,241,0.6), inset 0 0 14px rgba(255,255,255,0.08);
-      }
-    }
-    @keyframes fadeInSlideDown {
-      0% { opacity: 0; transform: translateY(-10px); }
-      100% { opacity: 1; transform: translateY(0); }
-    }
-    @keyframes bounceGlow { /* For scroll down icon */
-      0%, 100% {
-        transform: translateY(0);
-        text-shadow: 0 0 10px #93c5fd, 0 0 20px #6366f1;
-      }
-      50% {
-        transform: translateY(8px);
-        text-shadow: 0 0 16px #93c5fd, 0 0 28px #6366f1;
-      }
-    }
-    @keyframes bg-shift {
-      0% { background-color: #0f172a; }
-      50% { background-color: #111827; }
-      100% { background-color: #0f172a; }
-    }
-    body::before { /* Background gradient effect */
-      content: "";
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background: radial-gradient(circle at 20% 20%, rgba(99, 102, 241, 0.15), transparent 60%),
-                  radial-gradient(circle at 80% 40%, rgba(236, 72, 153, 0.1), transparent 70%),
-                  repeating-linear-gradient(45deg, rgba(255,255,255,0.01), rgba(255,255,255,0.01) 2px, transparent 2px, transparent 6px);
-      z-index: -2;
-      pointer-events: none;
-      animation: glowBackground 30s linear infinite;
-    }
-    @keyframes glowBackground {
-      0% { background-position: 0 0, 0 0, 0 0; }
-      100% { background-position: 100px 100px, -100px 200px, 0 0; }
-    }
-    @keyframes fadeToggle { /* Not used? */
-      0%, 80% { opacity: 0; }
-      85%, 95% { opacity: 1; }
-      100% { opacity: 0; }
-    }
-    @keyframes scrollPulse { /* For scroll banner container */
-      0%, 100% { opacity: 0.3; transform: translateY(0); }
-      50% { opacity: 1; transform: translateY(6px); }
-    }
-    @keyframes scrollTextFade { /* For scroll banner text */
-      0% { opacity: 0.1; transform: scale(0.95); }
-      100% { opacity: 1; transform: scale(1); }
-    }
+    @keyframes typing { from { width: 0 } to { width: 100% } }
+    @keyframes blink-caret { 0%, 100% { border-color: transparent; } 50% { border-color: #00fff0; } }
+    @keyframes bounce { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(8px); } }
+    @keyframes fade-slide { 0% { transform: translate(-50%, -50%) scaleY(0.6); opacity: 0.1; } 100% { transform: translate(-50%, -50%) scaleY(1); opacity: 0.6; } }
+    @keyframes pulse-shadow { from { box-shadow: 0 0 30px rgba(99,102,241,0.4), inset 0 0 10px rgba(255,255,255,0.05); } to { box-shadow: 0 0 45px rgba(99,102,241,0.6), inset 0 0 14px rgba(255,255,255,0.08); } }
+    @keyframes fadeInSlideDown { 0% { opacity: 0; transform: translateY(-10px); } 100% { opacity: 1; transform: translateY(0); } }
+    @keyframes bounceGlow { 0%, 100% { transform: translateY(0); text-shadow: 0 0 10px #93c5fd, 0 0 20px #6366f1; } 50% { transform: translateY(8px); text-shadow: 0 0 16px #93c5fd, 0 0 28px #6366f1; } }
+    @keyframes bg-shift { 0% { background-color: #0f172a; } 50% { background-color: #111827; } 100% { background-color: #0f172a; } }
+    @keyframes glowBackground { 0% { background-position: 0 0, 0 0, 0 0; } 100% { background-position: 100px 100px, -100px 200px, 0 0; } }
+    @keyframes scrollPulse { 0%, 100% { opacity: 0.3; transform: translateY(0); } 50% { opacity: 1; transform: translateY(6px); } }
+    @keyframes scrollTextFade { 0% { opacity: 0.1; transform: scale(0.95); } 100% { opacity: 1; transform: scale(1); } }
 
     /* AOS Animation defaults */
-    [data-aos] {
-      opacity: 0;
-      transition-property: transform, opacity;
-    }
-    [data-aos].aos-animate {
-      opacity: 1;
+    [data-aos] { opacity: 0; transition-property: transform, opacity; }
+    [data-aos].aos-animate { opacity: 1; }
+
+    /* --- Media Queries --- */
+
+    /* Tablet */
+    @media screen and (max-width: 1024px) {
+        .navbar-container { padding: 0 1.5rem; }
+        main { padding: calc(var(--navbar-height) + 1.5rem) 1.5rem 1.5rem; }
+        .section-title h2 { font-size: 2.4rem; }
+        .hero-brand-title { font-size: 2rem; }
+        .main-title { font-size: 1.5rem; white-space: normal;}
     }
 
-    /* Media Queries */
+    /* Mobile */
     @media (max-width: 768px) {
-       header.navbar {
-         padding: 1rem; /* Adjust padding */
+       html { font-size: 15px; } /* Slightly reduce base font size */
+       .navbar-container { padding: 0 1rem; height: calc(var(--navbar-height) - 10px); } /* Adjust height/padding */
+       .navbar-left { font-size: 1.1rem; }
+
+       /* Hamburger Menu */
+       .nav-menu {
+         position: absolute;
+         top: calc(var(--navbar-height) - 10px); /* Position below navbar */
+         left: 0;
+         right: 0;
+         background-color: rgba(15, 23, 42, 0.97); /* Slightly more opaque */
+         flex-direction: column;
+         width: 100%;
+         display: none;
+         padding: 0.5rem 0; /* Adjust padding */
+         border-top: 1px solid var(--border-color);
+         box-shadow: 0 4px 10px rgba(0,0,0,0.3); /* Add shadow */
+         gap: 0; /* Remove gap for column layout */
        }
-      .nav-menu {
-        position: absolute;
-        top: 64px; /* Adjust based on navbar height */
-        left: 0; /* Align to left */
-        right: 0; /* Stretch full width */
-        background-color: rgba(15, 23, 42, 0.95);
-        flex-direction: column;
-        width: 100%;
-        display: none; /* Hidden until toggled */
-        padding: 1rem 0; /* Adjust padding */
-        border-top: 1px solid rgba(255,255,255,0.1);
-      }
        .nav-menu a {
-         margin-left: 0; /* Remove left margin */
-         padding: 0.8rem 2rem; /* Add padding for touch targets */
-         text-align: center; /* Center text */
+         padding: 1rem 1.5rem; /* Increase padding */
+         text-align: left; /* Align text left */
          border-bottom: 1px solid rgba(255, 255, 255, 0.05);
        }
-       .nav-menu a:last-child {
-           border-bottom: none;
-       }
-      #nav-toggle:checked ~ .nav-menu { /* Use general sibling combinator */
-        display: flex;
-      }
-      .nav-toggle-label {
-        display: block; /* Show the hamburger icon */
-      }
-      .nav-toggle-label i {
-         font-size: 1.5rem;
-         color: white;
-      }
-       .main-title {
-        font-size: 1.4rem !important; /* Use !important carefully */
-        border-right: none;
-        white-space: normal; /* Allow wrapping */
-        animation: none; /* Disable typing animation on small screens */
-        border-right: none; /* Remove caret */
-       }
-       .hero-section {
-         padding: 6rem 1rem 5rem; /* Adjusted padding */
-         min-height: 70vh; /* Reduced height */
-       }
-       .cta-buttons {
-         flex-direction: column;
-         gap: 1rem;
-         margin-bottom: 1.5rem !important; /* Use !important carefully */
-       }
-       .glow-btn {
-         width: 100%;
+       .nav-menu a:last-child { border-bottom: none; }
+       #nav-toggle:checked ~ .nav-menu { display: flex; }
+       .nav-toggle-label {
+         display: flex; /* Use flex to center icon */
+         align-items: center;
          justify-content: center;
-         font-size: 1rem;
-         padding: 0.8rem 1.5rem; /* Adjust padding */
+         font-size: 1.6rem; /* Increase icon size */
+         color: white;
+         padding: 0.5rem; /* Add padding */
        }
-       .scroll-down-banner {
-         bottom: 1.5vh !important; /* Adjust position */
+
+       main { padding: calc(var(--navbar-height) - 10px + 1rem) 1rem 1rem; } /* Adjust top padding */
+
+       /* Hero Section Mobile */
+       .hero-section { padding: 1rem; min-height: 75vh; }
+       .hero-logo { width: 130px; height: 130px;}
+       .hero-brand-title { font-size: 1.8rem; }
+       .main-title {
+         font-size: 1.3rem;
+         border-right: none;
+         white-space: normal;
+         animation: none; /* Disable animation */
+         margin-bottom: 1rem;
        }
-       .feature-section-title {
-         font-size: 2rem !important; /* Adjust font size */
-       }
-       .about-section [style*="grid"] { /* Target grid in about section */
-          grid-template-columns: 1fr; /* Stack items */
-       }
-       .about-card { /* Style for original about card if used */
-         padding: 1.5rem;
-       }
-       .navbar-left {
-         font-size: 1.1rem !important; /* Adjust font size */
-       }
-       .about-section ul {
-         font-size: 1rem;
-       }
+       .hero-description { font-size: 1rem; margin-bottom: 1.5rem;}
+       .cta-buttons { flex-direction: column; gap: 1rem; margin-bottom: 2rem;}
+       .glow-btn { width: 100%; font-size: 1rem; padding: 0.8rem 1.5rem; }
+       .scroll-down-banner { margin-top: 1rem; }
+
+       /* Section Titles Mobile */
+       .section-title { margin-bottom: 2rem; }
+       .section-title h2 { font-size: 2rem; }
+       .section-title p { font-size: 1rem; }
+
+       /* Demo Card Mobile */
        .demo-card {
            padding: 1.5rem;
            gap: 1.5rem;
+           flex-direction: column; /* Force column layout */
        }
-       .demo-card > div { /* Target direct children of demo-card */
-            flex-basis: 100%; /* Stack content and image */
+       .demo-card-text, .demo-card-image {
+            flex-basis: auto; /* Reset basis */
             min-width: unset;
+            width: 100%; /* Take full width */
        }
-       .demo-card img {
-           max-width: 80%; /* Adjust image size */
-           margin: 1rem auto 0;
-       }
-    }
+       .demo-card-text h3 {font-size: 1.3rem;}
+       .demo-card-text p {font-size: 1rem;}
+       .demo-card-image { padding: 0.5rem; } /* Reduce padding */
+       .demo-card-image img { max-width: 90%; margin: 0 auto; }
 
-    @media screen and (min-width: 769px) and (max-width: 1024px) {
-      .main-title {
-        font-size: 2rem;
-        white-space: normal; /* Allow wrapping */
-      }
-      .hero-section {
-        padding: 6rem 2rem 3rem;
-      }
-      .glow-btn {
-        font-size: 1.05rem;
-        padding: 0.9rem 1.8rem;
-      }
-      .feature-section-title {
-        font-size: 2.4rem;
-      }
-      .about-section ul {
-        font-size: 1.05rem;
-      }
-      .about-card { /* Style for original about card if used */
-        padding: 2rem;
-      }
-        .demo-card {
-            gap: 2rem;
-        }
-    }
+       /* Offer Grid Mobile */
+       .offer-grid { gap: 1.5rem; }
+       .offer-item { padding: 1.5rem; }
+       .offer-item h3 { font-size: 1.1rem; }
+       .offer-item p { font-size: 0.95rem; }
 
-    @media (max-height: 850px) {
-      .scroll-down-hint { /* Class not used in HTML */
-        margin-top: 0 !important;
-      }
-    }
+       /* Contact Mobile */
+       .contact-buttons { gap: 1rem; margin-top: 1.5rem;}
+
+    } /* End @media (max-width: 768px) */
+
 
   </style>
 </head>
@@ -507,225 +594,233 @@
   <div id="particles-js"></div>
 
   <header class="navbar">
-    <div class="navbar-left">Javelin Business Solution</div>
-    <input type="checkbox" id="nav-toggle">
-    <label for="nav-toggle" class="nav-toggle-label">
-      <i class="fas fa-bars"></i>
-    </label>
-    <nav class="nav-menu">
-      <a href="#home">Home</a>
-      <a href="#demo">Demo</a>
-      <a href="#about">What I Offer</a>
-      <a href="about.html">Contact</a> </nav>
+    <div class="navbar-container">
+        <a href="#home" class="navbar-left">Javelin Business Solution</a> <input type="checkbox" id="nav-toggle">
+        <label for="nav-toggle" class="nav-toggle-label">
+          <i class="fas fa-bars"></i>
+        </label>
+        <nav class="nav-menu">
+          <a href="#home">Home</a>
+          <a href="#demo">Demo</a>
+          <a href="#about">What I Offer</a>
+          <a href="#contact">Contact</a> </nav>
+    </div>
   </header>
 
   <main>
     <section class="hero-section" id="home" data-aos="fade-up">
-      <div>
-        <div style="display: flex; flex-direction: column; align-items: center; margin-bottom: 1.5rem;">
-          <img src="bus_logo_22.png" alt="Javelin Logo" style="width: 200px; height: 200px; margin-bottom: 0.8rem;">
-          <div style="font-size: 2.4rem; font-weight: 900; font-family: 'Orbitron', sans-serif; background: linear-gradient(to right, #818cf8, #6366f1); -webkit-background-clip: text; -webkit-text-fill-color: transparent; letter-spacing: 1.8px; text-shadow: 0 0 20px rgba(129,140,248,0.6); text-transform: uppercase; animation: pulse-shadow 2s ease-in-out infinite alternate;">Javelin Business Solution <i class='fas fa-bolt' style='color: #facc15; margin-left: 0.6rem;'></i></div>
+        <div class="hero-logo-container">
+          <img src="bus_logo_22.png" alt="Javelin Logo" class="hero-logo">
+          <div class="hero-brand-title">Javelin Business Solution <i class='fas fa-bolt'></i></div>
         </div>
-        <h1 class="main-title">Jimmy provided Business Data & Machine Learning Solutions</h1>
-        <p style="font-size: 1.1rem; opacity: 0.9; max-width: 800px; margin: 0 auto;">
+        <h1 class="main-title">Business Data & Machine Learning Solutions</h1>
+        <p class="hero-description">
           Transform your business with cutting-edge artificial intelligence powered by deep learning and advanced analytics.
         </p>
         <div class="cta-buttons">
-          <a href="https://ai.jimmyai.uk/" class="glow-btn" style="background: none; border: 2px solid #818cf8; color: #c7d2fe; font-weight: 500; padding: 1rem 2.2rem; font-size: 1.05rem; box-shadow: none; transition: all 0.3s ease;">
-            <i class="fas fa-rocket"></i> Try JimmyAI
+          <a href="https://ai.jimmyai.uk/" target="_blank" rel="noopener noreferrer" class="glow-btn glow-btn--outlined"> <i class="fas fa-rocket"></i> Try JimmyAI
           </a>
-          <a href="#about" class="glow-btn" style="background: none; border: 2px solid #818cf8; color: #c7d2fe; font-weight: 500; padding: 1rem 2.2rem; font-size: 1.05rem; box-shadow: none; transition: all 0.3s ease;"><i class="fas fa-layer-group"></i> What I Offer</a>
+          <a href="#about" class="glow-btn glow-btn--outlined"><i class="fas fa-layer-group"></i> What I Offer</a>
         </div>
-      </div>
+
        <div class="scroll-down-banner">
-         <div style="display: flex; flex-direction: column; align-items: center; gap: 0.3rem;">
-           <span style="color: #cbd5e1; font-size: 1rem; font-weight: 500; letter-spacing: 0.5px; animation: scrollTextFade 3s ease-in-out infinite alternate;">Scroll to explore</span>
-           <i class="fas fa-angle-double-down" style="font-size: 2rem; color: #93c5fd; animation: bounceGlow 1.5s ease-in-out infinite; text-shadow: 0 0 12px #93c5fd, 0 0 24px #6366f1;"></i>
+         <div class="scroll-down-content">
+           <span class="scroll-down-text">Scroll to explore</span>
+           <i class="fas fa-angle-double-down scroll-down-icon"></i>
          </div>
        </div>
     </section>
 
 
     <div class="section-divider">
-         <div style="position: absolute; top: -20px; left: 50%; width: 2px; height: 60px; background: linear-gradient(to bottom, #93c5fd, transparent); transform: translateX(-50%); animation: fade-slide 2s ease-in-out infinite alternate;"></div>
+         <div class="divider-line"></div>
      </div>
 
-    <section id="demo" style="padding-top: 2rem;"> <div style="max-width: var(--content-width); margin: 0 auto; display: flex; flex-direction: column; gap: 0;"> <div style="width: 100%; text-align: center; margin-bottom: 2.5rem;"> <h2 class="feature-section-title">Machine Learning Demonstration</h2>
-          <p style="font-size: 1.1rem; max-width: 680px; margin: 0 auto; opacity: 0.9; line-height: 1.8;">
+    <section id="demo" style="padding-top: 2rem;">
+       <div class="section-title" data-aos="fade-up">
+          <h2>Machine Learning Demonstration</h2>
+          <p>
             Explore a series of interactive modules demonstrating JimmyAI's capabilities in forecasting, analytics, and secure deployment.
           </p>
         </div>
 
-        <div class="demo-card" data-aos="fade-up">
-          <div style="flex: 1 1 48%; min-width: 300px; display: flex; flex-direction: column; justify-content: center; gap: 1.2rem;">
-            <h3 style="font-size: 1.5rem; color: #cbd5e1;"><i class="fas fa-cogs"></i> AutoML app</h3> <p style="line-height: 1.8; font-size: 1.05rem; opacity: 0.9;">Full ML lifecycle — from data preprocessing, feature classification, model comparison.</p>
-            <a href="about.html" target="_blank" class="glow-btn" style="margin-top: 1rem; align-self: start;">Try Now</a>
-          </div>
-          <div style="flex: 1 1 48%; min-width: 300px; display: flex; justify-content: center; align-items: center; padding: 1rem;">
-             <img src="automl.png" alt="AutoML App Screenshot" style="width: 100%; border-radius: 16px;">
-          </div>
-        </div>
+        <div class="demo-card-container">
+            <div class="demo-card" data-aos="fade-up">
+              <div class="demo-card-text">
+                <h3><i class="fas fa-cogs"></i> AutoML app</h3>
+                <p>Full ML lifecycle — from data preprocessing, feature classification, model comparison.</p>
+                <a href="about.html" target="_blank" class="glow-btn">Try Now</a>
+              </div>
+              <div class="demo-card-image">
+                <img src="automl.png" alt="AutoML App Screenshot" loading="lazy">
+              </div>
+            </div>
 
-        <div class="demo-card" data-aos="fade-up">
-          <div style="flex: 1 1 48%; min-width: 300px; display: flex; flex-direction: column; justify-content: center; gap: 1.2rem;">
-            <h3 style="font-size: 1.5rem; color: #cbd5e1;"><i class="fas fa-cloud-sun"></i> LSTM - Weather Forecast</h3>
-            <p style="line-height: 1.8; font-size: 1.05rem; opacity: 0.9;">Predict future temperature changes based on recent weather trends using LSTM neural networks.</p>
-            <a href="https://huggingface.co/spaces/jimmysc171/lstm_weather" target="_blank" class="glow-btn" style="margin-top: 1rem; align-self: start;">Try Now</a>
-          </div>
-          <div style="flex: 1 1 48%; min-width: 300px; display: flex; justify-content: center; align-items: center; padding: 1rem;">
-            <img src="lstm.png" alt="LSTM Forecast Screenshot" style="width: 100%; border-radius: 16px;">
-          </div>
-        </div>
+            <div class="demo-card" data-aos="fade-up">
+              <div class="demo-card-text">
+                <h3><i class="fas fa-cloud-sun"></i> LSTM - Weather Forecast</h3>
+                <p>Predict future temperature changes based on recent weather trends using LSTM neural networks.</p>
+                <a href="https://huggingface.co/spaces/jimmysc171/lstm_weather" target="_blank" rel="noopener noreferrer" class="glow-btn">Try Now</a>
+              </div>
+              <div class="demo-card-image">
+                <img src="lstm.png" alt="LSTM Forecast Screenshot" loading="lazy">
+              </div>
+            </div>
 
-        <div class="demo-card" data-aos="fade-up">
-          <div style="flex: 1 1 48%; min-width: 300px; display: flex; flex-direction: column; justify-content: center; gap: 1.2rem;">
-            <h3 style="font-size: 1.5rem; color: #cbd5e1;"><i class="fas fa-cloud-sun"></i> LSTM - Weather Forecast</h3>
-            <p style="line-height: 1.8; font-size: 1.05rem; opacity: 0.9;">Predict future temperature changes based on recent weather trends using LSTM neural networks.</p>
-            <a href="https://huggingface.co/spaces/jimmysc171/lstm_weather" target="_blank" class="glow-btn" style="margin-top: 1rem; align-self: start;">Try Now</a>
-          </div>
-          <div style="flex: 1 1 48%; min-width: 300px; display: flex; justify-content: center; align-items: center; padding: 1rem;">
-            <img src="lstm.png" alt="LSTM Forecast Screenshot" style="width: 100%; border-radius: 16px;">
-          </div>
+            <div class="demo-card" data-aos="fade-up">
+               <div class="demo-card-text">
+                 <h3><i class="fas fa-cloud-sun"></i> LSTM - Weather Forecast</h3>
+                 <p>Predict future temperature changes based on recent weather trends using LSTM neural networks.</p>
+                 <a href="https://huggingface.co/spaces/jimmysc171/lstm_weather" target="_blank" rel="noopener noreferrer" class="glow-btn">Try Now</a>
+               </div>
+               <div class="demo-card-image">
+                 <img src="lstm.png" alt="LSTM Forecast Screenshot" loading="lazy">
+               </div>
+             </div>
         </div>
-
-      </div>
     </section>
 
-    <div class="section-divider" style="height: 40px;"> <div style="position: absolute; top: -20px; left: 50%; width: 2px; height: 60px; background: linear-gradient(to bottom, #93c5fd, transparent); transform: translateX(-50%); animation: fade-slide 2s ease-in-out infinite alternate;"></div>
+    <div class="section-divider">
+         <div class="divider-line"></div>
     </div>
 
 
-    <section class="about-section" id="about" data-aos="fade-up">
-      <div style="max-width: var(--content-width); margin: 0 auto; text-align: center;">
-        <h2 class="feature-section-title">What I Offer</h2>
-        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 2rem; text-align: left;">
-          <div> <h3><i class="fas fa-chart-line"></i> Sales & Finance Forecasting</h3>
+    <section id="about" data-aos="fade-up">
+       <div class="section-title">
+         <h2>What I Offer</h2>
+       </div>
+       <div class="offer-grid">
+          <div class="offer-item">
+            <h3><i class="fas fa-chart-line"></i> Sales & Finance Forecasting</h3>
             <p>• Built sales prediction models using Python & time series</p>
             <p>• Conducted finance & tax analytics in Power BI & Tableau</p>
           </div>
-          <div>
+          <div class="offer-item">
             <h3><i class="fas fa-users"></i> Customer & Market Analysis</h3>
             <p>• Segmented customer groups and forecasted demand using clustering & cohort techniques</p>
             <p>• Mapped product-market fit and engagement funnel using analytics</p>
           </div>
-          <div>
+          <div class="offer-item">
             <h3><i class="fas fa-flask"></i> Experimental Design & Simulation</h3>
             <p>• Designed A/B tests & uplift modeling frameworks for pricing and retention scenarios</p>
             <p>• Contributed to quantum computing & AI business strategy research</p>
           </div>
-          <div>
+          <div class="offer-item">
             <h3><i class="fas fa-database"></i> Business Intelligence & Visualization</h3>
-            <p>• Built dashboards with Streamlit, Gradio, Plotly & Power BI to present KPI insights and predictions</p>
-            <p>• Communicated insights from 5000+ SKUs & customer datasets across product channels</p>
+            <p>• Built dashboards with Streamlit, Gradio, Plotly & Power BI</p>
+            <p>• Communicated insights from 5000+ SKUs & customer datasets</p>
           </div>
-          <div>
+          <div class="offer-item">
             <h3><i class="fas fa-robot"></i> Machine Learning Applications</h3>
-            <p>• Trained models for classification, regression, clustering tailored to retail & financial domains</p>
-            <p>• Developed A/B testing & uplift simulation frameworks to evaluate pricing & policy changes</p>
+            <p>• Trained models for classification, regression, clustering</p>
+            <p>• Developed A/B testing & uplift simulation frameworks</p>
           </div>
-          <div>
+          <div class="offer-item">
             <h3><i class="fas fa-cloud"></i> ML System Deployment</h3>
-            <p>• Deployed ML tools & Data infrastructure using Flask, Docker & AWS EC2/RDS/S3 for web-based access</p>
-            <p>• Built local AI apps to parse PDF/CSV documents and extract actionable financial summaries</p>
+            <p>• Deployed ML tools & Data infrastructure using Flask, Docker & AWS</p>
+            <p>• Built local AI apps to parse documents & extract summaries</p>
           </div>
         </div>
-      </div>
     </section>
 
-    <section class="about-section" id="contact" data-aos="fade-up"> <div style="max-width: var(--content-width); margin: 0 auto; text-align: center;">
-        <h2 class="feature-section-title">Get in Touch</h2>
-        <p style="font-size: 1.1rem; max-width: 640px; margin: 0 auto 2rem; opacity: 0.85;">
+    <section id="contact" data-aos="fade-up">
+      <div class="contact-container section-title"> <h2>Get in Touch</h2>
+        <p>
           Interested in working together or learning more? Reach out via any of the channels below.
         </p>
-        <div style="display: flex; justify-content: center; gap: 2rem; flex-wrap: wrap;">
-          <a href="mailto:jimmydata.ai@gmail.com" class="glow-btn" style="padding: 0.8rem 1.6rem; font-size: 1.05rem;"><i class="fas fa-envelope"></i> Email</a>
-          <a href="about.html" target="_blank" class="glow-btn" style="padding: 0.8rem 1.6rem; font-size: 1.05rem;"><i class="fas fa-globe"></i> Website</a>
-          <a href="https://www.linkedin.com/in/chen-shengjie" target="_blank" class="glow-btn" style="padding: 0.8rem 1.6rem; font-size: 1.05rem;"><i class="fab fa-linkedin"></i> LinkedIn</a>
-        </div>
       </div>
+      <div class="contact-buttons">
+          <a href="mailto:jimmydata.ai@gmail.com" class="glow-btn"><i class="fas fa-envelope"></i> Email</a>
+          <a href="https://www.linkedin.com/in/chen-shengjie" target="_blank" rel="noopener noreferrer" class="glow-btn"><i class="fab fa-linkedin"></i> LinkedIn</a>
+        </div>
     </section>
 
   </main>
 
-  <button id="backToTop" title="Back to top">↑</button>
+  <button id="backToTop" title="Back to top" aria-label="Back to top">↑</button> <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script> <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
 
   <script>
-    // Initialize Particles.js
-    // Using the particles.json configuration fetched or defined elsewhere
-    // particlesJS.load('particles-js', 'path/to/your/particles.json', function() {
-    //   console.log('callback - particles.js config loaded');
-    // });
-    // Or define config directly (simplified example):
+    // --- Cache DOM Elements ---
+    const scrollIndicator = document.getElementById("scrollIndicator");
+    const navbar = document.querySelector('.navbar');
+    const backToTopButton = document.getElementById("backToTop");
+    const scrollDownBanner = document.querySelector('.scroll-down-banner');
+    const navToggleCheckbox = document.getElementById('nav-toggle');
+
+    // --- Initialize Libraries ---
+    AOS.init({ duration: 800, once: true }); // Slightly faster duration
+
     particlesJS('particles-js', {
       particles: {
-        number: { value: 60, density: { enable: true, value_area: 800 } }, // Reduced number slightly
+        number: { value: 60, density: { enable: true, value_area: 800 } }, // Reduced count
         color: { value: '#ffffff' },
         shape: { type: 'circle' },
-        opacity: { value: 0.2, random: true, anim: { enable: true, speed: 0.5, opacity_min: 0.05 } }, // Subtle animation
-        size: { value: 2.5, random: true, anim: { enable: false } }, // Slightly smaller
-        line_linked: { enable: true, distance: 160, color: '#ffffff', opacity: 0.15, width: 1 }, // Adjusted distance/opacity
-        move: { enable: true, speed: 0.8, direction: 'none', random: true, straight: false, out_mode: 'out', bounce: false } // Slightly slower
+        opacity: { value: 0.2, random: true, anim: { enable: true, speed: 0.5, opacity_min: 0.05 } },
+        size: { value: 2.5, random: true },
+        line_linked: { enable: true, distance: 160, color: '#ffffff', opacity: 0.15, width: 1 },
+        move: { enable: true, speed: 0.8, direction: 'none', random: true, straight: false, out_mode: 'out', bounce: false }
       },
       interactivity: {
         detect_on: 'canvas',
-        events: { onhover: { enable: true, mode: 'repulse' }, onclick: { enable: true, mode: 'push' }, resize: true },
-        modes: { repulse: { distance: 80, duration: 0.4 }, push: { particles_nb: 4 } } // Reduced repulse distance
+        events: { onhover: { enable: true, mode: 'repulse' }, onclick: { enable: false }, resize: true }, // Disabled onclick push
+        modes: { repulse: { distance: 80, duration: 0.4 } }
       },
       retina_detect: true
     });
 
 
-    // Initialize AOS (Animate On Scroll)
-    AOS.init({ duration: 1000, once: true });
-
-    // Navbar scroll behavior
+    // --- Event Listeners ---
     let lastScroll = 0;
-    const navbar = document.querySelector('.navbar');
-    window.addEventListener('scroll', () => {
-      const currentScroll = window.pageYOffset;
 
-      // Scroll Indicator
-      const scrollTop = window.scrollY;
-      const docHeight = document.body.scrollHeight - window.innerHeight;
-      const scrollPercent = docHeight > 0 ? (scrollTop / docHeight) * 100 : 0; // Avoid division by zero
-      document.getElementById("scrollIndicator").style.width = scrollPercent + "%";
+    // Consolidated Scroll Handler Function
+    function handleScroll() {
+        const currentScroll = window.pageYOffset;
+        const docHeight = document.body.scrollHeight - window.innerHeight;
+        const scrollPercent = docHeight > 0 ? (scrollTop / docHeight) * 100 : 0;
 
-      // Navbar hide/show
-      if (currentScroll <= 0) {
-        navbar.style.transform = 'translateY(0)';
-        return;
-      }
-      if (currentScroll > lastScroll && currentScroll > navbar.offsetHeight) { // Only hide if scrolled past navbar height
-        navbar.style.transform = 'translateY(-100%)'; // Down scroll hide
-      } else {
-        navbar.style.transform = 'translateY(0)'; // Up scroll show
-      }
-      lastScroll = currentScroll;
+        // Scroll Indicator
+        if (scrollIndicator) {
+             scrollIndicator.style.width = scrollPercent + "%";
+        }
 
-      // Back to Top button display
-       const backToTop = document.getElementById("backToTop");
-        if (window.scrollY > 300) {
-            if (backToTop.style.display === "none" || backToTop.style.display === "") {
-                 backToTop.style.display = "flex"; // Show button
+        // Navbar hide/show
+        if (navbar) {
+            if (currentScroll <= 0) {
+                navbar.style.transform = 'translateY(0)';
+            } else if (currentScroll > lastScroll && currentScroll > navbar.offsetHeight) {
+                navbar.style.transform = 'translateY(-100%)'; // Down scroll hide
+            } else {
+                navbar.style.transform = 'translateY(0)'; // Up scroll show
             }
-        } else {
-             if (backToTop.style.display === "flex") {
-                 backToTop.style.display = "none"; // Hide button
-             }
+        }
+        lastScroll = currentScroll;
+
+        // Back to Top button display
+        if (backToTopButton) {
+            if (window.scrollY > 300) {
+                if (backToTopButton.style.display !== "flex") {
+                     backToTopButton.style.display = "flex"; // Show button
+                }
+            } else {
+                 if (backToTopButton.style.display === "flex") {
+                     backToTopButton.style.display = "none"; // Hide button
+                 }
+            }
         }
 
        // Scroll Down Banner Fade Out
-       const hint = document.querySelector('.scroll-down-banner');
-       if (hint) { // Check if hint exists
-           hint.style.opacity = (window.scrollY > 150) ? '0' : '1';
-           hint.style.transition = 'opacity 0.5s ease'; // Add smooth transition
+       if (scrollDownBanner) {
+           scrollDownBanner.style.opacity = (window.scrollY > 150) ? '0' : '1';
+           scrollDownBanner.style.transition = 'opacity 0.5s ease';
        }
+    }
 
-    });
+    // Attach Scroll Listener
+    window.addEventListener('scroll', handleScroll, { passive: true }); // Use passive listener
+
 
     // Back to Top button click action
-    const backToTopButton = document.getElementById("backToTop");
-     if (backToTopButton) { // Check if button exists
+     if (backToTopButton) {
          backToTopButton.addEventListener("click", () => {
            window.scrollTo({ top: 0, behavior: "smooth" });
          });
@@ -734,9 +829,8 @@
      // Close mobile menu when a link is clicked
      document.querySelectorAll('.nav-menu a').forEach(link => {
         link.addEventListener('click', () => {
-            const navToggle = document.getElementById('nav-toggle');
-            if (navToggle.checked) {
-                navToggle.checked = false; // Uncheck the checkbox to close the menu
+            if (navToggleCheckbox && navToggleCheckbox.checked) {
+                navToggleCheckbox.checked = false; // Uncheck the checkbox to close the menu
             }
         });
      });

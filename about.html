@@ -3,12 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, minimum-scale=1.0, viewport-fit=cover">
-    <title>Jimmy Chen - About (Light & Dynamic)</title>
-    <link rel="icon" type="image/x-icon" href="aiai.ico">
+    <title>Jimmy Chen - About (Light & Polished)</title> <link rel="icon" type="image/x-icon" href="aiai.ico">
 
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7386315001938281" crossorigin="anonymous"></script>
 
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Poppins:wght@500;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Poppins:wght@500;600;700&display=swap" rel="stylesheet"> {/* Added 600 weight */}
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 
     <style>
@@ -22,7 +21,9 @@
             --text-secondary: #64748b; /* Slate-500 */
             --text-highlight: var(--primary-accent);
             --border-color: #e2e8f0; /* Slate-200 */
-            --shadow-color: rgba(100, 116, 139, 0.12);
+            /* IMPROVEMENT: Even softer shadow */
+            --shadow-color: rgba(100, 116, 139, 0.08);
+            --shadow-hover-color: rgba(100, 116, 139, 0.15);
 
             /* RGB versions for rgba() usage */
             --primary-accent-rgb: 99, 102, 241;
@@ -35,9 +36,10 @@
             --content-width: 1000px;
             --navbar-height: 70px;
             --border-radius-soft: 16px;
-            --border-radius-btn: 12px;
+            --border-radius-medium: 12px; /* Medium radius */
+            --border-radius-btn: 10px; /* Slightly less round button */
             --section-padding: 2rem;
-            --section-margin-bottom: 2rem;
+            --section-margin-bottom: 2.5rem; /* Increased section spacing */
             --vh: 1vh;
         }
 
@@ -58,10 +60,11 @@
         a:hover { color: #4f46e5; }
         p { line-height: 1.7; margin-bottom: 1rem; color: var(--text-secondary); }
         p:last-child { margin-bottom: 0; }
-        h2, h3 { font-family: 'Poppins', sans-serif; color: var(--text-primary); margin-bottom: 0.75rem; font-weight: 600; }
+        h2 { font-family: 'Poppins', sans-serif; color: var(--text-primary); font-weight: 700; /* Bolder H2 */ }
+        h3 { font-family: 'Poppins', sans-serif; color: var(--text-primary); margin-bottom: 0.75rem; font-weight: 600; }
 
         /* --- Background Effects (Gradient + Shapes) --- */
-        body::before {
+        body::before { /* Animated Gradient */
           content: ""; position: fixed; top: 0; left: 0; right: 0; bottom: 0;
           width: 100%; height: 100%;
           background: linear-gradient(135deg, rgba(239, 246, 255, 0.7), rgba(240, 253, 250, 0.7), rgba(238, 242, 255, 0.7));
@@ -70,7 +73,7 @@
         }
         @keyframes subtleGradientShift { 0% { background-position: 0% 50%; } 50% { background-position: 100% 50%; } 100% { background-position: 0% 50%; } }
 
-        .background-shapes {
+        .background-shapes { /* Floating Shapes Container */
           position: fixed; top: 0; left: 0; width: 100%; height: 100%;
           z-index: -1; overflow: hidden; pointer-events: none;
         }
@@ -120,11 +123,29 @@
             text-decoration: none;
         }
         .nav-logo { width: 36px; height: 36px; filter: none; }
+        /* IMPROVEMENT: Style for subtle nav link */
+        .nav-link-subtle {
+            display: inline-flex; align-items: center; gap: 0.5rem;
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+            font-weight: 500;
+            text-decoration: none;
+            padding: 0.4rem 0.8rem;
+            border-radius: 8px;
+            transition: color 0.2s ease, background-color 0.2s ease;
+        }
+        .nav-link-subtle i { font-size: 0.9em; } /* Slightly smaller icon */
+        .nav-link-subtle:hover {
+            color: var(--primary-accent);
+            background-color: rgba(var(--primary-accent-rgb), 0.08);
+        }
 
         /* --- Main Content Container --- */
         .light-content-container {
-            position: relative; max-width: var(--content-width); margin: 2rem auto; padding: 0;
-            background: transparent; border-radius: 0; border: none; box-shadow: none;
+            position: relative; max-width: var(--content-width);
+            /* IMPROVEMENT: Added more margin top */
+            margin: 3rem auto 2rem auto;
+            padding: 0; background: transparent; border-radius: 0; border: none; box-shadow: none;
             flex: 1;
         }
 
@@ -132,55 +153,86 @@
         .section-card {
             background: var(--surface); border-radius: var(--border-radius-soft);
             padding: var(--section-padding); margin-bottom: var(--section-margin-bottom);
-            border: 1px solid var(--border-color); box-shadow: 0 4px 10px var(--shadow-color);
+            border: 1px solid var(--border-color);
+            /* IMPROVEMENT: Softer card shadow */
+            box-shadow: 0 2px 8px var(--shadow-color);
+            transition: box-shadow 0.3s ease; /* Transition shadow */
+        }
+        .section-card:hover { /* Optional: Slightly enhance shadow on card hover */
+            box-shadow: 0 5px 15px var(--shadow-hover-color);
         }
         section:last-of-type .section-card { margin-bottom: 0; }
 
         /* --- Section Title --- */
         .section-title {
-            font-size: 1.8rem; margin-bottom: 1.5rem; position: relative; padding-bottom: 0.75rem;
+            /* IMPROVEMENT: Slightly larger size */
+            font-size: 2rem;
+            margin-bottom: 1.8rem; /* More space after title */
+            position: relative; padding-bottom: 0.75rem;
             font-weight: 700;
         }
-        .section-title::after {
-            content: ''; position: absolute; bottom: 0; left: 0; width: 60px; height: 3px;
-            background: linear-gradient(90deg, var(--primary-accent), var(--secondary-accent));
+        .section-title::after { /* IMPROVEMENT: Solid, thinner underline */
+            content: ''; position: absolute; bottom: 0; left: 0;
+            width: 50px; /* Slightly shorter */
+            height: 2.5px; /* Thinner */
+            background: var(--primary-accent); /* Solid color */
             border-radius: 2px;
         }
 
         /* --- Timeline --- */
         .timeline { position: relative; padding-left: 35px; margin-top: 1.5rem; }
         .timeline::before {
-            content: ''; position: absolute; left: 0; top: 5px;
-            width: 3px; height: calc(100% - 5px);
+            content: ''; position: absolute; left: 0; top: 8px; /* Adjusted start point */
+            width: 3px; height: calc(100% - 16px); /* Adjusted height */
             background: linear-gradient(to bottom, var(--primary-accent), var(--secondary-accent));
             border-radius: 2px;
         }
         .timeline-item {
             position: relative; padding: 1.5rem; margin-bottom: 1.5rem;
-            background: #f8fafc; border-radius: var(--border-radius-soft);
+            /* IMPROVEMENT: Consistent background with other cards */
+            background: var(--surface);
+            border-radius: var(--border-radius-medium); /* Medium radius */
             border: 1px solid var(--border-color);
+             box-shadow: 0 2px 5px var(--shadow-color); /* Consistent subtle shadow */
         }
         .timeline-item::before {
             content: ''; position: absolute; left: -45px;
             top: 20px; width: 18px; height: 18px;
             background: var(--background); border: 3px solid var(--primary-accent);
-            border-radius: 50%;
+            border-radius: 50%; z-index: 5; /* Ensure dot is above line */
         }
-        .timeline-item h3 { font-size: 1.1rem; font-weight: 600; color: var(--text-primary); }
+        .timeline-item h3 { font-size: 1.1rem; font-weight: 600; color: var(--text-primary); margin-bottom: 0.4rem; } /* Reduced margin */
         .timeline-item p { font-size: 0.95rem; color: var(--text-secondary); margin-bottom: 0.5rem; line-height: 1.6; }
+        .timeline-item p:first-of-type { /* Date/Meta info */
+           font-weight: 500;
+           color: var(--text-secondary); /* Use secondary color for dates */
+           font-size: 0.9rem; /* Slightly smaller */
+           margin-bottom: 0.8rem;
+        }
+
 
         /* --- Education List --- */
         .education-list { margin-top: 1.5rem; }
-        .education-item h3 { font-size: 1.1rem; font-weight: 600; }
+        .education-item h3 { font-size: 1.1rem; font-weight: 600; margin-bottom: 0.3rem; }
         .education-item p { font-size: 0.95rem; margin-bottom: 0.3rem; }
+        /* IMPROVEMENT: Style date/GPA as secondary text */
+        .education-item p:nth-of-type(2),
+        .education-item p:nth-of-type(3) {
+             color: var(--text-secondary);
+             font-size: 0.9rem;
+        }
         .education-item h3:nth-of-type(2) { margin-top: 1.5rem; }
 
         /* --- Skills --- */
         .skill-chart { margin-top: 1rem; }
+        .skill-items { display: flex; flex-wrap: wrap; gap: 0.6rem; /* Add gap */ }
         .skill-tag {
-            display: inline-block; padding: 0.5rem 1rem; margin: 0.4rem;
+            display: inline-block; padding: 0.5rem 1rem;
+            /* margin: 0.4rem; No margin needed with gap */
             background: rgba(var(--primary-accent-rgb), 0.08); color: var(--primary-accent);
-            border-radius: 20px; border: 1px solid rgba(var(--primary-accent-rgb), 0.15);
+            /* IMPROVEMENT: Slightly less round */
+            border-radius: 8px;
+            border: 1px solid rgba(var(--primary-accent-rgb), 0.15);
             font-size: 0.9rem; font-weight: 500; transition: all 0.2s ease;
         }
         .skill-tag:hover { background: rgba(var(--primary-accent-rgb), 0.15); transform: scale(1.05); }
@@ -191,15 +243,17 @@
             gap: 1.5rem; margin-top: 1.5rem;
         }
         .project-card {
-            background: var(--surface); border-radius: var(--border-radius-soft); padding: 1.5rem;
-            border: 1px solid var(--border-color); box-shadow: 0 2px 5px var(--shadow-color);
+            background: var(--surface); border-radius: var(--border-radius-medium); padding: 1.5rem;
+            border: 1px solid var(--border-color);
+            /* IMPROVEMENT: Softer shadow */
+            box-shadow: 0 2px 8px var(--shadow-color);
             transition: transform 0.3s ease, box-shadow 0.3s ease;
             display: flex; flex-direction: column;
         }
-        .project-card:hover { transform: translateY(-5px); box-shadow: 0 6px 12px var(--shadow-color); }
-        .project-card h3 { font-size: 1.1rem; margin-bottom: 0.5rem; flex-grow: 1; }
-        .project-card p { font-size: 0.9rem; margin-top: 1rem; flex-grow: 1; }
-        .project-links { margin-top: auto; padding-top: 1rem; }
+        .project-card:hover { transform: translateY(-5px); box-shadow: 0 6px 15px var(--shadow-hover-color); }
+        .project-card h3 { font-size: 1.1rem; font-weight: 600; margin-bottom: 0.5rem; flex-grow: 0; /* Don't allow title to push button down */ }
+        .project-card p { font-size: 0.9rem; margin-top: 0.8rem; flex-grow: 1; color: var(--text-secondary); } /* Allow description to grow */
+        .project-links { margin-top: auto; padding-top: 1rem; align-self: flex-start; /* Align button left */ }
 
         /* --- Buttons (Simplified Hover/Active) --- */
         .glow-btn {
@@ -210,49 +264,23 @@
             border-radius: var(--border-radius-btn);
             color: white !important;
             font-weight: 500;
-            /* IMPROVEMENT: Simplified transition */
             transition: background-color 0.2s ease, box-shadow 0.2s ease;
             text-decoration: none;
-            /* IMPROVEMENT: Simplified base shadow */
             box-shadow: 0 3px 6px var(--shadow-color);
             border: none;
             cursor: pointer;
         }
-
         .glow-btn:hover {
-            /* IMPROVEMENT: Removed transform, slightly darker background, adjusted shadow */
             background: #4f46e5;
             box-shadow: 0 5px 10px var(--shadow-color);
         }
-
         .glow-btn:active {
-            /* IMPROVEMENT: Removed transform, rely only on background change */
             background: #4338ca;
-            box-shadow: 0 3px 6px var(--shadow-color); /* Keep base shadow on active */
+            box-shadow: 0 3px 6px var(--shadow-color);
         }
-
-        /* Adjust outlined button hover if needed (already lacks transform) */
-        .glow-btn--outlined {
-            background: none;
-            border: 2px solid var(--border-color);
-            color: var(--primary-accent);
-            font-weight: 500;
-            box-shadow: none;
-            /* Ensure consistent transition */
-            transition: background-color 0.2s ease, border-color 0.2s ease, color 0.2s ease;
-        }
-        .glow-btn--outlined:hover {
-            border-color: var(--primary-accent);
-            color: var(--primary-accent);
-            background-color: rgba(var(--primary-accent-rgb), 0.08);
-            box-shadow: none;
-        }
-        .glow-btn--outlined:active {
-            background-color: rgba(var(--primary-accent-rgb), 0.12);
-        }
-
 
         /* --- Contact Info --- */
+        .contact-info { margin-top: 1.5rem; }
         .contact-info .contact-item p { margin-bottom: 1rem; }
         .contact-info .contact-item p:last-child { margin-bottom: 0; }
         .contact-info .glow-btn i { margin-right: 0.5rem; }
@@ -274,8 +302,8 @@
 
         /* --- Responsive Adjustments --- */
         @media (max-width: 768px) {
-            :root { --section-padding: 1.5rem; }
-            .light-content-container { margin: 1rem; padding: 0; }
+            :root { --section-padding: 1.5rem; --section-margin-bottom: 1.5rem; }
+            .light-content-container { margin: 1.5rem 1rem; } /* Adjust margin */
             .nav-container { padding: 0 1rem; flex-direction: column; gap: 1rem; height: auto; padding: 1rem 0; }
             .light-navbar { height: auto; }
             .nav-links { margin-top: 0.5rem; }
@@ -286,8 +314,6 @@
             .section-title { font-size: 1.6rem; }
             .floating-ai { bottom: 20px; right: 20px; gap: 10px; }
             .floating-ai .glow-btn { padding: 0.6rem 1.2rem; font-size: 0.9rem; }
-            /* Optional: Hide background shapes on mobile for performance */
-            /* .background-shapes { display: none; } */
         }
     </style>
 </head>
@@ -311,8 +337,8 @@
                 Jimmy Chen
             </a>
             <div class="nav-links">
-                <a href="index.html" class="glow-btn">
-                    <i class="fas fa-scroll"></i> Back to Main Service Platform
+                <a href="index.html" class="nav-link-subtle">
+                    <i class="fas fa-arrow-left"></i> Back to Main Platform {/* Changed Icon */}
                 </a>
             </div>
         </div>
@@ -322,7 +348,7 @@
         <section class="section-card" id="about">
             <h2 class="section-title">About Me</h2>
             <div class="section-content">
-                 <p>I am currently pursuing my Master’s in Business Analytics at the University of Illinois Urbana-Champaign, with a strong academic background in finance from Curtin University, Australia. I have gained practical experience as a Financial Advisor Intern at Equitable Advisors and as an Engagement Team Member at TTG Asia Media. My expertise lies in data analysis, financial advisory, and using tools like Python, SQL, and R-Studio for data-driven decision-making.</p>
+                 <p>Currently pursuing a Master’s in Business Analytics at the University of Illinois Urbana-Champaign (Expected Jun 2025, GPA: 3.93), following a Bachelor of Commerce in Finance (Distinction, GPA: 3.83) from Curtin University. Experienced in data analysis, financial advisory, and leveraging Python, SQL, R, Power BI, and Tableau for data-driven decision-making through roles at Equitable Advisors, TTG Asia Media, AWG, and the Gies Disruption Lab.</p>
             </div>
         </section>
 
@@ -330,27 +356,31 @@
             <h2 class="section-title">Professional Experience</h2>
             <div class="timeline">
                  <div class="timeline-item">
-                    <h3>Business Operations Team Member - Disruption Lab at Gies (Nov 2024 - Present)</h3> {/* Date Clarification */}
-                    <p>- Leveraging disruptive technologies like AI, Machine Learning, Blockchain, and VR/AR to innovate across industries on client projects with real-world impact.</p>
+                    <p>Nov 2024 - Present</p> {/* Moved Date */}
+                    <h3>Business Operations Team Member - Disruption Lab at Gies</h3>
+                    <p>Leveraging disruptive technologies like AI, Machine Learning, Blockchain, and VR/AR to innovate across industries on client projects with real-world impact.</p>
                 </div>
                 <div class="timeline-item">
-                    <h3>Associate Business Analyst - Associated Wholesale Grocers (AWG) (Sep 2024 - Present)</h3> {/* Date Clarification */}
-                    <p>- Analyzed donation data from 15,000+ organizations using Python (Pandas, Numpy, Matplotlib, Sklearn) and R, performing time-series, cross-sectional, and classification analyses.<br>
-                       - Developed Tableau reports and visualizations to recommend optimized Digital Coupon strategies for AWG products.<br>
-                       - Applied Machine Learning models to predict the success potential of Digital Coupon initiatives.</p>
+                    <p>Sep 2024 - Present</p> {/* Moved Date */}
+                    <h3>Associate Business Analyst - Associated Wholesale Grocers (AWG)</h3>
+                    <p>Analyzed donation data from 15,000+ organizations using Python (Pandas, Numpy, Matplotlib, Sklearn) and R, performing time-series, cross-sectional, and classification analyses.<br>
+                       Developed Tableau reports and visualizations to recommend optimized Digital Coupon strategies for AWG products.<br>
+                       Applied Machine Learning models to predict the success potential of Digital Coupon initiatives.</p>
                 </div>
                 <div class="timeline-item">
-                    <h3>Financial Advisor Intern - Equitable Advisors (Jan 2024 - May 2024)</h3>
-                    <p>- Utilized Zoominfo to source and organize over 10,000 new client leads, enhancing customer management efficiency.<br>
-                       - Optimized investment management and tax strategies for 50+ clients using Power BI, achieving an average 15% improvement in financial outcomes.<br>
-                       - Developed an internal CRM database, providing managers immediate access to details for over 10,000 potential clients requiring financial services.</p>
+                     <p>Jan 2024 - May 2024</p> {/* Moved Date */}
+                    <h3>Financial Advisor Intern - Equitable Advisors</h3>
+                    <p>Utilized Zoominfo to source and organize over 10,000 new client leads, enhancing customer management efficiency.<br>
+                       Optimized investment management and tax strategies for 50+ clients using Power BI, achieving an average 15% improvement in financial outcomes.<br>
+                       Developed an internal CRM database, providing managers immediate access to details for over 10,000 potential clients requiring financial services.</p>
                 </div>
                 <div class="timeline-item">
-                    <h3>Client Engagement Rate Analyst - TTG Asia Media Pte Ltd (Jul 2023 - Oct 2023)</h3>
-                    <p>- Onboarded 150+ hotel managers and agents for tour sales; tracked customer interactions using HubSpot CRM.<br>
-                       - Analyzed data from 5,000+ tour and attraction tickets using Excel and R Studio, contributing insights for machine learning model training.<br>
-                       - Identified and supported 100+ potential distribution channels.<br>
-                       - Managed feedback collection from 2000+ potential customers via HubSpot, achieving a 42.22% email open rate and 47.27% click rate for new relationship building.</p>
+                     <p>Jul 2023 - Oct 2023</p> {/* Moved Date */}
+                    <h3>Client Engagement Rate Analyst - TTG Asia Media Pte Ltd</h3>
+                    <p>Onboarded 150+ hotel managers and agents for tour sales; tracked customer interactions using HubSpot CRM.<br>
+                       Analyzed data from 5,000+ tour and attraction tickets using Excel and R Studio, contributing insights for machine learning model training.<br>
+                       Identified and supported 100+ potential distribution channels.<br>
+                       Managed feedback collection from 2000+ potential customers via HubSpot, achieving a 42.22% email open rate and 47.27% click rate for new relationship building.</p>
                 </div>
             </div>
         </section>
@@ -361,60 +391,57 @@
                 <div class="education-item">
                     <h3>University of Illinois Urbana-Champaign</h3>
                     <p>Master of Science in Business Analytics</p>
-                    <p>Graduation: Expected Jun 2025</p> {/* Date Clarification */}
-                    <p>GPA: 3.93</p>
+                    <p>Expected Jun 2025 | GPA: 3.93</p> {/* Combined line */}
 
-                    <h3 style="margin-top: 1.5rem;">Curtin University (Perth, Australia)</h3>
+                    <h3 style="margin-top: 1.5rem;">Curtin University, Australia</h3> {/* Shortened */}
                     <p>Bachelor of Commerce (Finance) with Distinction</p>
-                    <p>Graduation: Nov 2023</p> {/* Date Clarification */}
-                    <p>GPA: 3.83 (Verified by WES)</p>
+                    <p>Nov 2023 | GPA: 3.83 (WES Verified)</p> {/* Combined line */}
                 </div>
             </div>
         </section>
 
         <section class="section-card" id="skills">
-            <h2 class="section-title">Methodologies</h2>
+            <h2 class="section-title">Methodologies & Skills</h2> {/* Combined Title */}
             <div class="skill-chart">
-                <div class="skill-category">
-                    <div class="skill-items">
-                        <span class="skill-tag">Data Analysis</span>
-                        <span class="skill-tag">Data Visualization</span>
-                        <span class="skill-tag">Financial Analysis</span>
-                        <span class="skill-tag">Local AI Deployment</span> {/* Slightly rephrased */}
-                        <span class="skill-tag">Supervised ML</span> {/* Abbreviated */}
-                        <span class="skill-tag">Unsupervised ML</span> {/* Abbreviated */}
-                        <span class="skill-tag">Semi-Supervised ML</span> {/* Abbreviated */}
-                        <span class="skill-tag">Reinforcement Learning</span> {/* Standard term */}
-                        <span class="skill-tag">Causal Inference</span> {/* Added based on project */}
-                        <span class="skill-tag">Time Series Analysis</span> {/* Added based on experience */}
-                        <span class="skill-tag">CRM Strategy</span> {/* Added based on experience */}
-                    </div>
+                <div class="skill-items">
+                    {/* Adjusted skill tags */}
+                    <span class="skill-tag">Data Analysis</span>
+                    <span class="skill-tag">Data Visualization</span>
+                    <span class="skill-tag">Financial Modeling & Analysis</span>
+                    <span class="skill-tag">Machine Learning (Supervised, Unsupervised)</span>
+                    <span class="skill-tag">Reinforcement Learning</span>
+                    <span class="skill-tag">Time Series Forecasting</span>
+                    <span class="skill-tag">Causal Inference (DiD, RD)</span>
+                    <span class="skill-tag">A/B Testing</span>
+                    <span class="skill-tag">CRM Strategy</span>
+                    <span class="skill-tag">Cloud Computing (AWS)</span>
+                    <span class="skill-tag">Local AI Deployment</span>
+                    <span class="skill-tag">Business Intelligence</span>
                 </div>
             </div>
 
-            <h2 class="section-title" style="margin-top: 2rem;">Technical Expertise</h2>
+            <h2 class="section-title" style="margin-top: 2rem;">Technical Stack</h2> {/* Renamed Title */}
             <div class="skill-chart">
-                <div class="skill-category">
-                    <div class="skill-items">
-                        <span class="skill-tag">Python</span>
-                        <span class="skill-tag">SQL</span>
-                        <span class="skill-tag">SAS</span>
-                        <span class="skill-tag">R</span>
-                        <span class="skill-tag">KNIME</span>
-                        <span class="skill-tag">Wolfram Mathematica</span> {/* Full name */}
-                        <span class="skill-tag">AWS</span>
-                        <span class="skill-tag">MongoDB</span>
-                        <span class="skill-tag">ChromaDB</span>
-                        <span class="skill-tag">Alteryx</span>
-                        <span class="skill-tag">Zoominfo</span>
-                        <span class="skill-tag">HubSpot</span>
-                        <span class="skill-tag">DataBricks</span>
-                        <span class="skill-tag">Power BI</span>
-                        <span class="skill-tag">Tableau</span> {/* Added based on experience */}
-                        <span class="skill-tag">Google Ads</span>
-                         <span class="skill-tag">Excel</span> {/* Added based on experience */}
-                    </div>
-                </div>
+                 <div class="skill-items">
+                    {/* Adjusted tech tags */}
+                    <span class="skill-tag">Python</span>
+                    <span class="skill-tag">SQL</span>
+                    <span class="skill-tag">R</span>
+                    <span class="skill-tag">SAS</span>
+                    <span class="skill-tag">Excel</span>
+                    <span class="skill-tag">Power BI</span>
+                    <span class="skill-tag">Tableau</span>
+                    <span class="skill-tag">AWS</span>
+                    <span class="skill-tag">MongoDB</span>
+                    <span class="skill-tag">ChromaDB</span>
+                    <span class="skill-tag">KNIME</span>
+                    <span class="skill-tag">Alteryx</span>
+                    <span class="skill-tag">DataBricks</span>
+                    <span class="skill-tag">HubSpot</span>
+                    <span class="skill-tag">Zoominfo</span>
+                    <span class="skill-tag">Wolfram Mathematica</span>
+                    <span class="skill-tag">Google Ads</span>
+                 </div>
             </div>
         </section>
 
@@ -539,26 +566,10 @@
         handleScroll(); // Initial check
 
         // --- Smooth Scrolling (Optional - kept commented) ---
-        /*
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                if (this.pathname === window.location.pathname && this.hash) {
-                    const targetElement = document.querySelector(this.hash);
-                    if (targetElement) {
-                        e.preventDefault();
-                        targetElement.scrollIntoView({ behavior: 'smooth', block: 'start' });
-                    }
-                }
-            });
-        });
-        */
+        /* ... */
 
         // --- Button Click Feedback (Removed JS scaling) ---
-        /*
-        document.querySelectorAll('.glow-btn').forEach(btn => {
-            // JS scaling removed, relying on CSS :active state now
-        });
-        */
+        /* ... */
     </script>
 </body>
 </html>

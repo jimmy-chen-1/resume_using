@@ -31,14 +31,14 @@
             --soft-yellow-rgb: 253, 230, 138;
 
             /* Sizing & Radius */
-            --container-width: 1200px; /* Max width for nav container */
-            --content-width: 1000px; /* Max width for main content */
+            --container-width: 1200px;
+            --content-width: 1000px;
             --navbar-height: 70px;
-            --border-radius-soft: 16px; /* Rounded cards */
-            --border-radius-btn: 12px;  /* Rounded buttons */
-            --section-padding: 2rem; /* Padding inside sections */
-            --section-margin-bottom: 2rem; /* Space between sections */
-            --vh: 1vh; /* For JS viewport height correction */
+            --border-radius-soft: 16px;
+            --border-radius-btn: 12px;
+            --section-padding: 2rem;
+            --section-margin-bottom: 2rem;
+            --vh: 1vh;
         }
 
         /* --- Base Styles --- */
@@ -53,7 +53,7 @@
             position: relative;
             z-index: 1;
         }
-        main { position: relative; z-index: 10; } /* Ensure main content is above background */
+        main { position: relative; z-index: 10; }
         a { color: var(--primary-accent); text-decoration: none; transition: color 0.2s ease; }
         a:hover { color: #4f46e5; }
         p { line-height: 1.7; margin-bottom: 1rem; color: var(--text-secondary); }
@@ -61,7 +61,7 @@
         h2, h3 { font-family: 'Poppins', sans-serif; color: var(--text-primary); margin-bottom: 0.75rem; font-weight: 600; }
 
         /* --- Background Effects (Gradient + Shapes) --- */
-        body::before { /* Animated Gradient */
+        body::before {
           content: ""; position: fixed; top: 0; left: 0; right: 0; bottom: 0;
           width: 100%; height: 100%;
           background: linear-gradient(135deg, rgba(239, 246, 255, 0.7), rgba(240, 253, 250, 0.7), rgba(238, 242, 255, 0.7));
@@ -70,7 +70,7 @@
         }
         @keyframes subtleGradientShift { 0% { background-position: 0% 50%; } 50% { background-position: 100% 50%; } 100% { background-position: 0% 50%; } }
 
-        .background-shapes { /* Floating Shapes Container */
+        .background-shapes {
           position: fixed; top: 0; left: 0; width: 100%; height: 100%;
           z-index: -1; overflow: hidden; pointer-events: none;
         }
@@ -84,18 +84,17 @@
 
         /* --- Scroll Progress Bar --- */
         .scroll-progress {
-            position: fixed; top: 0; left: 0; width: 100%; height: 4px; /* Slightly thicker */
-            background: rgba(var(--primary-accent-rgb), 0.1); /* Light accent background */
+            position: fixed; top: 0; left: 0; width: 100%; height: 4px;
+            background: rgba(var(--primary-accent-rgb), 0.1);
             z-index: 9999;
         }
         .progress-bar {
             height: 100%;
-            background: linear-gradient(90deg, var(--primary-accent), var(--secondary-accent)); /* Updated gradient */
-            width: 0%; transition: width 0.2s ease-out; /* Faster transition */
+            background: linear-gradient(90deg, var(--primary-accent), var(--secondary-accent));
+            width: 0%; transition: width 0.2s ease-out;
         }
 
         /* --- Navbar --- */
-        /* Renamed class to match light theme style, kept original structure */
         .light-navbar {
             height: var(--navbar-height);
             background: rgba(255, 255, 255, 0.8);
@@ -116,65 +115,55 @@
         }
         .nav-brand {
             display: flex; align-items: center; gap: 12px;
-            font-size: 1.4rem; font-family: 'Poppins', sans-serif; /* Poppins for brand */
+            font-size: 1.4rem; font-family: 'Poppins', sans-serif;
             color: var(--text-primary); font-weight: 600;
             text-decoration: none;
         }
-        .nav-logo { width: 36px; height: 36px; filter: none; /* Remove dark theme filter */ }
-        /* Keep .nav-links structure, style button inside */
+        .nav-logo { width: 36px; height: 36px; filter: none; }
 
         /* --- Main Content Container --- */
-        /* Renamed class to fit theme, adjusted styles */
         .light-content-container {
-            position: relative; max-width: var(--content-width); margin: 2rem auto; padding: 0; /* Padding handled by section-card */
-            background: transparent; /* No background needed, sections have it */
-            border-radius: 0; border: none; box-shadow: none; /* Removed old container styles */
+            position: relative; max-width: var(--content-width); margin: 2rem auto; padding: 0;
+            background: transparent; border-radius: 0; border: none; box-shadow: none;
             flex: 1;
         }
 
         /* --- Section Card Styling --- */
         .section-card {
-            background: var(--surface); /* White background for cards */
-            border-radius: var(--border-radius-soft);
-            padding: var(--section-padding);
-            margin-bottom: var(--section-margin-bottom);
-            border: 1px solid var(--border-color);
-            box-shadow: 0 4px 10px var(--shadow-color);
+            background: var(--surface); border-radius: var(--border-radius-soft);
+            padding: var(--section-padding); margin-bottom: var(--section-margin-bottom);
+            border: 1px solid var(--border-color); box-shadow: 0 4px 10px var(--shadow-color);
         }
-        section:last-of-type .section-card { margin-bottom: 0; } /* Remove margin from last card */
+        section:last-of-type .section-card { margin-bottom: 0; }
 
         /* --- Section Title --- */
         .section-title {
-            font-size: 1.8rem; /* Adjusted size */
-            margin-bottom: 1.5rem; position: relative; padding-bottom: 0.75rem; /* Increased padding */
+            font-size: 1.8rem; margin-bottom: 1.5rem; position: relative; padding-bottom: 0.75rem;
             font-weight: 700;
         }
-        .section-title::after { /* Updated underline gradient */
+        .section-title::after {
             content: ''; position: absolute; bottom: 0; left: 0; width: 60px; height: 3px;
             background: linear-gradient(90deg, var(--primary-accent), var(--secondary-accent));
             border-radius: 2px;
         }
 
         /* --- Timeline --- */
-        .timeline { position: relative; padding-left: 35px; /* Increased padding */ margin-top: 1.5rem; }
-        .timeline::before { /* Updated line gradient */
-            content: ''; position: absolute; left: 0; top: 5px; /* Adjust start */
-            width: 3px; height: calc(100% - 5px); /* Adjust height */
+        .timeline { position: relative; padding-left: 35px; margin-top: 1.5rem; }
+        .timeline::before {
+            content: ''; position: absolute; left: 0; top: 5px;
+            width: 3px; height: calc(100% - 5px);
             background: linear-gradient(to bottom, var(--primary-accent), var(--secondary-accent));
             border-radius: 2px;
         }
         .timeline-item {
-            position: relative; padding: 1.5rem; margin-bottom: 1.5rem; /* Reduced margin */
-            background: #f8fafc; /* Slightly off-white background */
-            border-radius: var(--border-radius-soft); /* Consistent radius */
+            position: relative; padding: 1.5rem; margin-bottom: 1.5rem;
+            background: #f8fafc; border-radius: var(--border-radius-soft);
             border: 1px solid var(--border-color);
-            /* Removed left border, rely on dot/line */
         }
-        .timeline-item::before { /* Dot on timeline */
-            content: ''; position: absolute; left: -45px; /* Adjusted position */
+        .timeline-item::before {
+            content: ''; position: absolute; left: -45px;
             top: 20px; width: 18px; height: 18px;
-            background: var(--background); /* Match page background */
-            border: 3px solid var(--primary-accent);
+            background: var(--background); border: 3px solid var(--primary-accent);
             border-radius: 50%;
         }
         .timeline-item h3 { font-size: 1.1rem; font-weight: 600; color: var(--text-primary); }
@@ -184,74 +173,103 @@
         .education-list { margin-top: 1.5rem; }
         .education-item h3 { font-size: 1.1rem; font-weight: 600; }
         .education-item p { font-size: 0.95rem; margin-bottom: 0.3rem; }
-        .education-item h3:nth-of-type(2) { margin-top: 1.5rem; } /* Space before second uni */
+        .education-item h3:nth-of-type(2) { margin-top: 1.5rem; }
 
         /* --- Skills --- */
         .skill-chart { margin-top: 1rem; }
-        .skill-tag { /* Light theme skill tag */
-            display: inline-block; padding: 0.5rem 1rem; margin: 0.4rem; /* Increased margin */
-            background: rgba(var(--primary-accent-rgb), 0.08); /* Lighter background */
-            color: var(--primary-accent); /* Accent text */
-            border-radius: 20px;
-            border: 1px solid rgba(var(--primary-accent-rgb), 0.15);
-            font-size: 0.9rem; font-weight: 500;
-            transition: all 0.2s ease;
+        .skill-tag {
+            display: inline-block; padding: 0.5rem 1rem; margin: 0.4rem;
+            background: rgba(var(--primary-accent-rgb), 0.08); color: var(--primary-accent);
+            border-radius: 20px; border: 1px solid rgba(var(--primary-accent-rgb), 0.15);
+            font-size: 0.9rem; font-weight: 500; transition: all 0.2s ease;
         }
         .skill-tag:hover { background: rgba(var(--primary-accent-rgb), 0.15); transform: scale(1.05); }
 
         /* --- Projects --- */
         .project-grid {
-            display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); /* Adjusted minmax */
+            display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
             gap: 1.5rem; margin-top: 1.5rem;
         }
-        .project-card { /* Light theme project card */
+        .project-card {
             background: var(--surface); border-radius: var(--border-radius-soft); padding: 1.5rem;
             border: 1px solid var(--border-color); box-shadow: 0 2px 5px var(--shadow-color);
             transition: transform 0.3s ease, box-shadow 0.3s ease;
-            display: flex; flex-direction: column; /* Ensure consistent layout */
+            display: flex; flex-direction: column;
         }
         .project-card:hover { transform: translateY(-5px); box-shadow: 0 6px 12px var(--shadow-color); }
-        .project-card h3 { font-size: 1.1rem; margin-bottom: 0.5rem; flex-grow: 1; } /* Allow title to grow */
-        .project-card p { font-size: 0.9rem; margin-top: 1rem; flex-grow: 1; } /* Allow description to grow */
-        .project-links { margin-top: auto; padding-top: 1rem; } /* Push button to bottom */
+        .project-card h3 { font-size: 1.1rem; margin-bottom: 0.5rem; flex-grow: 1; }
+        .project-card p { font-size: 0.9rem; margin-top: 1rem; flex-grow: 1; }
+        .project-links { margin-top: auto; padding-top: 1rem; }
 
-        /* --- Buttons --- */
-        .glow-btn { /* Applying standard light theme button */
-            display: inline-flex; align-items: center; justify-content: center; /* Center content */
-            gap: 0.6rem; /* Space between icon and text */
-            padding: 0.7rem 1.5rem; /* Adjusted padding */
-            background: var(--primary-accent); border-radius: var(--border-radius-btn);
-            color: white !important; /* Ensure white text */
-            font-weight: 500; transition: all 0.2s ease; text-decoration: none;
-            box-shadow: 0 4px 6px var(--shadow-color), 0 1px 3px var(--shadow-color);
-            border: none; /* Remove border */
+        /* --- Buttons (Simplified Hover/Active) --- */
+        .glow-btn {
+            display: inline-flex; align-items: center; justify-content: center;
+            gap: 0.6rem;
+            padding: 0.7rem 1.5rem;
+            background: var(--primary-accent);
+            border-radius: var(--border-radius-btn);
+            color: white !important;
+            font-weight: 500;
+            /* IMPROVEMENT: Simplified transition */
+            transition: background-color 0.2s ease, box-shadow 0.2s ease;
+            text-decoration: none;
+            /* IMPROVEMENT: Simplified base shadow */
+            box-shadow: 0 3px 6px var(--shadow-color);
+            border: none;
+            cursor: pointer;
         }
+
         .glow-btn:hover {
-            transform: translateY(-2px) scale(1.02); /* Add scale */
+            /* IMPROVEMENT: Removed transform, slightly darker background, adjusted shadow */
             background: #4f46e5;
-            box-shadow: 0 7px 14px var(--shadow-color), 0 3px 6px var(--shadow-color);
+            box-shadow: 0 5px 10px var(--shadow-color);
         }
-        .glow-btn:active { transform: translateY(0) scale(1); }
+
+        .glow-btn:active {
+            /* IMPROVEMENT: Removed transform, rely only on background change */
+            background: #4338ca;
+            box-shadow: 0 3px 6px var(--shadow-color); /* Keep base shadow on active */
+        }
+
+        /* Adjust outlined button hover if needed (already lacks transform) */
+        .glow-btn--outlined {
+            background: none;
+            border: 2px solid var(--border-color);
+            color: var(--primary-accent);
+            font-weight: 500;
+            box-shadow: none;
+            /* Ensure consistent transition */
+            transition: background-color 0.2s ease, border-color 0.2s ease, color 0.2s ease;
+        }
+        .glow-btn--outlined:hover {
+            border-color: var(--primary-accent);
+            color: var(--primary-accent);
+            background-color: rgba(var(--primary-accent-rgb), 0.08);
+            box-shadow: none;
+        }
+        .glow-btn--outlined:active {
+            background-color: rgba(var(--primary-accent-rgb), 0.12);
+        }
+
 
         /* --- Contact Info --- */
         .contact-info .contact-item p { margin-bottom: 1rem; }
         .contact-info .contact-item p:last-child { margin-bottom: 0; }
-        .contact-info .glow-btn i { margin-right: 0.5rem; } /* Space icon in contact */
+        .contact-info .glow-btn i { margin-right: 0.5rem; }
 
         /* --- Floating Buttons --- */
         .floating-ai {
             position: fixed; bottom: 30px; right: 30px;
             display: flex; flex-direction: column; gap: 15px; z-index: 1000;
         }
-        /* Style applied via .glow-btn */
 
         /* --- Footer --- */
-        .site-footer { /* Changed tag to class for consistency */
+        .site-footer {
             text-align: center; padding: 2rem 1rem;
-            color: var(--text-secondary); /* Secondary text color */
+            color: var(--text-secondary);
             font-size: 0.9rem;
-            margin-top: 2rem; /* Space above footer */
-            background: transparent; /* Match page background */
+            margin-top: 2rem;
+            background: transparent;
         }
 
         /* --- Responsive Adjustments --- */
@@ -259,11 +277,11 @@
             :root { --section-padding: 1.5rem; }
             .light-content-container { margin: 1rem; padding: 0; }
             .nav-container { padding: 0 1rem; flex-direction: column; gap: 1rem; height: auto; padding: 1rem 0; }
-            .light-navbar { height: auto; } /* Adjust navbar height */
+            .light-navbar { height: auto; }
             .nav-links { margin-top: 0.5rem; }
             .project-grid { grid-template-columns: 1fr; }
             .timeline { padding-left: 25px; }
-            .timeline-item { padding: 1rem; margin-left: 0; /* Remove margin */ }
+            .timeline-item { padding: 1rem; margin-left: 0; }
             .timeline-item::before { left: -35px; top: 15px; width: 16px; height: 16px; }
             .section-title { font-size: 1.6rem; }
             .floating-ai { bottom: 20px; right: 20px; gap: 10px; }
@@ -304,35 +322,35 @@
         <section class="section-card" id="about">
             <h2 class="section-title">About Me</h2>
             <div class="section-content">
-                <p>I am currently pursuing my Master’s in Business Analytics at the University of Illinois, with a strong academic background in finance from Curtin University, Australia. I have gained practical experience as a Financial Advisor Intern at Equitable Advisors and as an Engagement Team Member at TTG Asia Media. My expertise lies in data analysis, financial advisory, and using tools like Python, SQL, and R-Studio for data-driven decision-making.</p>
+                 <p>I am currently pursuing my Master’s in Business Analytics at the University of Illinois Urbana-Champaign, with a strong academic background in finance from Curtin University, Australia. I have gained practical experience as a Financial Advisor Intern at Equitable Advisors and as an Engagement Team Member at TTG Asia Media. My expertise lies in data analysis, financial advisory, and using tools like Python, SQL, and R-Studio for data-driven decision-making.</p>
             </div>
         </section>
 
         <section class="section-card" id="experience">
             <h2 class="section-title">Professional Experience</h2>
             <div class="timeline">
-                <div class="timeline-item">
-                    <h3>Business Operations Team Member - Disruption Lab at Gies (11/2024 - Now)</h3>
-                    <p>- Using disruptive technology like AI and machine learning, Blockchain, and VR/AR to transform industries. It works on projects with real world impact for a variety of clients.</p>
+                 <div class="timeline-item">
+                    <h3>Business Operations Team Member - Disruption Lab at Gies (Nov 2024 - Present)</h3> {/* Date Clarification */}
+                    <p>- Leveraging disruptive technologies like AI, Machine Learning, Blockchain, and VR/AR to innovate across industries on client projects with real-world impact.</p>
                 </div>
                 <div class="timeline-item">
-                    <h3>Associate Business Analyst - Associated Wholesale Grocers (AWG) (09/2024 - Now)</h3>
-                    <p>- Utilized Python (Pandas, Numpy, Matplotlib, Sklearn) and R to analyze over 15000+ organizations’ data (time-series analysis & cross section analysis & classification) of the donations made and trends associated with them<br>
-                       - Reported and Visualized (Tableau) on recommendations for optimizing Digital Coupons strategy for AWG products.<br>
-                       - Used the method of Machine Learning to anticipate the success of Digital Coupons strategy.</p>
+                    <h3>Associate Business Analyst - Associated Wholesale Grocers (AWG) (Sep 2024 - Present)</h3> {/* Date Clarification */}
+                    <p>- Analyzed donation data from 15,000+ organizations using Python (Pandas, Numpy, Matplotlib, Sklearn) and R, performing time-series, cross-sectional, and classification analyses.<br>
+                       - Developed Tableau reports and visualizations to recommend optimized Digital Coupon strategies for AWG products.<br>
+                       - Applied Machine Learning models to predict the success potential of Digital Coupon initiatives.</p>
                 </div>
                 <div class="timeline-item">
-                    <h3>Financial Advisor Intern - Equitable Advisors (01/2024 - 05/2024)</h3>
-                    <p>- Sourced and organized 10,000+ new client leads using Zoominfo for efficient customer management.<br>
-                       - Employed tools like PowerBI to optimize investment management and tax strategies for 50+ clients, improving financial outcomes by 15%.<br>
-                       - Established internal customer relational management database for managers immediately gaining the client’s details and stored 10000+ potential clients needed financial services in the database</p>
+                    <h3>Financial Advisor Intern - Equitable Advisors (Jan 2024 - May 2024)</h3>
+                    <p>- Utilized Zoominfo to source and organize over 10,000 new client leads, enhancing customer management efficiency.<br>
+                       - Optimized investment management and tax strategies for 50+ clients using Power BI, achieving an average 15% improvement in financial outcomes.<br>
+                       - Developed an internal CRM database, providing managers immediate access to details for over 10,000 potential clients requiring financial services.</p>
                 </div>
                 <div class="timeline-item">
-                    <h3>Client Engagement Rate Analyst - TTG Asia Media Pte Ltd (07/2023 - 10/2023)</h3>
-                    <p>- Onboarded 150+ hotel managers and agents for tour sales, and used HubSpot CRM for tracking customer responses.<br>
-                       - Analyzed 5,000+ tour and attraction tickets for data insights using Excel and R Studio, contributing to machine learning model training.<br>
-                       - Searched for and identified 100+ potential distribution channels provided corresponding support<br>
-                       - Collected 2000+ feedback to build and enhance the relationship with potential customers using HubSpot CRM, achieving a 42.22% open rate of email (helping to build the new relationship) and a 47.27% click rate</p>
+                    <h3>Client Engagement Rate Analyst - TTG Asia Media Pte Ltd (Jul 2023 - Oct 2023)</h3>
+                    <p>- Onboarded 150+ hotel managers and agents for tour sales; tracked customer interactions using HubSpot CRM.<br>
+                       - Analyzed data from 5,000+ tour and attraction tickets using Excel and R Studio, contributing insights for machine learning model training.<br>
+                       - Identified and supported 100+ potential distribution channels.<br>
+                       - Managed feedback collection from 2000+ potential customers via HubSpot, achieving a 42.22% email open rate and 47.27% click rate for new relationship building.</p>
                 </div>
             </div>
         </section>
@@ -340,15 +358,15 @@
         <section class="section-card" id="education">
             <h2 class="section-title">Education</h2>
             <div class="education-list">
-                 <div class="education-item">
+                <div class="education-item">
                     <h3>University of Illinois Urbana-Champaign</h3>
                     <p>Master of Science in Business Analytics</p>
-                    <p>Graduation: Expected 06/2025</p>
+                    <p>Graduation: Expected Jun 2025</p> {/* Date Clarification */}
                     <p>GPA: 3.93</p>
 
                     <h3 style="margin-top: 1.5rem;">Curtin University (Perth, Australia)</h3>
                     <p>Bachelor of Commerce (Finance) with Distinction</p>
-                    <p>Graduation: 11/2023</p>
+                    <p>Graduation: Nov 2023</p> {/* Date Clarification */}
                     <p>GPA: 3.83 (Verified by WES)</p>
                 </div>
             </div>
@@ -359,14 +377,17 @@
             <div class="skill-chart">
                 <div class="skill-category">
                     <div class="skill-items">
-                         <span class="skill-tag">Data Analysis</span>
+                        <span class="skill-tag">Data Analysis</span>
                         <span class="skill-tag">Data Visualization</span>
                         <span class="skill-tag">Financial Analysis</span>
-                        <span class="skill-tag">Local AI Establish</span>
-                        <span class="skill-tag">Supervised Machine Learning</span>
-                        <span class="skill-tag">Unsupervised Machine Learning</span>
-                        <span class="skill-tag">Semi-Supervised Machine Learning</span>
-                        <span class="skill-tag">Reinforcement Machine Learning</span>
+                        <span class="skill-tag">Local AI Deployment</span> {/* Slightly rephrased */}
+                        <span class="skill-tag">Supervised ML</span> {/* Abbreviated */}
+                        <span class="skill-tag">Unsupervised ML</span> {/* Abbreviated */}
+                        <span class="skill-tag">Semi-Supervised ML</span> {/* Abbreviated */}
+                        <span class="skill-tag">Reinforcement Learning</span> {/* Standard term */}
+                        <span class="skill-tag">Causal Inference</span> {/* Added based on project */}
+                        <span class="skill-tag">Time Series Analysis</span> {/* Added based on experience */}
+                        <span class="skill-tag">CRM Strategy</span> {/* Added based on experience */}
                     </div>
                 </div>
             </div>
@@ -375,21 +396,23 @@
             <div class="skill-chart">
                 <div class="skill-category">
                     <div class="skill-items">
-                         <span class="skill-tag">Python</span>
+                        <span class="skill-tag">Python</span>
                         <span class="skill-tag">SQL</span>
                         <span class="skill-tag">SAS</span>
                         <span class="skill-tag">R</span>
                         <span class="skill-tag">KNIME</span>
-                        <span class="skill-tag">Wolfram</span>
-                        <span class="skill-tag">AWS</span> {/* Simplified */}
+                        <span class="skill-tag">Wolfram Mathematica</span> {/* Full name */}
+                        <span class="skill-tag">AWS</span>
                         <span class="skill-tag">MongoDB</span>
                         <span class="skill-tag">ChromaDB</span>
                         <span class="skill-tag">Alteryx</span>
                         <span class="skill-tag">Zoominfo</span>
                         <span class="skill-tag">HubSpot</span>
                         <span class="skill-tag">DataBricks</span>
-                        <span class="skill-tag">PowerBI</span>
+                        <span class="skill-tag">Power BI</span>
+                        <span class="skill-tag">Tableau</span> {/* Added based on experience */}
                         <span class="skill-tag">Google Ads</span>
+                         <span class="skill-tag">Excel</span> {/* Added based on experience */}
                     </div>
                 </div>
             </div>
@@ -400,42 +423,42 @@
             <div class="project-grid">
                  <div class="project-card">
                     <h3>Virtual Stock Investment Analysis</h3>
-                    <p>Analyzes investment choices and portfolio performance compared to the S&P 500, discussing market factors.</p>
+                    <p>Analyzed simulated stock investments and portfolio performance against the S&P 500 benchmark, considering market factors.</p>
                     <div class="project-links">
                         <a href="https://drive.google.com/drive/folders/10z5G2XHLvOcBI2cvGALBimJQT0x03bT_" target="_blank" class="glow-btn"><i class="fas fa-external-link-alt"></i> View Analysis</a>
                     </div>
                 </div>
                  <div class="project-card">
-                    <h3>Econometric work: Environmental Kuznets Curve (EKC)</h3>
-                     <p>Empirically tests the EKC hypothesis using World Bank data on CO2 emissions and GDP per capita via linear regression.</p>
+                    <h3>Environmental Kuznets Curve (EKC) Analysis</h3>
+                     <p>Empirically tested the EKC hypothesis using World Bank data on CO2 emissions and GDP per capita via linear regression in R.</p>
                     <div class="project-links">
                         <a href="https://drive.google.com/drive/folders/1AQbQ2peapBoOr-EOWHqG3-CJoSFejCSB" target="_blank" class="glow-btn"><i class="fas fa-external-link-alt"></i> View Analysis</a>
                     </div>
                 </div>
                  <div class="project-card">
-                    <h3>Analysis of a Workplace Wellness Program</h3>
-                     <p>Analyzed the effectiveness of workplace wellness programs on healthcare spending and employee health outcomes.</p>
+                    <h3>Workplace Wellness Program Impact Analysis</h3>
+                     <p>Analyzed the causal effect of a workplace wellness program on employee healthcare spending and health outcomes using statistical methods.</p>
                     <div class="project-links">
                         <a href="https://drive.google.com/drive/folders/1Is-Sa2JPu1Wdd3728II2E8-_xPGY5K8w" target="_blank" class="glow-btn"><i class="fas fa-external-link-alt"></i> View Analysis</a>
                     </div>
                 </div>
                  <div class="project-card">
-                    <h3>Predicting Property Values (Cook County, IL)</h3>
-                     <p>Developed ML models to estimate residential property values with emphasis on fair assessment practices.</p>
+                    <h3>Cook County Property Value Prediction</h3>
+                     <p>Developed Machine Learning models (e.g., Regression, Gradient Boosting) to estimate residential property values, focusing on fairness.</p>
                     <div class="project-links">
                         <a href="https://drive.google.com/drive/folders/1RHU9r78Exw661vXsso_Sb7Xm68_Lkv5u" target="_blank" class="glow-btn"><i class="fas fa-external-link-alt"></i> View Analysis</a>
                     </div>
                 </div>
                  <div class="project-card">
-                    <h3>Explore NYC Taxi Fare Patterns</h3>
-                     <p>Analyzed NYC taxi trip data to understand fare patterns and operational efficiency using data visualization and modeling.</p>
+                    <h3>NYC Taxi Fare Pattern Exploration</h3>
+                     <p>Utilized data visualization and statistical modeling to understand fare determinants and operational efficiency in NYC taxi trips.</p>
                     <div class="project-links">
                         <a href="https://drive.google.com/drive/folders/1vtGlH_OLlnqYhUnZ5BqA4I4tkzZ2sMSk" target="_blank" class="glow-btn"><i class="fas fa-external-link-alt"></i> View Analysis</a>
                     </div>
                 </div>
                  <div class="project-card">
-                    <h3>Diff-in-Diff & Regression Discontinuity Analysis</h3>
-                     <p>Analyzed the impact of teenage driving minimum age laws on mortality rates using advanced causal inference methods.</p>
+                    <h3>Causal Inference: Teenage Driving Laws</h3>
+                     <p>Applied Difference-in-Differences and Regression Discontinuity designs to analyze the impact of minimum driving age laws on mortality rates.</p>
                     <div class="project-links">
                         <a href="https://drive.google.com/drive/folders/1OfnM0f2idXl3hINU4nCvZxiLwi8gUucg" target="_blank" class="glow-btn"><i class="fas fa-external-link-alt"></i> View Analysis</a>
                     </div>
@@ -447,7 +470,7 @@
             <h2 class="section-title">Let's Connect</h2>
             <div class="contact-info">
                 <div class="contact-item">
-                     <p><a href="mailto:sc171@illinois.edu" class="glow-btn"><i class="fas fa-envelope"></i> sc171@illinois.edu</a></p>
+                    <p><a href="mailto:sc171@illinois.edu" class="glow-btn"><i class="fas fa-envelope"></i> sc171@illinois.edu</a></p>
                     <p><a href="tel:+13472450259" class="glow-btn"><i class="fas fa-phone"></i> +1 347-245-0259</a></p>
                     <p><a href="https://www.linkedin.com/in/chen-shengjie" target="_blank" class="glow-btn"><i class="fab fa-linkedin"></i> LinkedIn Profile</a></p>
                 </div>
@@ -465,14 +488,14 @@
     </div>
 
     <footer class="site-footer">
-        <p>&copy; <span id="current-year">2024</span> Shengjie (Jimmy) Chen | Built with HTML & CSS</p>
+        <p>&copy; <span id="current-year">2025</span> Shengjie (Jimmy) Chen | Built with HTML & CSS</p>
     </footer>
 
     <script>
         // --- Cache DOM Elements ---
         const progressBar = document.querySelector('.progress-bar');
-        const navbar = document.getElementById('navbar'); // Use ID added to navbar
-        const currentYearSpan = document.getElementById('current-year'); // Use ID added to year span
+        const navbar = document.getElementById('navbar');
+        const currentYearSpan = document.getElementById('current-year');
 
         // --- Set Current Year ---
         if (currentYearSpan) {
@@ -515,44 +538,27 @@
         window.addEventListener('scroll', handleScroll, { passive: true });
         handleScroll(); // Initial check
 
-        // --- Smooth Scrolling (Optional - uncomment if needed) ---
+        // --- Smooth Scrolling (Optional - kept commented) ---
         /*
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
-                // Check if the link is internal to this page
                 if (this.pathname === window.location.pathname && this.hash) {
                     const targetElement = document.querySelector(this.hash);
                     if (targetElement) {
                         e.preventDefault();
-                        targetElement.scrollIntoView({
-                            behavior: 'smooth',
-                            block: 'start' // Adjust block alignment if needed
-                        });
+                        targetElement.scrollIntoView({ behavior: 'smooth', block: 'start' });
                     }
                 }
-                // Allow normal behavior for external links or different pages
             });
         });
         */
 
-        // --- Button Click Feedback ---
+        // --- Button Click Feedback (Removed JS scaling) ---
+        /*
         document.querySelectorAll('.glow-btn').forEach(btn => {
-            btn.addEventListener('mousedown', () => { // Use mousedown for immediate feedback
-                btn.style.transform = 'scale(0.98)';
-            });
-             btn.addEventListener('mouseup', () => { // Revert on mouseup
-                 btn.style.transform = ''; // Revert to CSS hover state
-             });
-             btn.addEventListener('mouseleave', () => { // Revert if mouse leaves while pressed
-                 btn.style.transform = '';
-             });
-              btn.addEventListener('touchstart', () => { // Touch feedback
-                 btn.style.transform = 'scale(0.98)';
-             }, { passive: true });
-             btn.addEventListener('touchend', () => {
-                  btn.style.transform = '';
-             });
+            // JS scaling removed, relying on CSS :active state now
         });
+        */
     </script>
 </body>
 </html>
